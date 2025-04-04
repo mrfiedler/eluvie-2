@@ -119,7 +119,7 @@ export default {
 				'float': 'float 6s ease-in-out infinite'
 			},
 			backgroundImage: {
-				'hero-gradient': 'linear-gradient(to bottom, #f0d180, #69c7c7, #4a8fd2, #7c54a2, #3d2d5f)',
+				'hero-gradient': 'linear-gradient(to bottom, #64a0ff, #8c7aec, #a26ee3, #b261d9, #c053cf)',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			},
 			fontFamily: {

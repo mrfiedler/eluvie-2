@@ -6,8 +6,8 @@ const HeroSection = () => {
   return (
     <section className="pt-32 pb-24 relative overflow-hidden">
       {/* Gradient background elements */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-eluvie-gold/30 rounded-full blur-3xl" />
-      <div className="absolute top-20 right-10 w-72 h-72 bg-eluvie-teal/20 rounded-full blur-3xl" />
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-20 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row items-center">
@@ -16,7 +16,7 @@ const HeroSection = () => {
               A financial platform made for your 
               <span className="gradient-text"> creative flow.</span>
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-lg">
+            <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-lg">
               Manage clients, finances, contracts and subscriptions – in minutes, not hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -24,25 +24,25 @@ const HeroSection = () => {
                 Start for Free
                 <ArrowRight className="h-5 w-5" />
               </Button>
-              <Button variant="outline" className="flex items-center gap-2 text-base py-6 px-8 border-gray-200">
-                <Play className="h-5 w-5 text-gray-600" />
+              <Button variant="outline" className="flex items-center gap-2 text-base py-6 px-8 border-gray-700 bg-gray-800/80 text-gray-100 hover:bg-gray-700">
+                <Play className="h-5 w-5 text-gray-400" />
                 See How It Works
               </Button>
             </div>
-            <div className="mt-8 flex items-center text-sm text-gray-500">
+            <div className="mt-8 flex items-center text-sm text-gray-400">
               <div className="flex -space-x-2 mr-3">
                 <img
-                  className="h-8 w-8 rounded-full border-2 border-white"
+                  className="h-8 w-8 rounded-full border-2 border-gray-800"
                   src="https://randomuser.me/api/portraits/women/11.jpg"
                   alt="User"
                 />
                 <img
-                  className="h-8 w-8 rounded-full border-2 border-white"
+                  className="h-8 w-8 rounded-full border-2 border-gray-800"
                   src="https://randomuser.me/api/portraits/men/32.jpg"
                   alt="User"
                 />
                 <img
-                  className="h-8 w-8 rounded-full border-2 border-white"
+                  className="h-8 w-8 rounded-full border-2 border-gray-800"
                   src="https://randomuser.me/api/portraits/women/68.jpg"
                   alt="User"
                 />
@@ -54,7 +54,7 @@ const HeroSection = () => {
           <div className="w-full lg:w-1/2 animate-fade-in animation-delay-300 lg:pl-10">
             <div className="relative">
               {/* Dashboard mockup */}
-              <div className="rounded-2xl shadow-2xl overflow-hidden border border-gray-100 animate-float">
+              <div className="rounded-2xl shadow-2xl overflow-hidden border border-gray-700 animate-float">
                 <img 
                   src="/lovable-uploads/50090990-842e-4cea-a92b-ced353291b87.png" 
                   alt="Eluvie Dashboard" 
@@ -63,17 +63,17 @@ const HeroSection = () => {
               </div>
               
               {/* Floating notification card */}
-              <div className="absolute -bottom-10 -left-10 bg-white rounded-xl shadow-lg p-4 max-w-[15rem] border border-gray-100 animate-float" style={{animationDelay: '0.3s'}}>
+              <div className="absolute -bottom-10 -left-10 bg-gray-800 rounded-xl shadow-lg p-4 max-w-[15rem] border border-gray-700 animate-float" style={{animationDelay: '0.3s'}}>
                 <div className="flex items-center gap-2 mb-2">
                   <div className="h-3 w-3 bg-green-500 rounded-full"></div>
-                  <p className="text-xs font-medium">Payment Received</p>
+                  <p className="text-xs font-medium text-gray-200">Payment Received</p>
                 </div>
-                <p className="text-sm text-gray-600">Client Acme Inc. paid $2,400.00</p>
+                <p className="text-sm text-gray-400">Client Acme Inc. paid $2,400.00</p>
               </div>
               
               {/* Gamification badge */}
-              <div className="absolute top-8 -right-4 bg-white rounded-full shadow-lg p-3 animate-float" style={{animationDelay: '0.6s'}}>
-                <div className="h-12 w-12 bg-gradient-to-br from-eluvie-gold to-eluvie-teal rounded-full flex items-center justify-center">
+              <div className="absolute top-8 -right-4 bg-gray-800 rounded-full shadow-lg p-3 animate-float" style={{animationDelay: '0.6s'}}>
+                <div className="h-12 w-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
