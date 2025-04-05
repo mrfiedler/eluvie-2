@@ -27,9 +27,9 @@ const Navbar = () => {
           <div className="flex items-center">
             <a href="#" className="flex items-center">
               <img 
-                src="/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png" 
+                src="/lovable-uploads/fee0e698-51e9-462e-99b1-b5156482c06b.png" 
                 alt="Eluvie Logo" 
-                className="h-10 w-auto mr-2" 
+                className="h-8 w-auto" 
               />
             </a>
           </div>
@@ -57,7 +57,7 @@ const Navbar = () => {
             <a href="#" className="text-gray-300 hover:text-white text-sm font-medium">
               Login
             </a>
-            <Button className="bg-gradient-to-r from-blue-400/80 to-purple-500/80 hover:opacity-90">
+            <Button className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-700">
               Start for Free
             </Button>
           </div>
@@ -97,7 +97,7 @@ const Navbar = () => {
                 <a href="#" className="text-gray-300 hover:text-white text-base font-medium">
                   Login
                 </a>
-                <Button className="bg-gradient-to-r from-blue-400/80 to-purple-500/80 hover:opacity-90">
+                <Button className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-700">
                   Start for Free
                 </Button>
               </div>

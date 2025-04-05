@@ -33,7 +33,7 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 }
 
@@ -60,11 +60,7 @@
   }
 
   .card-shine {
-    @apply relative overflow-hidden bg-gray-800 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent;
-  }
-
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-hero-gradient;
+    @apply relative overflow-hidden bg-gray-800 before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/5 before:to-transparent;
   }
 
   .section-divider {
@@ -77,11 +73,11 @@
   }
 
   .button-gradient {
-    @apply relative bg-gradient-to-r from-blue-400/80 to-purple-500/80 hover:opacity-90 text-white font-medium py-3 px-6 rounded-full shadow-md transition-all duration-300 overflow-hidden;
+    @apply relative bg-gray-800 hover:bg-gray-700 text-white border border-gray-700 font-medium py-3 px-6 rounded-md shadow-md transition-all duration-300 overflow-hidden;
   }
 
   .button-outline {
-    @apply bg-gray-800 text-gray-100 border border-gray-700 hover:bg-gray-700 font-medium py-3 px-6 rounded-full shadow-sm transition-all duration-300;
+    @apply bg-gray-800 text-gray-100 border border-gray-700 hover:bg-gray-700 font-medium py-3 px-6 rounded-md shadow-sm transition-all duration-300;
   }
 }
 

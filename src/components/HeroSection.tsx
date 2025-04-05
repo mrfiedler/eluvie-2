@@ -5,26 +5,26 @@ import { Button } from '@/components/ui/button';
 const HeroSection = () => {
   return (
     <section className="pt-32 pb-24 relative overflow-hidden">
-      {/* Gradient background elements */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-      <div className="absolute top-20 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl" />
+      {/* Subtle gradient background elements */}
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
+      <div className="absolute top-20 right-10 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2 mb-10 lg:mb-0 animate-fade-in">
             <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
               A financial platform made for your 
-              <span className="gradient-text"> creative flow.</span>
+              <span className="text-blue-400"> creative flow.</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-lg">
               Manage clients, finances, contracts and subscriptions – in minutes, not hours.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="button-gradient flex items-center gap-2 text-base py-6 px-8">
+              <Button className="flex items-center gap-2 text-base py-6 px-8 bg-gray-800 hover:bg-gray-700 border border-gray-700">
                 Start for Free
                 <ArrowRight className="h-5 w-5" />
               </Button>
-              <Button variant="outline" className="flex items-center gap-2 text-base py-6 px-8 border-gray-700 bg-gray-800/80 text-gray-100 hover:bg-gray-700">
+              <Button variant="outline" className="flex items-center gap-2 text-base py-6 px-8 border-gray-700 bg-gray-800/80 text-gray-300 hover:bg-gray-700">
                 <Play className="h-5 w-5 text-gray-400" />
                 See How It Works
               </Button>
@@ -62,7 +62,7 @@ const HeroSection = () => {
                 />
               </div>
               
-              {/* Floating notification card */}
+              {/* Floating notification card - styled like your dashboard */}
               <div className="absolute -bottom-10 -left-10 bg-gray-800 rounded-xl shadow-lg p-4 max-w-[15rem] border border-gray-700 animate-float" style={{animationDelay: '0.3s'}}>
                 <div className="flex items-center gap-2 mb-2">
                   <div className="h-3 w-3 bg-green-500 rounded-full"></div>
@@ -71,10 +71,10 @@ const HeroSection = () => {
                 <p className="text-sm text-gray-400">Client Acme Inc. paid $2,400.00</p>
               </div>
               
-              {/* Gamification badge */}
+              {/* Gamification badge - styled like your dashboard */}
               <div className="absolute top-8 -right-4 bg-gray-800 rounded-full shadow-lg p-3 animate-float" style={{animationDelay: '0.6s'}}>
-                <div className="h-12 w-12 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="h-12 w-12 bg-gray-700 rounded-full flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
