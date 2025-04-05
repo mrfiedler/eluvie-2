@@ -1,188 +1,444 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-type Language = 'pt-BR' | 'en';
+type Language = 'en' | 'pt-BR';
+
+interface Translations {
+  [key: string]: {
+    en: string;
+    'pt-BR': string;
+  };
+}
 
 interface LanguageContextType {
   language: Language;
-  setLanguage: (language: Language) => void;
+  setLanguage: (lang: Language) => void;
   t: (key: string) => string;
 }
 
-const translations = {
-  'pt-BR': {
-    // Navbar
-    'how-it-works': 'Como Funciona',
-    'features': 'Recursos',
-    'pricing': 'Preços',
-    'sign-in': 'Entrar',
-    'sign-up-free': 'Cadastre-se Grátis',
-    
-    // Hero
-    'hero-title': 'Uma plataforma financeira feita para seu fluxo criativo.',
-    'hero-subtitle': 'Gerencie clientes, finanças, contratos e assinaturas – em minutos, não horas.',
-    'start-for-free': 'Começar Grátis',
-    'see-how-it-works': 'Ver Como Funciona',
-    'trusted-by': 'Confiado por 2.000+ profissionais criativos',
-    
-    // How it works
-    'how-eluvie-works': 'Como o Eluvie Funciona',
-    'how-it-works-desc': 'Uma plataforma financeira que entende fluxos de trabalho criativos, tornando a gestão financeira incrivelmente simples.',
-    'track-income': 'Acompanhe receitas e despesas',
-    'track-income-desc': 'Acompanhe facilmente o dinheiro que entra e sai, categorize despesas e mantenha-se em dia com as finanças do seu negócio criativo.',
-    'budgets-invoices': 'Orçamentos para faturas',
-    'budgets-invoices-desc': 'Crie orçamentos de projetos e converta-os automaticamente em faturas para clientes com apenas alguns cliques.',
-    'monitor-subscriptions': 'Monitore assinaturas',
-    'monitor-subscriptions-desc': 'Nunca perca o controle de renovações de assinaturas, testes gratuitos ou custos recorrentes de software para suas ferramentas criativas.',
-    'get-rewarded': 'Seja recompensado',
-    'get-rewarded-desc': 'Ganhe distintivos, sequências e recompensas por manter-se financeiramente organizado e manter práticas comerciais saudáveis.',
-    'simplified-workflows': 'Fluxos de trabalho simplificados para mentes criativas',
-    'simplified-workflows-desc': 'Projetamos cada recurso para se encaixar perfeitamente em seu processo criativo, não para interrompê-lo. As tarefas financeiras se tornam intuitivas e rápidas.',
-    'team-collaboration': 'Colaboração em equipe',
-    'client-management': 'Gestão de clientes',
-    'visual-reporting': 'Relatórios visuais',
-    
-    // Testimonials
-    'what-creatives-saying': 'O Que Os Criativos Estão Dizendo',
-    'testimonials-desc': 'Não apenas acredite em nossa palavra. Veja o que profissionais criativos como você pensam sobre o Eluvie.',
-    'read-more': 'Leia mais depoimentos',
-    
-    // CTA
-    'ready-to-simplify': 'Pronto para simplificar seu caos financeiro?',
-    'join-thousands': 'Junte-se a milhares de profissionais criativos que transformaram a forma como gerenciam suas finanças.',
-    'try-eluvie-free': 'Experimente o Eluvie Grátis',
-    'schedule-demo': 'Agende uma Demonstração',
-    'no-credit-card': 'Não é necessário cartão de crédito. Plano gratuito disponível para sempre.',
-    
-    // Footer
-    'company': 'Empresa',
-    'about': 'Sobre',
-    'blog': 'Blog',
-    'careers': 'Carreiras',
-    'contact': 'Contato',
-    'product': 'Produto',
-    'pricing': 'Preços',
-    'terms': 'Termos',
-    'privacy': 'Privacidade',
-    'cookies': 'Cookies',
-    'language': 'Idioma',
-    'english': 'English',
-    'portuguese': 'Português',
-    'made-with-love': 'Feito com',
-    'for-creative': 'para profissionais criativos',
-    'copyright': 'Todos os direitos reservados.',
-    
-    // About page
-    'about-title': 'Sobre o Eluvie',
-    'about-subtitle': 'Simplificando finanças para mentes criativas',
-    'about-desc': 'O Eluvie foi criado por uma equipe de profissionais criativos frustrados com ferramentas financeiras genéricas e complicadas. Nossa missão é simplificar o gerenciamento financeiro para agências, estúdios e freelancers criativos.',
-    'our-mission': 'Nossa Missão',
-    'our-mission-desc': 'Transformar a maneira como os criativos lidam com finanças, tornando-a simples, visual e até mesmo divertida.',
-    'our-story': 'Nossa História',
-    'our-story-desc': 'Fundada em 2023 no Brasil, a equipe do Eluvie combina experiência em design, desenvolvimento e finanças para criar a ferramenta financeira que sempre desejamos ter.',
-    'meet-team': 'Conheça o Time',
-    'back-to-home': 'Voltar para a página inicial',
-    
-    // Careers page
-    'careers-title': 'Carreiras no Eluvie',
-    'careers-subtitle': 'Junte-se à nossa equipe',
-    'careers-desc': 'Estamos construindo uma plataforma financeira que entende e valoriza a criatividade. Embora não tenhamos vagas abertas no momento, estamos sempre de olho em talentos excepcionais.',
-    'no-positions': 'Não há posições disponíveis no momento',
-    'check-back': 'Volte em breve ou entre em contato conosco em',
-    'to-express': 'para expressar seu interesse.'
+const translations: Translations = {
+  // Navbar
+  'sign-in': {
+    en: 'Sign In',
+    'pt-BR': 'Entrar'
   },
-  'en': {
-    // Navbar
-    'how-it-works': 'How It Works',
-    'features': 'Features',
-    'pricing': 'Pricing',
-    'sign-in': 'Sign In',
-    'sign-up-free': 'Sign Up Free',
-    
-    // Hero
-    'hero-title': 'A financial platform made for your creative flow.',
-    'hero-subtitle': 'Manage clients, finances, contracts and subscriptions – in minutes, not hours.',
-    'start-for-free': 'Start for Free',
-    'see-how-it-works': 'See How It Works',
-    'trusted-by': 'Trusted by 2,000+ creative professionals',
-    
-    // How it works
-    'how-eluvie-works': 'How Eluvie Works',
-    'how-it-works-desc': 'A financial platform that understands creative workflows, making money management delightfully simple.',
-    'track-income': 'Track income & expenses',
-    'track-income-desc': 'Easily track money flowing in and out, categorize expenses, and stay on top of your creative business finances.',
-    'budgets-invoices': 'Budgets to invoices',
-    'budgets-invoices-desc': 'Create project budgets and automatically convert them into client invoices with just a few clicks.',
-    'monitor-subscriptions': 'Monitor subscriptions',
-    'monitor-subscriptions-desc': 'Never lose track of subscription renewals, free trials, or recurring software costs for your creative tools.',
-    'get-rewarded': 'Get rewarded',
-    'get-rewarded-desc': 'Earn badges, streaks, and rewards for staying financially organized and maintaining healthy business practices.',
-    'simplified-workflows': 'Simplified workflows for creative minds',
-    'simplified-workflows-desc': "We've designed every feature to fit seamlessly into your creative process, not disrupt it. Financial tasks become intuitive and quick.",
-    'team-collaboration': 'Team collaboration',
-    'client-management': 'Client management',
-    'visual-reporting': 'Visual reporting',
-    
-    // Testimonials
-    'what-creatives-saying': 'What Creatives Are Saying',
-    'testimonials-desc': "Don't just take our word for it. Here's what creative professionals like you think about Eluvie.",
-    'read-more': 'Read more testimonials',
-    
-    // CTA
-    'ready-to-simplify': 'Ready to simplify your financial chaos?',
-    'join-thousands': "Join thousands of creative professionals who've transformed how they manage their finances.",
-    'try-eluvie-free': 'Try Eluvie for Free',
-    'schedule-demo': 'Schedule a Demo',
-    'no-credit-card': 'No credit card required. Free plan available forever.',
-    
-    // Footer
-    'company': 'Company',
-    'about': 'About',
-    'blog': 'Blog',
-    'careers': 'Careers',
-    'contact': 'Contact',
-    'product': 'Product',
-    'pricing': 'Pricing',
-    'terms': 'Terms',
-    'privacy': 'Privacy',
-    'cookies': 'Cookies',
-    'language': 'Language',
-    'english': 'English',
-    'portuguese': 'Português',
-    'made-with-love': 'Made with',
-    'for-creative': 'for creative professionals',
-    'copyright': 'All rights reserved.',
-    
-    // About page
-    'about-title': 'About Eluvie',
-    'about-subtitle': 'Simplifying finances for creative minds',
-    'about-desc': 'Eluvie was created by a team of creative professionals frustrated with generic, complicated financial tools. Our mission is to simplify financial management for creative agencies, studios, and freelancers.',
-    'our-mission': 'Our Mission',
-    'our-mission-desc': 'To transform how creatives deal with finances, making it simple, visual, and even fun.',
-    'our-story': 'Our Story',
-    'our-story-desc': 'Founded in 2023 in Brazil, the Eluvie team combines expertise in design, development, and finance to create the financial tool we always wished we had.',
-    'meet-team': 'Meet the Team',
-    'back-to-home': 'Back to home',
-    
-    // Careers page
-    'careers-title': 'Careers at Eluvie',
-    'careers-subtitle': 'Join our team',
-    'careers-desc': "We're building a financial platform that understands and values creativity. While we don't have open positions right now, we're always on the lookout for exceptional talent.",
-    'no-positions': 'No positions available at the moment',
-    'check-back': 'Check back soon or contact us at',
-    'to-express': 'to express your interest.'
+  'sign-up': {
+    en: 'Sign Up Free',
+    'pt-BR': 'Cadastre-se Grátis'
+  },
+  
+  // Hero
+  'hero-title': {
+    en: 'A financial platform made for your creative flow',
+    'pt-BR': 'Uma plataforma financeira feita para seu fluxo criativo'
+  },
+  'hero-subtitle': {
+    en: 'Manage clients, finances, contracts and subscriptions – in minutes, not hours.',
+    'pt-BR': 'Gerencie clientes, finanças, contratos e assinaturas – em minutos, não horas.'
+  },
+  'start-free': {
+    en: 'Start for Free',
+    'pt-BR': 'Comece Gratuitamente'
+  },
+  'how-works': {
+    en: 'See How It Works',
+    'pt-BR': 'Veja Como Funciona'
+  },
+  
+  // How it works
+  'how-it-works': {
+    en: 'How Eluvie Works',
+    'pt-BR': 'Como o Eluvie Funciona'
+  },
+  'how-it-works-subtitle': {
+    en: 'Simplicity and power in four easy steps',
+    'pt-BR': 'Simplicidade e poder em quatro passos fáceis'
+  },
+  'track-income': {
+    en: 'Track income & expenses easily',
+    'pt-BR': 'Acompanhe receitas e despesas facilmente'
+  },
+  'track-income-desc': {
+    en: 'Simple visual interface to manage all your financial movements',
+    'pt-BR': 'Interface visual simples para gerenciar todos os seus movimentos financeiros'
+  },
+  'create-budgets': {
+    en: 'Create budgets and convert them into invoices',
+    'pt-BR': 'Crie orçamentos e converta-os em faturas'
+  },
+  'create-budgets-desc': {
+    en: 'Transform proposals into billable invoices with one click',
+    'pt-BR': 'Transforme propostas em faturas cobráveis com um clique'
+  },
+  'monitor-subscriptions': {
+    en: 'Monitor subscriptions',
+    'pt-BR': 'Monitore assinaturas'
+  },
+  'monitor-subscriptions-desc': {
+    en: 'Keep track of all your recurring services and expenses',
+    'pt-BR': 'Acompanhe todos os seus serviços e despesas recorrentes'
+  },
+  'get-rewarded': {
+    en: 'Get rewarded for staying organized',
+    'pt-BR': 'Seja recompensado por manter-se organizado'
+  },
+  'get-rewarded-desc': {
+    en: 'Our gamification system keeps you motivated and on track',
+    'pt-BR': 'Nosso sistema de gamificação mantém você motivado e organizado'
+  },
+
+  // Who it's for
+  'who-for': {
+    en: 'Who It\'s For',
+    'pt-BR': 'Para Quem É'
+  },
+  'who-for-subtitle': {
+    en: 'Built specifically for creative professionals',
+    'pt-BR': 'Criado especificamente para profissionais criativos'
+  },
+  'marketing-agencies': {
+    en: 'Marketing Agencies',
+    'pt-BR': 'Agências de Marketing'
+  },
+  'social-media': {
+    en: 'Social Media Managers',
+    'pt-BR': 'Gerentes de Mídias Sociais'
+  },
+  'design-studios': {
+    en: 'Design Studios',
+    'pt-BR': 'Estúdios de Design'
+  },
+  'freelancers': {
+    en: 'Freelancers & Developers',
+    'pt-BR': 'Freelancers & Desenvolvedores'
+  },
+
+  // Features
+  'features': {
+    en: 'Features',
+    'pt-BR': 'Funcionalidades'
+  },
+  'features-subtitle': {
+    en: 'Everything you need to manage your creative business',
+    'pt-BR': 'Tudo que você precisa para gerenciar seu negócio criativo'
+  },
+  'visual-dashboards': {
+    en: 'Visual Dashboards',
+    'pt-BR': 'Painéis Visuais'
+  },
+  'visual-dashboards-desc': {
+    en: 'See your finances by month, project, or client',
+    'pt-BR': 'Veja suas finanças por mês, projeto ou cliente'
+  },
+  'simplified-reports': {
+    en: 'Simplified Financial Reports',
+    'pt-BR': 'Relatórios Financeiros Simplificados'
+  },
+  'simplified-reports-desc': {
+    en: 'Clear financial insights without the accounting jargon',
+    'pt-BR': 'Insights financeiros claros sem o jargão contábil'
+  },
+  'smart-alerts': {
+    en: 'Smart Alerts',
+    'pt-BR': 'Alertas Inteligentes'
+  },
+  'smart-alerts-desc': {
+    en: 'Never miss overdue income or ending subscriptions',
+    'pt-BR': 'Nunca perca receitas atrasadas ou assinaturas terminando'
+  },
+  'gamified-progress': {
+    en: 'Gamified Progress',
+    'pt-BR': 'Progresso Gamificado'
+  },
+  'gamified-progress-desc': {
+    en: 'Earn badges and track improvements as you organize',
+    'pt-BR': 'Ganhe medalhas e acompanhe melhorias enquanto se organiza'
+  },
+  'customizable': {
+    en: 'Everything Customizable',
+    'pt-BR': 'Tudo Personalizável'
+  },
+  'customizable-desc': {
+    en: 'Adapt the platform to your creative workflow',
+    'pt-BR': 'Adapte a plataforma ao seu fluxo de trabalho criativo'
+  },
+
+  // Pricing
+  'pricing': {
+    en: 'Pricing',
+    'pt-BR': 'Preços'
+  },
+  'pricing-subtitle': {
+    en: 'Simple plans for every creative professional',
+    'pt-BR': 'Planos simples para cada profissional criativo'
+  },
+  'solo-plan': {
+    en: 'Solo Criativo',
+    'pt-BR': 'Solo Criativo'
+  },
+  'solo-price': {
+    en: 'Free',
+    'pt-BR': 'Grátis'
+  },
+  'solo-for': {
+    en: 'For freelancers & starters',
+    'pt-BR': 'Para freelancers e iniciantes'
+  },
+  'studio-plan': {
+    en: 'Estúdio em Movimento',
+    'pt-BR': 'Estúdio em Movimento'
+  },
+  'studio-price': {
+    en: '$29/mo',
+    'pt-BR': 'R$29/mês'
+  },
+  'studio-for': {
+    en: 'For small studios & solo businesses',
+    'pt-BR': 'Para pequenos estúdios e negócios individuais'
+  },
+  'agency-plan': {
+    en: 'Agência Flow',
+    'pt-BR': 'Agência Flow'
+  },
+  'agency-price': {
+    en: '$89/mo',
+    'pt-BR': 'R$89/mês'
+  },
+  'agency-for': {
+    en: 'For agencies & teams',
+    'pt-BR': 'Para agências e equipes'
+  },
+  'get-started': {
+    en: 'Get Started',
+    'pt-BR': 'Começar Agora'
+  },
+  'start-trial': {
+    en: 'Start 14-day Trial',
+    'pt-BR': 'Iniciar Avaliação de 14 dias'
+  },
+  'unlimited-clients': {
+    en: 'Unlimited clients',
+    'pt-BR': 'Clientes ilimitados'
+  },
+  'automated-tracking': {
+    en: 'Automated subscription tracking',
+    'pt-BR': 'Monitoramento automático de assinaturas'
+  },
+  'budget-invoice': {
+    en: 'Budget > Invoice conversion',
+    'pt-BR': 'Conversão de Orçamento > Fatura'
+  },
+  'multi-user': {
+    en: 'Multi-user access',
+    'pt-BR': 'Acesso multi-usuário'
+  },
+  'export-reports': {
+    en: 'Exportable reports',
+    'pt-BR': 'Relatórios exportáveis'
+  },
+  'priority-support': {
+    en: 'Priority support',
+    'pt-BR': 'Suporte prioritário'
+  },
+
+  // Comparison Table
+  'competitor-table': {
+    en: 'Why Choose Us?',
+    'pt-BR': 'Por que Escolher-nos?'
+  },
+  'competitor-subtitle': {
+    en: 'See how Eluvie compares to traditional financial tools',
+    'pt-BR': 'Veja como o Eluvie se compara às ferramentas financeiras tradicionais'
+  },
+  'built-for-creatives': {
+    en: 'Built for creatives',
+    'pt-BR': 'Feito para criativos'
+  },
+  'simple-interface': {
+    en: 'Simple visual interface',
+    'pt-BR': 'Interface visual simples'
+  },
+  'sub-tracking': {
+    en: 'Subscription tracking',
+    'pt-BR': 'Rastreamento de assinaturas'
+  },
+  'affordable': {
+    en: 'Affordable pricing',
+    'pt-BR': 'Preço acessível'
+  },
+  'yes': {
+    en: 'Yes',
+    'pt-BR': 'Sim'
+  },
+  'no': {
+    en: 'No',
+    'pt-BR': 'Não'
+  },
+  'partial': {
+    en: 'Partial',
+    'pt-BR': 'Parcial'
+  },
+
+  // Testimonials
+  'testimonials': {
+    en: 'What Users Say',
+    'pt-BR': 'O Que Dizem Os Usuários'
+  },
+  'testimonials-subtitle': {
+    en: 'Don\'t just take our word for it',
+    'pt-BR': 'Não apenas acredite em nós'
+  },
+  'testimonial-1': {
+    en: '"Eluvie feels like a creative studio, not a bank app."',
+    'pt-BR': '"O Eluvie parece um estúdio criativo, não um aplicativo bancário."'
+  },
+  'testimonial-1-author': {
+    en: 'Marina Silva, Designer',
+    'pt-BR': 'Marina Silva, Designer'
+  },
+  'testimonial-2': {
+    en: '"Managing finances feels less painful – and even fun."',
+    'pt-BR': '"Gerenciar finanças se tornou menos doloroso – e até divertido."'
+  },
+  'testimonial-2-author': {
+    en: 'Rafael Costa, Marketing Agency',
+    'pt-BR': 'Rafael Costa, Agência de Marketing'
+  },
+  'testimonial-3': {
+    en: '"The best financial tool I\'ve used for my creative business."',
+    'pt-BR': '"A melhor ferramenta financeira que já usei para meu negócio criativo."'
+  },
+  'testimonial-3-author': {
+    en: 'Lucas Mendes, Frontend Developer',
+    'pt-BR': 'Lucas Mendes, Desenvolvedor Frontend'
+  },
+
+  // CTA
+  'final-cta': {
+    en: 'Ready to simplify your financial chaos?',
+    'pt-BR': 'Pronto para simplificar seu caos financeiro?'
+  },
+  'try-eluvie': {
+    en: 'Try Eluvie for Free',
+    'pt-BR': 'Experimente o Eluvie Gratuitamente'
+  },
+
+  // Footer
+  'company': {
+    en: 'Company',
+    'pt-BR': 'Empresa'
+  },
+  'about': {
+    en: 'About',
+    'pt-BR': 'Sobre'
+  },
+  'blog': {
+    en: 'Blog',
+    'pt-BR': 'Blog'
+  },
+  'careers': {
+    en: 'Careers',
+    'pt-BR': 'Carreiras'
+  },
+  'contact': {
+    en: 'Contact',
+    'pt-BR': 'Contato'
+  },
+  'product': {
+    en: 'Product',
+    'pt-BR': 'Produto'
+  },
+  'language': {
+    en: 'Language',
+    'pt-BR': 'Idioma'
+  },
+  'copyright': {
+    en: 'All rights reserved.',
+    'pt-BR': 'Todos os direitos reservados.'
+  },
+  'made-with-love': {
+    en: 'Made with',
+    'pt-BR': 'Feito com'
+  },
+  'for-creative': {
+    en: 'for creatives',
+    'pt-BR': 'para criativos'
+  },
+  
+  // About page
+  'about-title': {
+    en: 'About Eluvie',
+    'pt-BR': 'Sobre o Eluvie'
+  },
+  'about-subtitle': {
+    en: 'A financial platform created by creatives, for creatives',
+    'pt-BR': 'Uma plataforma financeira criada por criativos, para criativos'
+  },
+  'about-desc': {
+    en: 'Eluvie was born from a simple observation: creative professionals need financial tools that match their workflow. Traditional financial software is often built for accountants and large corporations, not for the unique needs of creative businesses. We set out to change that.',
+    'pt-BR': 'O Eluvie nasceu de uma simples observação: profissionais criativos precisam de ferramentas financeiras que combinem com seu fluxo de trabalho. Softwares financeiros tradicionais são frequentemente desenvolvidos para contadores e grandes corporações, não para as necessidades únicas de negócios criativos. Decidimos mudar isso.'
+  },
+  'our-mission': {
+    en: 'Our Mission',
+    'pt-BR': 'Nossa Missão'
+  },
+  'our-mission-desc': {
+    en: 'To create the most intuitive financial management platform for creative professionals, removing the technical barriers and making financial organization a seamless part of the creative workflow.',
+    'pt-BR': 'Criar a plataforma de gerenciamento financeiro mais intuitiva para profissionais criativos, removendo as barreiras técnicas e tornando a organização financeira uma parte integrada do fluxo de trabalho criativo.'
+  },
+  'our-story': {
+    en: 'Our Story',
+    'pt-BR': 'Nossa História'
+  },
+  'our-story-desc': {
+    en: 'Founded in 2023 by a team of designers, developers, and creative entrepreneurs who were frustrated with existing financial tools. We combined our expertise in user experience, software development, and financial management to build the tool we wished we had.',
+    'pt-BR': 'Fundado em 2023 por uma equipe de designers, desenvolvedores e empreendedores criativos frustrados com as ferramentas financeiras existentes. Combinamos nossa experiência em experiência do usuário, desenvolvimento de software e gestão financeira para construir a ferramenta que gostaríamos de ter.'
+  },
+  'back-to-home': {
+    en: 'Back to Home',
+    'pt-BR': 'Voltar para Início'
+  },
+  
+  // Careers page
+  'careers-title': {
+    en: 'Careers at Eluvie',
+    'pt-BR': 'Carreiras no Eluvie'
+  },
+  'careers-subtitle': {
+    en: 'Join our team and help shape the future of creative finance',
+    'pt-BR': 'Junte-se à nossa equipe e ajude a moldar o futuro das finanças criativas'
+  },
+  'careers-desc': {
+    en: 'At Eluvie, we're building a team of passionate individuals who understand both the creative and financial worlds. We value diversity, innovation, and a healthy work-life balance.',
+    'pt-BR': 'No Eluvie, estamos construindo uma equipe de pessoas apaixonadas que entendem tanto o mundo criativo quanto o financeiro. Valorizamos diversidade, inovação e um equilíbrio saudável entre trabalho e vida pessoal.'
+  },
+  'no-positions': {
+    en: 'No open positions at the moment',
+    'pt-BR': 'Não há vagas abertas no momento'
+  },
+  'check-back': {
+    en: 'Please check back later or email us at',
+    'pt-BR': 'Por favor, volte mais tarde ou envie um email para'
+  },
+  'to-express': {
+    en: 'to express your interest.',
+    'pt-BR': 'para manifestar seu interesse.'
   }
 };
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+export const LanguageProvider: React.FC<{children: ReactNode}> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('pt-BR');
-
-  const t = (key: string) => {
-    return translations[language][key as keyof typeof translations[typeof language]] || key;
+  
+  const t = (key: string): string => {
+    if (!translations[key]) {
+      console.warn(`Translation key "${key}" not found.`);
+      return key;
+    }
+    return translations[key][language];
   };
-
+  
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}
