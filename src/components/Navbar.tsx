@@ -64,7 +64,7 @@ const Navbar = () => {
               className="text-sm bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
               onClick={() => window.location.href = "https://www.eluvie.app"}
             >
-              {t('sign-up-free')}
+              {t('sign-up')}
             </Button>
             <button
               className="flex items-center gap-1 text-gray-300 hover:text-white"
@@ -83,7 +83,7 @@ const Navbar = () => {
             onClick={handleLanguageChange}
           >
             <Globe className="h-4 w-4" />
-            <span className="text-xs">{language === 'en' ? 'PT' : 'EN'}</span>
+            <span className="text-xs">{language === 'en' ? t('portuguese') : t('english')}</span>
           </button>
           <button 
             className="text-gray-400 hover:text-white"

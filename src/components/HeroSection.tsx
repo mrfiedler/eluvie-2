@@ -16,8 +16,8 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2 mb-10 lg:mb-0 animate-fade-in">
             <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-              {t('hero-title').split(' your ')[0]}
-              <span className="text-blue-400"> {t('hero-title').includes(' your ') ? 'your ' + t('hero-title').split(' your ')[1] : ''}</span>
+              {t('hero-title').split(' seu ')[0]}
+              <span className="text-blue-400">{t('hero-title').includes(' seu ') ? ' seu ' + t('hero-title').split(' seu ')[1] : ''}</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-lg">
               {t('hero-subtitle')}
@@ -27,7 +27,7 @@ const HeroSection = () => {
                 className="flex items-center gap-2 text-base py-6 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
                 onClick={() => window.location.href = "https://www.eluvie.app"}
               >
-                {t('start-for-free')}
+                {t('start-free')}
                 <ArrowRight className="h-5 w-5" />
               </Button>
               <Button 
@@ -35,7 +35,7 @@ const HeroSection = () => {
                 className="flex items-center gap-2 text-base py-6 px-8 border-gray-700 bg-gray-800/80 text-gray-300 hover:bg-gray-700"
               >
                 <Play className="h-5 w-5 text-gray-400" />
-                {t('see-how-it-works')}
+                {t('how-works')}
               </Button>
             </div>
             <div className="mt-8 flex items-center text-sm text-gray-400">
@@ -75,9 +75,9 @@ const HeroSection = () => {
               <div className="absolute -bottom-10 -left-10 bg-gray-800 rounded-xl shadow-lg p-4 max-w-[15rem] border border-gray-700 animate-float" style={{animationDelay: '0.3s'}}>
                 <div className="flex items-center gap-2 mb-2">
                   <div className="h-3 w-3 bg-green-500 rounded-full"></div>
-                  <p className="text-xs font-medium text-gray-200">Payment Received</p>
+                  <p className="text-xs font-medium text-gray-200">{t('payment-received') || 'Pagamento Recebido'}</p>
                 </div>
-                <p className="text-sm text-gray-400">Client Acme Inc. paid $2,400.00</p>
+                <p className="text-sm text-gray-400">{t('payment-info') || 'Cliente Acme Inc. pagou R$2.400,00'}</p>
               </div>
               
               {/* Gamification badge - styled like your dashboard */}

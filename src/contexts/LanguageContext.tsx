@@ -12,6 +12,7 @@ interface LanguageContextType {
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{children: ReactNode}> = ({ children }) => {
+  // Changed default language to Portuguese
   const [language, setLanguage] = useState<Language>('pt-BR');
   
   const t = (key: string): string => {

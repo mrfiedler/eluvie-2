@@ -19,6 +19,14 @@ const heroTranslations = {
   'trusted-by': {
     en: 'Trusted by thousands of creatives',
     'pt-BR': 'Confiado por milhares de criativos'
+  },
+  'payment-received': {
+    en: 'Payment Received',
+    'pt-BR': 'Pagamento Recebido'
+  },
+  'payment-info': {
+    en: 'Client Acme Inc. paid $2,400.00',
+    'pt-BR': 'Cliente Acme Inc. pagou R$2.400,00'
   }
 };
 

@@ -8,6 +8,10 @@ const navbarTranslations = {
     en: 'Sign Up Free',
     'pt-BR': 'Cadastre-se Grátis'
   },
+  'sign-up-free': {
+    en: 'Sign Up Free',
+    'pt-BR': 'Cadastre-se Grátis'
+  },
   // For language switcher in Navbar
   'portuguese': {
     en: 'Portuguese',
