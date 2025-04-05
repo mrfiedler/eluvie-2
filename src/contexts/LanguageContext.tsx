@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
 type Language = 'en' | 'pt-BR';
@@ -409,7 +408,7 @@ const translations: Translations = {
     'pt-BR': 'Junte-se à nossa equipe e ajude a moldar o futuro das finanças criativas'
   },
   'careers-desc': {
-    en: 'At Eluvie, we're building a team of passionate individuals who understand both the creative and financial worlds. We value diversity, innovation, and a healthy work-life balance.',
+    en: 'At Eluvie, we\'re building a team of passionate individuals who understand both the creative and financial worlds. We value diversity, innovation, and a healthy work-life balance.',
     'pt-BR': 'No Eluvie, estamos construindo uma equipe de pessoas apaixonadas que entendem tanto o mundo criativo quanto o financeiro. Valorizamos diversidade, inovação e um equilíbrio saudável entre trabalho e vida pessoal.'
   },
   'no-positions': {
