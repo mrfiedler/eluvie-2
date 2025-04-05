@@ -1,37 +1,40 @@
 
 import { Building, Monitor, PenTool, Code } from 'lucide-react';
-
-const audiences = [
-  {
-    icon: <Building className="h-12 w-12 text-blue-400" />,
-    title: "Marketing Agencies",
-    description: "Manage multiple client accounts, track project profitability, and automate recurring billing."
-  },
-  {
-    icon: <Monitor className="h-12 w-12 text-purple-400" />,
-    title: "Social Media Managers",
-    description: "Track client retainers, organize campaign budgets, and monitor subscription-based tools."
-  },
-  {
-    icon: <PenTool className="h-12 w-12 text-cyan-400" />,
-    title: "Design Studios",
-    description: "Convert project quotes into invoices, track design software subscriptions, and manage team finances."
-  },
-  {
-    icon: <Code className="h-12 w-12 text-indigo-400" />,
-    title: "Freelance Developers",
-    description: "Track project hours and expenses, manage client payments, and optimize your tech stack costs."
-  }
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const AudienceSection = () => {
+  const { t } = useLanguage();
+
+  const audiences = [
+    {
+      icon: <Building className="h-12 w-12 text-blue-400" />,
+      title: t('marketing-agencies'),
+      description: "Manage multiple client accounts, track project profitability, and automate recurring billing."
+    },
+    {
+      icon: <Monitor className="h-12 w-12 text-purple-400" />,
+      title: t('social-media'),
+      description: "Track client retainers, organize campaign budgets, and monitor subscription-based tools."
+    },
+    {
+      icon: <PenTool className="h-12 w-12 text-cyan-400" />,
+      title: t('design-studios'),
+      description: "Convert project quotes into invoices, track design software subscriptions, and manage team finances."
+    },
+    {
+      icon: <Code className="h-12 w-12 text-indigo-400" />,
+      title: t('freelancers'),
+      description: "Track project hours and expenses, manage client payments, and optimize your tech stack costs."
+    }
+  ];
+
   return (
     <section className="section bg-gray-800">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Who It's For</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t('who-for')}</h2>
           <p className="text-lg text-gray-400">
-            Eluvie is designed for creative professionals who understand that time spent on finances is time away from doing what they love.
+            {t('who-for-subtitle')}
           </p>
         </div>
         

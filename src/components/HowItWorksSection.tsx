@@ -13,8 +13,8 @@ const HowItWorksSection = () => {
     },
     {
       icon: <CreditCard className="h-10 w-10 text-purple-400" />,
-      title: t('budgets-invoices'),
-      description: t('budgets-invoices-desc')
+      title: t('create-budgets'),
+      description: t('create-budgets-desc')
     },
     {
       icon: <Calendar className="h-10 w-10 text-cyan-400" />,
@@ -35,7 +35,7 @@ const HowItWorksSection = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('how-eluvie-works')}</h2>
           <p className="text-lg text-gray-400">
-            {t('how-it-works-desc')}
+            {t('how-it-works-subtitle')}
           </p>
         </div>
         
