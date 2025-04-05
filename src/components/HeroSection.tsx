@@ -1,8 +1,11 @@
 
 import { ArrowRight, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="pt-32 pb-24 relative overflow-hidden">
       {/* Subtle gradient background elements */}
@@ -13,20 +16,26 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2 mb-10 lg:mb-0 animate-fade-in">
             <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-              A financial platform made for your 
-              <span className="text-blue-400"> creative flow.</span>
+              {t('hero-title').split(' your ')[0]}
+              <span className="text-blue-400"> {t('hero-title').includes(' your ') ? 'your ' + t('hero-title').split(' your ')[1] : ''}</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-lg">
-              Manage clients, finances, contracts and subscriptions – in minutes, not hours.
+              {t('hero-subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="flex items-center gap-2 text-base py-6 px-8 bg-gray-800 hover:bg-gray-700 border border-gray-700">
-                Start for Free
+              <Button 
+                className="flex items-center gap-2 text-base py-6 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
+                onClick={() => window.location.href = "https://www.eluvie.app"}
+              >
+                {t('start-for-free')}
                 <ArrowRight className="h-5 w-5" />
               </Button>
-              <Button variant="outline" className="flex items-center gap-2 text-base py-6 px-8 border-gray-700 bg-gray-800/80 text-gray-300 hover:bg-gray-700">
+              <Button 
+                variant="outline" 
+                className="flex items-center gap-2 text-base py-6 px-8 border-gray-700 bg-gray-800/80 text-gray-300 hover:bg-gray-700"
+              >
                 <Play className="h-5 w-5 text-gray-400" />
-                See How It Works
+                {t('see-how-it-works')}
               </Button>
             </div>
             <div className="mt-8 flex items-center text-sm text-gray-400">
@@ -47,7 +56,7 @@ const HeroSection = () => {
                   alt="User"
                 />
               </div>
-              Trusted by 2,000+ creative professionals
+              {t('trusted-by')}
             </div>
           </div>
 

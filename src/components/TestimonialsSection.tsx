@@ -1,47 +1,58 @@
 
 import { Star } from 'lucide-react';
-
-const testimonials = [
-  {
-    content: "Eluvie feels like a creative studio, not a bank app. Managing my design business finances has never been more intuitive.",
-    author: "Sophia Martinez",
-    role: "Graphic Design Studio Owner",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/women/44.jpg"
-  },
-  {
-    content: "Managing finances feels less painful – and even fun. The gamification makes me actually want to stay on top of my invoices.",
-    author: "Marcus Chen",
-    role: "Freelance Developer",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/men/32.jpg"
-  },
-  {
-    content: "I've tried every finance app out there. Eluvie is the only one that feels like it was made for my creative agency workflow.",
-    author: "Natasha Singh",
-    role: "Digital Marketing Agency",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/women/68.jpg"
-  },
-  {
-    content: "The visual dashboards give me insights my accountant never could. I finally understand my business's financial health.",
-    author: "Carlos Rodriguez",
-    role: "Video Production Studio",
-    rating: 4,
-    image: "https://randomuser.me/api/portraits/men/75.jpg"
-  }
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const TestimonialsSection = () => {
+  const { t, language } = useLanguage();
+
+  const testimonials = [
+    {
+      content: language === 'pt-BR' 
+        ? "O Eluvie parece um estúdio criativo, não um aplicativo bancário. Gerenciar as finanças do meu estúdio de design nunca foi tão intuitivo."
+        : "Eluvie feels like a creative studio, not a bank app. Managing my design business finances has never been more intuitive.",
+      author: language === 'pt-BR' ? "Sofia Martins" : "Sophia Martinez",
+      role: language === 'pt-BR' ? "Proprietária de Estúdio de Design" : "Graphic Design Studio Owner",
+      rating: 5,
+      image: "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      content: language === 'pt-BR'
+        ? "Gerenciar finanças parece menos doloroso – e até divertido. A gamificação faz com que eu realmente queira ficar em dia com minhas faturas."
+        : "Managing finances feels less painful – and even fun. The gamification makes me actually want to stay on top of my invoices.",
+      author: language === 'pt-BR' ? "Marcos Chen" : "Marcus Chen",
+      role: language === 'pt-BR' ? "Desenvolvedor Freelancer" : "Freelance Developer",
+      rating: 5,
+      image: "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      content: language === 'pt-BR'
+        ? "Já experimentei todos os aplicativos financeiros. O Eluvie é o único que parece ter sido feito para o fluxo de trabalho da minha agência criativa."
+        : "I've tried every finance app out there. Eluvie is the only one that feels like it was made for my creative agency workflow.",
+      author: language === 'pt-BR' ? "Natasha Silva" : "Natasha Singh",
+      role: language === 'pt-BR' ? "Agência de Marketing Digital" : "Digital Marketing Agency",
+      rating: 5,
+      image: "https://randomuser.me/api/portraits/women/68.jpg"
+    },
+    {
+      content: language === 'pt-BR'
+        ? "Os painéis visuais me dão insights que meu contador nunca poderia. Finalmente entendo a saúde financeira do meu negócio."
+        : "The visual dashboards give me insights my accountant never could. I finally understand my business's financial health.",
+      author: language === 'pt-BR' ? "Carlos Rodriguez" : "Carlos Rodriguez",
+      role: language === 'pt-BR' ? "Estúdio de Produção de Vídeo" : "Video Production Studio",
+      rating: 4,
+      image: "https://randomuser.me/api/portraits/men/75.jpg"
+    }
+  ];
+
   return (
     <section className="section bg-gray-800 relative overflow-hidden">
       <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">What Creatives Are Saying</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t('what-creatives-saying')}</h2>
           <p className="text-lg text-gray-400">
-            Don't just take our word for it. Here's what creative professionals like you think about Eluvie.
+            {t('testimonials-desc')}
           </p>
         </div>
         
@@ -85,7 +96,7 @@ const TestimonialsSection = () => {
         
         <div className="mt-12 text-center">
           <a href="#" className="inline-flex items-center text-blue-400 hover:text-blue-300">
-            <span>Read more testimonials</span>
+            <span>{t('read-more')}</span>
             <svg className="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
