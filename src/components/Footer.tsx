@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="w-full md:w-1/4 mb-10 md:mb-0">
             <a href="#" className="inline-block mb-6">
               <img 
-                src="/lovable-uploads/fee0e698-51e9-462e-99b1-b5156482c06b.png" 
+                src="/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png" 
                 alt="Eluvie Logo" 
                 className="h-8 w-auto" 
               />

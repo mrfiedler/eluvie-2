@@ -56,7 +56,7 @@ const HeroSection = () => {
               {/* Dashboard mockup */}
               <div className="rounded-2xl shadow-2xl overflow-hidden border border-gray-700 animate-float">
                 <img 
-                  src="/lovable-uploads/50090990-842e-4cea-a92b-ced353291b87.png" 
+                  src="/lovable-uploads/0da950c7-6e18-4083-8c37-72fc551f9225.png" 
                   alt="Eluvie Dashboard" 
                   className="w-full object-cover"
                 />

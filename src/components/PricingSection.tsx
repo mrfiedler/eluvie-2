@@ -1,167 +1,142 @@
 
-import { Check } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
 
-type PlanFeature = {
-  title: string;
-  solo: boolean;
-  studio: boolean;
-  agency: boolean;
-};
-
-const planFeatures: PlanFeature[] = [
-  { title: "Unlimited clients", solo: true, studio: true, agency: true },
-  { title: "Automated subscription tracking", solo: true, studio: true, agency: true },
-  { title: "Budget > Invoice conversion", solo: true, studio: true, agency: true },
-  { title: "Visual financial reports", solo: false, studio: true, agency: true },
-  { title: "Gamification", solo: true, studio: true, agency: true },
-  { title: "Multi-user access", solo: false, studio: true, agency: true },
-  { title: "Team collaboration", solo: false, studio: false, agency: true },
-  { title: "Advanced client management", solo: false, studio: true, agency: true },
-  { title: "Exportable reports", solo: false, studio: false, agency: true },
-  { title: "Priority support", solo: false, studio: false, agency: true },
+const plans = [
+  {
+    name: "Solo Criativo",
+    price: "Free",
+    description: "Perfect for freelancers just starting out.",
+    features: [
+      "5 clients",
+      "Basic invoicing",
+      "Simple expense tracking",
+      "Manual subscription tracking",
+      "Limited reports"
+    ],
+    notIncluded: [
+      "Budget to invoice conversion",
+      "Gamification features",
+      "Multi-user access",
+      "Priority support"
+    ],
+    buttonText: "Get Started",
+    buttonVariant: "outline"
+  },
+  {
+    name: "Estúdio em Movimento",
+    price: "R$29",
+    description: "Ideal for small studios and growing professionals.",
+    features: [
+      "Unlimited clients",
+      "Advanced invoicing",
+      "Automated expense categorization",
+      "Subscription tracking & alerts",
+      "Budget to invoice conversion",
+      "Basic gamification",
+      "Exportable reports"
+    ],
+    notIncluded: [
+      "Multi-user access",
+      "Priority support"
+    ],
+    buttonText: "Start 14-day Trial",
+    buttonVariant: "default",
+    popular: true
+  },
+  {
+    name: "Agência Flow",
+    price: "R$89",
+    description: "For agencies and larger creative teams.",
+    features: [
+      "Everything in Estúdio",
+      "Multi-user access (up to 10)",
+      "Team performance insights",
+      "Client portal access",
+      "Full gamification features",
+      "Custom branding",
+      "Priority support",
+      "API access"
+    ],
+    notIncluded: [],
+    buttonText: "Start 14-day Trial",
+    buttonVariant: "outline"
+  }
 ];
 
 const PricingSection = () => {
-  const [annualBilling, setAnnualBilling] = useState(false);
-
   return (
-    <section id="pricing" className="section bg-white relative overflow-hidden">
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-eluvie-purple/10 rounded-full blur-3xl" />
+    <section id="pricing" className="section bg-gray-800 relative overflow-hidden">
+      <div className="absolute top-20 right-0 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-lg text-gray-600">
-            Choose the plan that works for your creative journey, with no hidden fees or surprises.
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Simple, Transparent Pricing</h2>
+          <p className="text-lg text-gray-400">
+            Choose the plan that fits your creative journey. No hidden fees, no complicated tiers.
           </p>
-          
-          {/* Billing Toggle */}
-          <div className="mt-8">
-            <div className="flex items-center justify-center space-x-3">
-              <span className={`text-sm ${annualBilling ? 'text-gray-500' : 'text-gray-900 font-medium'}`}>Monthly</span>
-              <button
-                onClick={() => setAnnualBilling(!annualBilling)}
-                className="relative inline-flex h-6 w-12 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none"
-                role="switch"
-                aria-checked={annualBilling}
-              >
-                <span
-                  className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
-                    annualBilling ? 'translate-x-6' : 'translate-x-0'
-                  }`}
-                />
-              </button>
-              <span className={`text-sm flex items-center ${annualBilling ? 'text-gray-900 font-medium' : 'text-gray-500'}`}>
-                Annual
-                <span className="ml-1.5 inline-flex items-center rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
-                  Save 20%
-                </span>
-              </span>
-            </div>
-          </div>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Solo Plan */}
-          <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 flex flex-col h-full relative">
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-2">Solo Criativo</h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold">Free</span>
-                <span className="text-gray-500 ml-2">forever</span>
-              </div>
-              <p className="text-gray-600">Perfect for freelancers and starters beginning their creative journey.</p>
-            </div>
-            
-            <Button className="mb-8 bg-gray-900">Start for Free</Button>
-            
-            <div className="space-y-4 flex-grow">
-              {planFeatures.map((feature, index) => (
-                <div key={index} className="flex items-center">
-                  {feature.solo ? (
-                    <Check className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  ) : (
-                    <div className="h-5 w-5 border border-gray-300 rounded-full mr-3 flex-shrink-0" />
-                  )}
-                  <span className={`${feature.solo ? 'text-gray-700' : 'text-gray-400'}`}>{feature.title}</span>
+          {plans.map((plan, index) => (
+            <div 
+              key={index}
+              className={`bg-gray-900 rounded-xl p-8 border border-gray-700 relative ${
+                plan.popular ? 'ring-2 ring-blue-500 shadow-lg shadow-blue-500/10' : ''
+              }`}
+            >
+              {plan.popular && (
+                <div className="absolute top-0 right-8 -translate-y-1/2 bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                  Popular
                 </div>
-              ))}
-            </div>
-            
-            <div className="absolute top-4 right-4">
-              <div className="h-2 w-2 bg-gray-300 rounded-full"></div>
-            </div>
-          </div>
-          
-          {/* Studio Plan */}
-          <div className="bg-white border border-gray-100 rounded-2xl shadow-lg p-8 flex flex-col h-full relative transform md:scale-105 z-10">
-            <div className="absolute top-0 right-0 -mt-4 mr-4">
-              <div className="bg-eluvie-blue text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
-                Popular
-              </div>
-            </div>
-            
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-2">Estúdio em Movimento</h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold">${annualBilling ? '23' : '29'}</span>
-                <span className="text-gray-500 ml-2">/month</span>
-              </div>
-              <p className="text-gray-600">Ideal for small studios and solo businesses ready to grow.</p>
-            </div>
-            
-            <Button className="mb-8 button-gradient">Choose Studio</Button>
-            
-            <div className="space-y-4 flex-grow">
-              {planFeatures.map((feature, index) => (
-                <div key={index} className="flex items-center">
-                  {feature.studio ? (
-                    <Check className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  ) : (
-                    <div className="h-5 w-5 border border-gray-300 rounded-full mr-3 flex-shrink-0" />
-                  )}
-                  <span className={`${feature.studio ? 'text-gray-700' : 'text-gray-400'}`}>{feature.title}</span>
+              )}
+              
+              <div className="mb-5">
+                <h3 className="text-xl font-semibold text-white">{plan.name}</h3>
+                <div className="mt-4 flex items-baseline">
+                  <span className="text-4xl font-extrabold text-white">{plan.price}</span>
+                  {plan.price !== "Free" && <span className="ml-1 text-gray-400">/month</span>}
                 </div>
-              ))}
-            </div>
-            
-            <div className="absolute top-4 right-4">
-              <div className="h-2 w-2 bg-eluvie-blue rounded-full"></div>
-            </div>
-          </div>
-          
-          {/* Agency Plan */}
-          <div className="bg-white border border-gray-100 rounded-2xl shadow-sm p-8 flex flex-col h-full relative">
-            <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-2">Agência Flow</h3>
-              <div className="mb-4">
-                <span className="text-4xl font-bold">${annualBilling ? '71' : '89'}</span>
-                <span className="text-gray-500 ml-2">/month</span>
+                <p className="mt-2 text-sm text-gray-400">{plan.description}</p>
               </div>
-              <p className="text-gray-600">Complete solution for agencies and creative teams that need it all.</p>
+              
+              <div className="border-t border-gray-700 my-6"></div>
+              
+              <ul className="space-y-3 mb-6">
+                {plan.features.map((feature, i) => (
+                  <li key={i} className="flex items-start">
+                    <Check className="h-5 w-5 text-green-400 mr-2 shrink-0 mt-0.5" />
+                    <span className="text-sm text-gray-300">{feature}</span>
+                  </li>
+                ))}
+                
+                {plan.notIncluded.map((feature, i) => (
+                  <li key={i} className="flex items-start opacity-50">
+                    <X className="h-5 w-5 text-gray-500 mr-2 shrink-0 mt-0.5" />
+                    <span className="text-sm text-gray-400">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              
+              <Button 
+                variant={plan.buttonVariant === "default" ? "default" : "outline"} 
+                className={`w-full ${
+                  plan.buttonVariant === "default" 
+                    ? "bg-blue-600 hover:bg-blue-700" 
+                    : "border-gray-700 text-white bg-transparent hover:bg-gray-800"
+                }`}
+              >
+                {plan.buttonText}
+              </Button>
             </div>
-            
-            <Button className="mb-8 bg-gray-900">Choose Agency</Button>
-            
-            <div className="space-y-4 flex-grow">
-              {planFeatures.map((feature, index) => (
-                <div key={index} className="flex items-center">
-                  {feature.agency ? (
-                    <Check className="h-5 w-5 text-green-500 mr-3 flex-shrink-0" />
-                  ) : (
-                    <div className="h-5 w-5 border border-gray-300 rounded-full mr-3 flex-shrink-0" />
-                  )}
-                  <span className={`${feature.agency ? 'text-gray-700' : 'text-gray-400'}`}>{feature.title}</span>
-                </div>
-              ))}
-            </div>
-            
-            <div className="absolute top-4 right-4">
-              <div className="h-2 w-2 bg-gray-300 rounded-full"></div>
-            </div>
-          </div>
+          ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-sm text-gray-400">
+            All plans include secure cloud storage, regular updates, and basic support.<br />
+            Need something custom? <a href="#" className="text-blue-400 hover:underline">Contact our sales team</a> for enterprise options.
+          </p>
         </div>
       </div>
     </section>
