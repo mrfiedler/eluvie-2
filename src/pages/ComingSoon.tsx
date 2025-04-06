@@ -47,7 +47,7 @@ const ComingSoon = () => {
       
       toast({
         title: language === 'en' ? 'Successfully joined waitlist!' : 'Adicionado à lista de espera com sucesso!',
-        description: language === 'en' ? "We'll notify you when Eluvie launches." : "Notificaremos você quando o Eluvie for lançado.",
+        description: language === 'en' ? "We'll notify you when Eluvie launches." : "Notificaremos você quando o Eluvie for lançado."
       });
       
       setIsSubmitted(true);
@@ -55,7 +55,7 @@ const ComingSoon = () => {
       toast({
         variant: "destructive",
         title: language === 'en' ? 'Something went wrong' : 'Algo deu errado',
-        description: language === 'en' ? 'Please try again later.' : 'Por favor, tente novamente mais tarde.',
+        description: language === 'en' ? 'Please try again later.' : 'Por favor, tente novamente mais tarde.'
       });
     } finally {
       setIsSubmitting(false);
