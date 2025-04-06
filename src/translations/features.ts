@@ -47,6 +47,54 @@ const featuresTranslations = {
   'customizable-desc': {
     en: 'Adapt the platform to your creative workflow',
     'pt-BR': 'Adapte a plataforma ao seu fluxo de trabalho criativo'
+  },
+  'financial-control': {
+    en: 'Financial control with creative freedom',
+    'pt-BR': 'Controle financeiro com liberdade criativa'
+  },
+  'financial-control-desc': {
+    en: 'Eluvie combines powerful financial tools with an interface that feels familiar to creative professionals. No more switching between clunky banking apps and spreadsheets.',
+    'pt-BR': 'O Eluvie combina ferramentas financeiras poderosas com uma interface que é familiar aos profissionais criativos. Chega de alternar entre aplicativos bancários desajeitados e planilhas.'
+  },
+  'all-finances': {
+    en: 'All your finances in one beautiful interface',
+    'pt-BR': 'Todas as suas finanças em uma interface bonita'
+  },
+  'time-saving': {
+    en: 'Time-saving automations for repetitive tasks',
+    'pt-BR': 'Automações que economizam tempo para tarefas repetitivas'
+  },
+  'integrated-tools': {
+    en: 'Integrated with popular creative tools',
+    'pt-BR': 'Integrado com ferramentas criativas populares'
+  },
+  'monthly-overview': {
+    en: 'Monthly Overview',
+    'pt-BR': 'Visão Mensal'
+  },
+  'month-year': {
+    en: 'Aug 2023',
+    'pt-BR': 'Ago 2023'
+  },
+  'income': {
+    en: 'Income',
+    'pt-BR': 'Receita'
+  },
+  'expenses': {
+    en: 'Expenses',
+    'pt-BR': 'Despesas'
+  },
+  'subscriptions': {
+    en: 'Subscriptions',
+    'pt-BR': 'Assinaturas'
+  },
+  'net-profit': {
+    en: 'Net Profit',
+    'pt-BR': 'Lucro Líquido'
+  },
+  'from-month': {
+    en: 'from July',
+    'pt-BR': 'em relação a Julho'
   }
 };
 

@@ -35,6 +35,14 @@ const comparisonTranslations = {
   'partial': {
     en: 'Partial',
     'pt-BR': 'Parcial'
+  },
+  'feature': {
+    en: 'Feature',
+    'pt-BR': 'Funcionalidade'
+  },
+  'gamification': {
+    en: 'Gamification',
+    'pt-BR': 'Gamificação'
   }
 };
 

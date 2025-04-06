@@ -12,6 +12,10 @@ const howItWorksTranslations = {
     en: 'How Eluvie Works',
     'pt-BR': 'Como o Eluvie Funciona'
   },
+  'how-it-works-subtitle': {
+    en: 'Simplicity and power in four easy steps',
+    'pt-BR': 'Simplicidade e poder em quatro passos fáceis'
+  },
   'track-income': {
     en: 'Track income & expenses easily',
     'pt-BR': 'Acompanhe receitas e despesas facilmente'

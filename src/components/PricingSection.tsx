@@ -1,79 +1,82 @@
 
 import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const plans = [
-  {
-    name: "Solo Criativo",
-    price: "Free",
-    description: "Perfect for freelancers just starting out.",
-    features: [
-      "5 clients",
-      "Basic invoicing",
-      "Simple expense tracking",
-      "Manual subscription tracking",
-      "Limited reports"
-    ],
-    notIncluded: [
-      "Budget to invoice conversion",
-      "Gamification features",
-      "Multi-user access",
-      "Priority support"
-    ],
-    buttonText: "Get Started",
-    buttonVariant: "outline"
-  },
-  {
-    name: "Estúdio em Movimento",
-    price: "R$29",
-    description: "Ideal for small studios and growing professionals.",
-    features: [
-      "Unlimited clients",
-      "Advanced invoicing",
-      "Automated expense categorization",
-      "Subscription tracking & alerts",
-      "Budget to invoice conversion",
-      "Basic gamification",
-      "Exportable reports"
-    ],
-    notIncluded: [
-      "Multi-user access",
-      "Priority support"
-    ],
-    buttonText: "Start 14-day Trial",
-    buttonVariant: "default",
-    popular: true
-  },
-  {
-    name: "Agência Flow",
-    price: "R$89",
-    description: "For agencies and larger creative teams.",
-    features: [
-      "Everything in Estúdio",
-      "Multi-user access (up to 10)",
-      "Team performance insights",
-      "Client portal access",
-      "Full gamification features",
-      "Custom branding",
-      "Priority support",
-      "API access"
-    ],
-    notIncluded: [],
-    buttonText: "Start 14-day Trial",
-    buttonVariant: "outline"
-  }
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const PricingSection = () => {
+  const { t } = useLanguage();
+  
+  const plans = [
+    {
+      name: t('solo-plan'),
+      price: t('solo-price'),
+      description: t('solo-for'),
+      features: [
+        t('unlimited-clients'),
+        t('basic-invoicing'),
+        t('simple-expense'),
+        t('manual-tracking'),
+        t('limited-reports')
+      ],
+      notIncluded: [
+        t('budget-invoice'),
+        t('gamification-features'),
+        t('multi-user'),
+        t('priority-support')
+      ],
+      buttonText: t('get-started'),
+      buttonVariant: "outline"
+    },
+    {
+      name: t('studio-plan'),
+      price: t('studio-price'),
+      description: t('studio-for'),
+      features: [
+        t('unlimited-clients'),
+        t('advanced-invoicing'),
+        t('automated-expense'),
+        t('automated-tracking'),
+        t('budget-invoice'),
+        t('basic-gamification'),
+        t('export-reports')
+      ],
+      notIncluded: [
+        t('multi-user'),
+        t('priority-support')
+      ],
+      buttonText: t('start-trial'),
+      buttonVariant: "default",
+      popular: true
+    },
+    {
+      name: t('agency-plan'),
+      price: t('agency-price'),
+      description: t('agency-for'),
+      features: [
+        t('everything-studio'),
+        t('multi-user-access'),
+        t('team-performance'),
+        t('client-portal'),
+        t('full-gamification'),
+        t('custom-branding'),
+        t('priority-support'),
+        t('api-access')
+      ],
+      notIncluded: [],
+      buttonText: t('start-trial'),
+      buttonVariant: "outline"
+    }
+  ];
+
   return (
     <section id="pricing" className="section bg-gray-800 relative overflow-hidden">
       <div className="absolute top-20 right-0 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Simple, Transparent Pricing</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t('pricing-title')}</h2>
           <p className="text-lg text-gray-400">
-            Choose the plan that fits your creative journey. No hidden fees, no complicated tiers.
+            {t('pricing-subtitle')}
           </p>
         </div>
         
@@ -87,7 +90,7 @@ const PricingSection = () => {
             >
               {plan.popular && (
                 <div className="absolute top-0 right-8 -translate-y-1/2 bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
-                  Popular
+                  {t('popular')}
                 </div>
               )}
               
@@ -95,7 +98,7 @@ const PricingSection = () => {
                 <h3 className="text-xl font-semibold text-white">{plan.name}</h3>
                 <div className="mt-4 flex items-baseline">
                   <span className="text-4xl font-extrabold text-white">{plan.price}</span>
-                  {plan.price !== "Free" && <span className="ml-1 text-gray-400">/month</span>}
+                  {plan.price !== t('solo-price') && <span className="ml-1 text-gray-400">/month</span>}
                 </div>
                 <p className="mt-2 text-sm text-gray-400">{plan.description}</p>
               </div>
@@ -134,8 +137,8 @@ const PricingSection = () => {
 
         <div className="mt-16 text-center">
           <p className="text-sm text-gray-400">
-            All plans include secure cloud storage, regular updates, and basic support.<br />
-            Need something custom? <a href="#" className="text-blue-400 hover:underline">Contact our sales team</a> for enterprise options.
+            {t('all-plans-include')}<br />
+            {t('need-custom')} <a href="#" className="text-blue-400 hover:underline">{t('contact-sales')}</a> {t('for-enterprise')}
           </p>
         </div>
       </div>
