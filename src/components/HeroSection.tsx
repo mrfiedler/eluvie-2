@@ -16,8 +16,8 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2 mb-10 lg:mb-0 animate-fade-in">
             <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-              {t('hero-title').split(' seu ')[0]}
-              <span className="text-blue-400">{t('hero-title').includes(' seu ') ? ' seu ' + t('hero-title').split(' seu ')[1] : ''}</span>
+              {t('hero-title').split(' ')[0]} {t('hero-title').split(' ')[1]}
+              <span className="text-blue-400"> {t('hero-title').split(' ').slice(2).join(' ')}</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-lg">
               {t('hero-subtitle')}

@@ -41,7 +41,6 @@ const Footer = () => {
             <h3 className="text-sm font-semibold mb-4 text-white">{t('company')}</h3>
             <ul className="space-y-3">
               <li><Link to="/about" className="text-gray-400 hover:text-blue-400 text-sm">{t('about')}</Link></li>
-              <li><a href="#" className="text-gray-400 hover:text-blue-400 text-sm">{t('blog')}</a></li>
               <li><Link to="/careers" className="text-gray-400 hover:text-blue-400 text-sm">{t('careers')}</Link></li>
               <li><a href="#" className="text-gray-400 hover:text-blue-400 text-sm">{t('contact')}</a></li>
             </ul>
@@ -50,8 +49,8 @@ const Footer = () => {
           <div className="w-1/2 md:w-1/6 mb-8 md:mb-0">
             <h3 className="text-sm font-semibold mb-4 text-white">{t('product')}</h3>
             <ul className="space-y-3">
-              <li><a href="#features" className="text-gray-400 hover:text-blue-400 text-sm">{t('features')}</a></li>
-              <li><a href="#pricing" className="text-gray-400 hover:text-blue-400 text-sm">{t('pricing')}</a></li>
+              <li><a href="/#features" className="text-gray-400 hover:text-blue-400 text-sm">{t('features')}</a></li>
+              <li><a href="/#pricing" className="text-gray-400 hover:text-blue-400 text-sm">{t('pricing')}</a></li>
             </ul>
           </div>
           
