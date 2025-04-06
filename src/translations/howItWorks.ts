@@ -75,6 +75,18 @@ const howItWorksTranslations = {
   'budgets-invoices-desc': {
     en: 'Convert proposals to invoices with one click',
     'pt-BR': 'Converta propostas em faturas com um clique'
+  },
+  'trial-title': {
+    en: 'See Eluvie in Action',
+    'pt-BR': 'Veja o Eluvie em Ação'
+  },
+  'trial-description': {
+    en: 'Watch our demo video to see how Eluvie can transform your financial management. Ready to experience it yourself? Start your free trial today!',
+    'pt-BR': 'Assista ao nosso vídeo de demonstração para ver como o Eluvie pode transformar sua gestão financeira. Pronto para experimentar? Comece seu teste gratuito hoje!'
+  },
+  'start-free-trial': {
+    en: 'Start Your Free Trial',
+    'pt-BR': 'Comece Seu Teste Gratuito'
   }
 };
 

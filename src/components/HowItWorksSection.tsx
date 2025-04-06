@@ -1,6 +1,7 @@
 
 import { LineChart, CreditCard, BadgeCheck, Calendar } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Button } from '@/components/ui/button';
 
 const HowItWorksSection = () => {
   const { t } = useLanguage();
@@ -51,38 +52,34 @@ const HowItWorksSection = () => {
           ))}
         </div>
         
-        <div className="mt-16 max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-700 relative overflow-hidden">
+        <div className="mt-16 max-w-5xl mx-auto bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-700 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-400/10 to-purple-500/10 rounded-bl-[100px]"></div>
           
           <div className="relative z-10">
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="w-full md:w-1/2 mb-6 md:mb-0 md:pr-8">
-                <h3 className="text-2xl font-semibold mb-4 text-white">{t('simplified-workflows')}</h3>
-                <p className="text-gray-400 mb-6">
-                  {t('simplified-workflows-desc')}
-                </p>
-                <div className="flex gap-4 flex-wrap">
-                  <div className="flex items-center">
-                    <div className="h-2 w-2 rounded-full bg-blue-400 mr-2"></div>
-                    <span className="text-sm text-gray-300">{t('team-collaboration')}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="h-2 w-2 rounded-full bg-purple-400 mr-2"></div>
-                    <span className="text-sm text-gray-300">{t('client-management')}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="h-2 w-2 rounded-full bg-cyan-400 mr-2"></div>
-                    <span className="text-sm text-gray-300">{t('visual-reporting')}</span>
-                  </div>
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              <div className="w-full lg:w-1/2">
+                <div className="aspect-video rounded-lg overflow-hidden shadow-xl border border-gray-700">
+                  <iframe 
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/M0Sp7ZP96Xo" 
+                    title="Eluvie demonstration video" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                  ></iframe>
                 </div>
               </div>
               
-              <div className="w-full md:w-1/2">
-                <img 
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                  alt="Creative workspace" 
-                  className="rounded-lg shadow-md w-full"
-                />
+              <div className="w-full lg:w-1/2">
+                <h3 className="text-2xl font-semibold mb-4 text-white">{t('trial-title')}</h3>
+                <p className="text-gray-400 mb-6">
+                  {t('trial-description')}
+                </p>
+                <Button 
+                  className="flex items-center gap-2 text-base py-6 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
+                  onClick={() => window.location.href = "https://www.eluvie.app/signup"}
+                >
+                  {t('start-free-trial')}
+                </Button>
               </div>
             </div>
           </div>
