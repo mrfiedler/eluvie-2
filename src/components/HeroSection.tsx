@@ -6,6 +6,13 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const HeroSection = () => {
   const { t } = useLanguage();
 
+  const scrollToVideo = () => {
+    const videoSection = document.getElementById('eluvie-video-section');
+    if (videoSection) {
+      videoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="pt-32 pb-24 relative overflow-hidden">
       {/* Subtle gradient background elements */}
@@ -16,8 +23,8 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2 mb-10 lg:mb-0 animate-fade-in">
             <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-              {t('hero-title').split(' ')[0]} {t('hero-title').split(' ')[1]}
-              <span className="text-blue-400"> {t('hero-title').split(' ').slice(2).join(' ')}</span>
+              <span>{t('hero-title').split(' ').slice(0, -1).join(' ')}</span>
+              <span className="text-blue-400"> {t('hero-title').split(' ').slice(-1)}</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-lg">
               {t('hero-subtitle')}
@@ -25,7 +32,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 className="flex items-center gap-2 text-base py-6 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
-                onClick={() => window.location.href = "https://www.eluvie.app"}
+                onClick={() => window.location.href = "/coming-soon"}
               >
                 {t('start-free')}
                 <ArrowRight className="h-5 w-5" />
@@ -33,6 +40,7 @@ const HeroSection = () => {
               <Button 
                 variant="outline" 
                 className="flex items-center gap-2 text-base py-6 px-8 border-gray-700 bg-gray-800/80 text-gray-300 hover:bg-gray-700"
+                onClick={scrollToVideo}
               >
                 <Play className="h-5 w-5 text-gray-400" />
                 {t('how-works')}

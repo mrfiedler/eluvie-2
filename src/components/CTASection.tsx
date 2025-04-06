@@ -23,7 +23,7 @@ const CTASection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               className="flex items-center gap-2 text-base py-6 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
-              onClick={() => window.location.href = "https://www.eluvie.app"}
+              onClick={() => window.location.href = "/coming-soon"}
             >
               {t('try-eluvie-free')}
               <ArrowRight className="h-5 w-5" />
@@ -31,6 +31,7 @@ const CTASection = () => {
             <Button 
               variant="outline" 
               className="flex items-center gap-2 text-base py-6 px-8 border-gray-600 bg-gray-800 text-gray-300 hover:bg-gray-700"
+              onClick={() => window.location.href = "/coming-soon"}
             >
               {t('schedule-demo')}
             </Button>

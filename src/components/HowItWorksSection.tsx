@@ -52,7 +52,7 @@ const HowItWorksSection = () => {
           ))}
         </div>
         
-        <div className="mt-20 mb-8 max-w-6xl mx-auto bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl p-10 border border-gray-700 relative overflow-hidden">
+        <div id="eluvie-video-section" className="mt-20 mb-8 max-w-6xl mx-auto bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-xl p-10 border border-gray-700 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/5 to-purple-500/5"></div>
           <div className="absolute top-0 right-0 w-60 h-60 bg-purple-500/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -86,7 +86,7 @@ const HowItWorksSection = () => {
                   </p>
                   <Button 
                     className="flex items-center justify-center gap-2 text-base py-6 px-10 w-full md:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
-                    onClick={() => window.location.href = "https://www.eluvie.app/signup"}
+                    onClick={() => window.location.href = "/coming-soon"}
                   >
                     {t('start-free-trial')}
                   </Button>

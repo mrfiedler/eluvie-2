@@ -95,6 +95,18 @@ const howItWorksTranslations = {
   'start-free-trial': {
     en: 'Start Your Free Trial',
     'pt-BR': 'Comece Seu Teste Gratuito'
+  },
+  'coming-soon': {
+    en: 'Coming Soon',
+    'pt-BR': 'Em Breve'
+  },
+  'join-waitlist': {
+    en: 'Join the Waitlist',
+    'pt-BR': 'Entrar na Lista de Espera'
+  },
+  'join-waitlist-desc': {
+    en: 'We\'re working hard to bring you the ultimate financial platform for creatives. Join our waitlist to be the first to know when we launch.',
+    'pt-BR': 'Estamos trabalhando arduamente para trazer a você a melhor plataforma financeira para criativos. Junte-se à nossa lista de espera para ser o primeiro a saber quando lançarmos.'
   }
 };
 

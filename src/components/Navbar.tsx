@@ -56,13 +56,13 @@ const Navbar = () => {
             <Button 
               variant="outline" 
               className="text-sm bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800"
-              onClick={() => window.location.href = "https://www.eluvie.app"}
+              onClick={() => window.location.href = "/coming-soon"}
             >
               {t('sign-in')}
             </Button>
             <Button 
               className="text-sm bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
-              onClick={() => window.location.href = "https://www.eluvie.app"}
+              onClick={() => window.location.href = "/coming-soon"}
             >
               {t('sign-up')}
             </Button>
@@ -126,13 +126,13 @@ const Navbar = () => {
               <Button 
                 variant="outline" 
                 className="w-full bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800"
-                onClick={() => window.location.href = "https://www.eluvie.app"}
+                onClick={() => window.location.href = "/coming-soon"}
               >
                 {t('sign-in')}
               </Button>
               <Button 
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
-                onClick={() => window.location.href = "https://www.eluvie.app"}
+                onClick={() => window.location.href = "/coming-soon"}
               >
                 {t('sign-up-free')}
               </Button>
