@@ -88,8 +88,8 @@ const ComingSoon = () => {
             </h1>
             <p className="text-lg text-gray-300 mb-8">
               {language === 'en' 
-                ? 'We're working hard to bring you the ultimate financial platform for creatives. Join our waitlist to be the first to know when we launch.' 
-                : 'Estamos trabalhando arduamente para trazer a você a melhor plataforma financeira para criativos. Junte-se à nossa lista de espera para ser o primeiro a saber quando lançarmos.'}
+                ? "We're working hard to bring you the ultimate financial platform for creatives. Join our waitlist to be the first to know when we launch."
+                : "Estamos trabalhando arduamente para trazer a você a melhor plataforma financeira para criativos. Junte-se à nossa lista de espera para ser o primeiro a saber quando lançarmos."}
             </p>
             
             {isSubmitted ? (
@@ -104,7 +104,7 @@ const ComingSoon = () => {
                 </h3>
                 <p className="text-gray-400">
                   {language === 'en' 
-                    ? "We'll notify you as soon as Eluvie launches." 
+                    ? "We'll notify you as soon as Eluvie launches."
                     : "Notificaremos você assim que o Eluvie for lançado."}
                 </p>
               </div>
@@ -204,7 +204,7 @@ const ComingSoon = () => {
               </h3>
               <p className="text-gray-300">
                 {language === 'en' 
-                  ? 'Watch our demo video to see what Eluvie has to offer.' 
+                  ? 'Watch our demo video to see what Eluvie has to offer.'
                   : 'Assista ao nosso vídeo de demonstração para ver o que o Eluvie tem a oferecer.'}
               </p>
             </div>
