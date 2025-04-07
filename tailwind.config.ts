@@ -68,7 +68,10 @@ export default {
 					teal: '#69c7c7',
 					blue: '#4a8fd2',
 					purple: '#7c54a2',
-					darkPurple: '#3d2d5f'
+					darkPurple: '#3d2d5f',
+					background: '#1a1a1a',
+					card: '#202020',
+					darkBg: '#151515'
 				}
 			},
 			borderRadius: {
@@ -121,6 +124,7 @@ export default {
 			backgroundImage: {
 				'hero-gradient': 'linear-gradient(to bottom, #64a0ff, #8c7aec, #a26ee3, #b261d9, #c053cf)',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+				'dashboard-gradient': 'linear-gradient(to bottom right, #1a1a1a, #202020)',
 			},
 			fontFamily: {
 				'sans': ['Inter', 'system-ui', 'sans-serif'],
