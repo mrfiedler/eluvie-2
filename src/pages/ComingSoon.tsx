@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
 import { useForm } from 'react-hook-form';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -63,7 +63,7 @@ const ComingSoon = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col">
+    <div className="min-h-screen bg-[#1a1a1a] text-gray-100 flex flex-col">
       <div className="flex items-center justify-between p-6 border-b border-gray-800">
         <Link to="/" className="flex items-center gap-2">
           <img 
@@ -88,12 +88,12 @@ const ComingSoon = () => {
             </h1>
             <p className="text-lg text-gray-300 mb-8">
               {language === 'en' 
-                ? "We're working hard to bring you the ultimate financial platform for creatives. Join our waitlist to be the first to know when we launch."
-                : "Estamos trabalhando arduamente para trazer a você a melhor plataforma financeira para criativos. Junte-se à nossa lista de espera para ser o primeiro a saber quando lançarmos."}
+                ? 'We're working hard to bring you the ultimate financial platform for creatives. Join our waitlist to be the first to know when we launch.' 
+                : 'Estamos trabalhando arduamente para trazer a você a melhor plataforma financeira para criativos. Junte-se à nossa lista de espera para ser o primeiro a saber quando lançarmos.'}
             </p>
             
             {isSubmitted ? (
-              <div className="bg-gray-800/70 border border-gray-700 rounded-xl p-8 text-center">
+              <div className="bg-[#202020]/70 border border-gray-700 rounded-xl p-8 text-center">
                 <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -104,7 +104,7 @@ const ComingSoon = () => {
                 </h3>
                 <p className="text-gray-400">
                   {language === 'en' 
-                    ? "We'll notify you as soon as Eluvie launches."
+                    ? "We'll notify you as soon as Eluvie launches." 
                     : "Notificaremos você assim que o Eluvie for lançado."}
                 </p>
               </div>
@@ -119,7 +119,7 @@ const ComingSoon = () => {
                         <FormLabel>{language === 'en' ? 'Name' : 'Nome'}</FormLabel>
                         <FormControl>
                           <Input 
-                            className="bg-gray-800 border-gray-700" 
+                            className="bg-[#202020] border-gray-700" 
                             placeholder={language === 'en' ? 'Your name' : 'Seu nome'} 
                             {...field} 
                           />
@@ -137,7 +137,7 @@ const ComingSoon = () => {
                         <FormLabel>{language === 'en' ? 'Email' : 'Email'}</FormLabel>
                         <FormControl>
                           <Input 
-                            className="bg-gray-800 border-gray-700" 
+                            className="bg-[#202020] border-gray-700" 
                             type="email"
                             placeholder={language === 'en' ? 'Your email address' : 'Seu endereço de email'} 
                             {...field} 
@@ -156,7 +156,7 @@ const ComingSoon = () => {
                         <FormLabel>WhatsApp</FormLabel>
                         <FormControl>
                           <Input 
-                            className="bg-gray-800 border-gray-700" 
+                            className="bg-[#202020] border-gray-700" 
                             placeholder={language === 'en' ? 'Your WhatsApp number' : 'Seu número de WhatsApp'} 
                             {...field} 
                           />
@@ -181,7 +181,7 @@ const ComingSoon = () => {
           </div>
         </div>
         
-        <div className="md:w-1/2 bg-gradient-to-br from-gray-800 to-gray-900 p-6 md:p-0 flex items-center justify-center relative overflow-hidden">
+        <div className="md:w-1/2 bg-gradient-to-br from-[#202020] to-[#1a1a1a] p-6 md:p-0 flex items-center justify-center relative overflow-hidden">
           <div className="absolute inset-0">
             <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
@@ -204,7 +204,7 @@ const ComingSoon = () => {
               </h3>
               <p className="text-gray-300">
                 {language === 'en' 
-                  ? 'Watch our demo video to see what Eluvie has to offer.'
+                  ? 'Watch our demo video to see what Eluvie has to offer.' 
                   : 'Assista ao nosso vídeo de demonstração para ver o que o Eluvie tem a oferecer.'}
               </p>
             </div>

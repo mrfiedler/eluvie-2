@@ -6,7 +6,7 @@ const ComparisonSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="section bg-gray-900">
+    <section className="section bg-[#1a1a1a]">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t('competitor-table')}</h2>
@@ -16,21 +16,25 @@ const ComparisonSection = () => {
         </div>
         
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-gray-800 rounded-xl shadow-md border border-gray-700">
+          <table className="min-w-full bg-[#202020] rounded-xl shadow-md border border-gray-700">
             <thead>
               <tr>
                 <th className="py-5 px-6 text-left text-gray-400 font-normal text-sm">{t('feature')}</th>
                 <th className="py-5 px-6 text-center">
                   <div className="flex flex-col items-center">
-                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-teal-400 flex items-center justify-center mb-2">
-                      <span className="text-white font-bold">E</span>
+                    <div className="h-10 w-10 rounded-full bg-gradient-to-br from-blue-500 to-teal-400 flex items-center justify-center mb-2 overflow-hidden">
+                      <img 
+                        src="/lovable-uploads/9ecfcd8a-ead0-42a7-b0c3-24fd832ae490.png" 
+                        alt="Eluvie Logo"
+                        className="w-8 h-8 object-contain"
+                      />
                     </div>
                     <span className="font-semibold text-white">Eluvie</span>
                   </div>
                 </th>
                 <th className="py-5 px-6 text-center">
                   <div className="flex flex-col items-center">
-                    <div className="h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center mb-2">
+                    <div className="h-10 w-10 rounded-full bg-[#2a2a2a] flex items-center justify-center mb-2">
                       <span className="text-gray-300 font-bold">CA</span>
                     </div>
                     <span className="font-semibold text-gray-300">Conta Azul</span>
@@ -38,7 +42,7 @@ const ComparisonSection = () => {
                 </th>
                 <th className="py-5 px-6 text-center">
                   <div className="flex flex-col items-center">
-                    <div className="h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center mb-2">
+                    <div className="h-10 w-10 rounded-full bg-[#2a2a2a] flex items-center justify-center mb-2">
                       <span className="text-gray-300 font-bold">QB</span>
                     </div>
                     <span className="font-semibold text-gray-300">QuickBooks</span>
@@ -46,7 +50,7 @@ const ComparisonSection = () => {
                 </th>
                 <th className="py-5 px-6 text-center">
                   <div className="flex flex-col items-center">
-                    <div className="h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center mb-2">
+                    <div className="h-10 w-10 rounded-full bg-[#2a2a2a] flex items-center justify-center mb-2">
                       <span className="text-gray-300 font-bold">N</span>
                     </div>
                     <span className="font-semibold text-gray-300">Nibo</span>

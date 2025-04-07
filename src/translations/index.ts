@@ -11,6 +11,7 @@ import ctaTranslations from './cta';
 import footerTranslations from './footer';
 import aboutTranslations from './about';
 import careersTranslations from './careers';
+import waitlistTranslations from './waitlist';
 
 // Combine all translations
 const translations = {
@@ -26,6 +27,7 @@ const translations = {
   ...footerTranslations,
   ...aboutTranslations,
   ...careersTranslations,
+  ...waitlistTranslations,
 };
 
 export default translations;

@@ -45,7 +45,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <section className="section bg-gray-800 relative overflow-hidden">
+    <section className="section bg-[#1a1a1a] relative overflow-hidden">
       <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 md:px-6">
@@ -60,7 +60,7 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <div 
               key={index}
-              className="bg-gray-900 rounded-xl p-6 shadow-md border border-gray-700 relative"
+              className="bg-[#202020] rounded-xl p-6 shadow-md border border-gray-700 relative"
             >
               <div className="flex space-x-1 mb-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (

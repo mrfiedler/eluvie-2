@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link } from 'react-router-dom';
@@ -30,7 +30,7 @@ const Navbar = () => {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gray-900/95 backdrop-blur-md py-3 shadow-md' : 'bg-transparent py-5'
+        isScrolled ? 'bg-[#1a1a1a]/95 backdrop-blur-md py-3 shadow-md' : 'bg-transparent py-5'
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
@@ -96,25 +96,25 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-gray-800 shadow-lg pt-4 pb-6 px-4 border-t border-gray-700">
+        <div className="md:hidden bg-[#202020] shadow-lg pt-4 pb-6 px-4 border-t border-gray-700">
           <div className="flex flex-col space-y-3">
             <a 
               href="#how-it-works" 
-              className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-gray-700"
+              className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-[#2a2a2a]"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('how-it-works')}
             </a>
             <a 
               href="#features" 
-              className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-gray-700"
+              className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-[#2a2a2a]"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('features')}
             </a>
             <a 
               href="#pricing" 
-              className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-gray-700"
+              className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-[#2a2a2a]"
               onClick={() => setMobileMenuOpen(false)}
             >
               {t('pricing')}

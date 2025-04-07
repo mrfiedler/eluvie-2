@@ -69,7 +69,7 @@ const PricingSection = () => {
   ];
 
   return (
-    <section id="pricing" className="section bg-gray-800 relative overflow-hidden">
+    <section id="pricing" className="section bg-[#202020] relative overflow-hidden">
       <div className="absolute top-20 right-0 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 md:px-6">
@@ -84,7 +84,7 @@ const PricingSection = () => {
           {plans.map((plan, index) => (
             <div 
               key={index}
-              className={`bg-gray-900 rounded-xl p-8 border border-gray-700 relative ${
+              className={`bg-[#1a1a1a] rounded-xl p-8 border border-gray-700 relative ${
                 plan.popular ? 'ring-2 ring-blue-500 shadow-lg shadow-blue-500/10' : ''
               }`}
             >
@@ -128,6 +128,7 @@ const PricingSection = () => {
                     ? "bg-blue-600 hover:bg-blue-700" 
                     : "border-gray-700 text-white bg-transparent hover:bg-gray-800"
                 }`}
+                onClick={() => window.location.href = "/coming-soon"}
               >
                 {plan.buttonText}
               </Button>
