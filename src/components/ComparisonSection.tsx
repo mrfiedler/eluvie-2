@@ -26,7 +26,7 @@ const ComparisonSection = () => {
                       <img 
                         src="/lovable-uploads/9ecfcd8a-ead0-42a7-b0c3-24fd832ae490.png" 
                         alt="Eluvie Logo"
-                        className="w-8 h-8 object-contain"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <span className="font-semibold text-white">Eluvie</span>
