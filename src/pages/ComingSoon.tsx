@@ -84,12 +84,10 @@ const ComingSoon = () => {
         <div className="md:w-1/2 flex flex-col justify-center px-6 py-12 md:px-12 lg:px-24">
           <div className="max-w-lg">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              {language === 'en' ? 'Coming Soon' : 'Em breve'}
+              {t('join-waitlist')}
             </h1>
             <p className="text-lg text-gray-300 mb-8">
-              {language === 'en' 
-                ? 'We're working hard to bring you the ultimate financial platform for creatives. Join our waitlist to be the first to know when we launch.' 
-                : 'Estamos trabalhando arduamente para trazer a você a melhor plataforma financeira para criativos. Junte-se à nossa lista de espera para ser o primeiro a saber quando lançarmos.'}
+              {t('be-first')}
             </p>
             
             {isSubmitted ? (
@@ -100,12 +98,10 @@ const ComingSoon = () => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">
-                  {language === 'en' ? 'Thank you for joining!' : 'Obrigado por se juntar a nós!'}
+                  {t('thank-you')}
                 </h3>
                 <p className="text-gray-400">
-                  {language === 'en' 
-                    ? "We'll notify you as soon as Eluvie launches." 
-                    : "Notificaremos você assim que o Eluvie for lançado."}
+                  {t('notify-launch')}
                 </p>
               </div>
             ) : (
@@ -172,8 +168,8 @@ const ComingSoon = () => {
                     disabled={isSubmitting}
                   >
                     {isSubmitting 
-                      ? (language === 'en' ? 'Submitting...' : 'Enviando...') 
-                      : (language === 'en' ? 'Join the Waitlist' : 'Entrar na Lista de Espera')}
+                      ? t('submitting')
+                      : t('join-the-waitlist')}
                   </Button>
                 </form>
               </Form>
