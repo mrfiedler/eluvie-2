@@ -40,32 +40,34 @@ const FeaturesSection = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="relative rounded-2xl overflow-hidden border border-gray-700 shadow-xl">
-              <img 
-                src="/lovable-uploads/0da950c7-6e18-4083-8c37-72fc551f9225.png" 
-                alt="Eluvie Dashboard" 
-                className="w-full h-auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] to-transparent opacity-20"></div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {features.map((feature, index) => (
+            <div key={index} className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700 hover:border-gray-500 transition-colors">
+              <div className="bg-[#2a2a2a] rounded-lg p-3 inline-block mb-4 border border-gray-700">
+                {feature.icon}
+              </div>
+              <h4 className="text-xl font-semibold mb-2 text-white">{feature.title}</h4>
+              <p className="text-gray-400">{feature.description}</p>
             </div>
-          </div>
-          
-          <div>
-            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-white">{t('creative-freedom')}</h3>
-            <p className="text-gray-300 mb-8">{t('creative-freedom-desc')}</p>
-            
-            <div className="space-y-6">
+          ))}
+        </div>
+        
+        <div className="mt-16 bg-[#1a1a1a] rounded-lg p-8 border border-gray-700">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-white">{t('creative-freedom')}</h3>
+              <p className="text-gray-300 mb-8">{t('creative-freedom-desc')}</p>
+              <div className="inline-block bg-[#2a2a2a] rounded-lg px-6 py-3 text-white font-medium border border-gray-700">
+                {t('budget-invoice')}
+              </div>
+            </div>
+            <div className="space-y-4">
               {features.map((feature, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="bg-[#1a1a1a] rounded-lg p-3 h-fit border border-gray-700">
-                    {feature.icon}
+                <div key={`summary-${index}`} className="flex items-center gap-3">
+                  <div className="bg-[#2a2a2a] rounded-full p-1 h-fit border border-gray-700">
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400" />
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold mb-1 text-white">{feature.title}</h4>
-                    <p className="text-gray-400">{feature.description}</p>
-                  </div>
+                  <p className="text-gray-300">{feature.title}</p>
                 </div>
               ))}
             </div>
