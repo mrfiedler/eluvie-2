@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +28,10 @@ const Navbar = () => {
     setLanguage(language === 'en' ? 'pt-BR' : 'en');
   };
 
+  const navigateTo = (path: string) => {
+    navigate(path);
+  };
+
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -37,7 +42,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <Link to="/" className="flex items-center gap-2">
             <img 
-              src="/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png"
+              src="./lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png"
               alt="Eluvie Logo" 
               className="h-8" 
             />
@@ -56,13 +61,13 @@ const Navbar = () => {
             <Button 
               variant="outline" 
               className="text-sm bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800"
-              onClick={() => window.location.href = "/coming-soon"}
+              onClick={() => navigateTo('/coming-soon')}
             >
               {t('sign-in')}
             </Button>
             <Button 
               className="text-sm bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
-              onClick={() => window.location.href = "/coming-soon"}
+              onClick={() => navigateTo('/coming-soon')}
             >
               {t('sign-up')}
             </Button>
@@ -126,13 +131,19 @@ const Navbar = () => {
               <Button 
                 variant="outline" 
                 className="w-full bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800"
-                onClick={() => window.location.href = "/coming-soon"}
+                onClick={() => {
+                  navigateTo('/coming-soon');
+                  setMobileMenuOpen(false);
+                }}
               >
                 {t('sign-in')}
               </Button>
               <Button 
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
-                onClick={() => window.location.href = "/coming-soon"}
+                onClick={() => {
+                  navigateTo('/coming-soon');
+                  setMobileMenuOpen(false);
+                }}
               >
                 {t('sign-up-free')}
               </Button>

@@ -188,7 +188,7 @@ const WaitlistSection = () => {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
                 <img 
-                  src="/lovable-uploads/fee0e698-51e9-462e-99b1-b5156482c06b.png" 
+                  src="./lovable-uploads/fee0e698-51e9-462e-99b1-b5156482c06b.png" 
                   alt="Eluvie Dashboard Preview" 
                   className="w-full h-auto"
                 />
