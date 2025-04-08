@@ -9,10 +9,9 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{children: ReactNode}> = ({ children }) => {
-  // Changed default language to Portuguese
   const [language, setLanguage] = useState<Language>('pt-BR');
   
   const t = (key: string): string => {
@@ -30,10 +29,12 @@ export const LanguageProvider: React.FC<{children: ReactNode}> = ({ children }) 
   );
 };
 
-export const useLanguage = () => {
+export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
 };
+
+export { LanguageContext };
