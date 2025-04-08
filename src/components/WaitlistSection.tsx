@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -35,10 +36,14 @@ const WaitlistSection = () => {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
-      // Insert data into Supabase
+      // Insert data into Supabase - ensure all required fields are non-optional
       const { error } = await supabase
         .from('waitlist')
-        .insert([data]);
+        .insert([{
+          name: data.name,
+          email: data.email,
+          whatsapp: data.whatsapp
+        }]);
       
       if (error) {
         // Handle unique constraint error (user already registered)
