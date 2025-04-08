@@ -2,83 +2,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
-import { useForm } from 'react-hook-form';
-import { useToast } from "@/hooks/use-toast";
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { supabase } from '@/integrations/supabase/client';
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
-  email: z.string().email({ message: 'Please enter a valid email address' }),
-  whatsapp: z.string().min(10, { message: 'Please enter a valid WhatsApp number' }),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+import WaitlistForm from '@/components/WaitlistForm';
+import SuccessMessage from '@/components/SuccessMessage';
 
 const ComingSoon = () => {
   const { t, language } = useLanguage();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const { toast } = useToast();
   
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      whatsapp: ''
-    }
-  });
-
-  const onSubmit = async (data: FormValues) => {
-    setIsSubmitting(true);
-    try {
-      // Insert data into Supabase - ensure all required fields are non-optional
-      const { error } = await supabase
-        .from('waitlist')
-        .insert([{
-          name: data.name,
-          email: data.email,
-          whatsapp: data.whatsapp
-        }]);
-      
-      if (error) {
-        // Handle unique constraint error (user already registered)
-        if (error.code === '23505') {
-          toast({
-            variant: "destructive",
-            title: language === 'en' ? 'Already registered' : 'Já cadastrado',
-            description: language === 'en' ? 'This email is already registered.' : 'Este email já está registrado.'
-          });
-          setIsSubmitting(false);
-          return;
-        }
-        
-        throw error;
-      }
-      
-      toast({
-        title: language === 'en' ? 'Successfully joined waitlist!' : 'Adicionado à lista de espera com sucesso!',
-        description: language === 'en' ? "We'll notify you when Eluvie launches." : "Notificaremos você quando o Eluvie for lançado."
-      });
-      
-      setIsSubmitted(true);
-    } catch (error) {
-      console.error('Error submitting waitlist form:', error);
-      toast({
-        variant: "destructive",
-        title: language === 'en' ? 'Something went wrong' : 'Algo deu errado',
-        description: language === 'en' ? 'Please try again later.' : 'Por favor, tente novamente mais tarde.'
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-gray-100 flex flex-col">
       <div className="flex items-center justify-between p-6 border-b border-gray-800">
@@ -108,88 +38,12 @@ const ComingSoon = () => {
             </p>
             
             {isSubmitted ? (
-              <div className="bg-[#202020]/70 border border-gray-700 rounded-xl p-8 text-center">
-                <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">
-                  {t('thank-you')}
-                </h3>
-                <p className="text-gray-400">
-                  {t('notify-launch')}
-                </p>
-              </div>
+              <SuccessMessage className="bg-[#202020]/70" />
             ) : (
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{language === 'en' ? 'Name' : 'Nome'}</FormLabel>
-                        <FormControl>
-                          <Input 
-                            className="bg-[#202020] border-gray-700" 
-                            placeholder={language === 'en' ? 'Your name' : 'Seu nome'} 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{language === 'en' ? 'Email' : 'Email'}</FormLabel>
-                        <FormControl>
-                          <Input 
-                            className="bg-[#202020] border-gray-700" 
-                            type="email"
-                            placeholder={language === 'en' ? 'Your email address' : 'Seu endereço de email'} 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <FormField
-                    control={form.control}
-                    name="whatsapp"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>WhatsApp</FormLabel>
-                        <FormControl>
-                          <Input 
-                            className="bg-[#202020] border-gray-700" 
-                            placeholder={language === 'en' ? 'Your WhatsApp number' : 'Seu número de WhatsApp'} 
-                            {...field} 
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  
-                  <Button 
-                    type="submit" 
-                    className="w-full py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting 
-                      ? t('submitting')
-                      : t('join-the-waitlist')}
-                  </Button>
-                </form>
-              </Form>
+              <WaitlistForm 
+                onSuccess={() => setIsSubmitted(true)}
+                buttonClassName="w-full py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              />
             )}
           </div>
         </div>
