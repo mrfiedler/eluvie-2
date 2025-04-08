@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { useToast } from "@/hooks/use-toast";
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { supabase } from '@/integrations/supabase/client';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
@@ -36,14 +37,25 @@ const ComingSoon = () => {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
-      // Here you'd normally send this data to your backend
-      // Since we don't have a backend connected yet, let's simulate success
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Insert data into Supabase
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([data]);
       
-      // Store in localStorage for now (temporary solution until database is connected)
-      const waitlist = JSON.parse(localStorage.getItem('eluvie_waitlist') || '[]');
-      waitlist.push({...data, timestamp: new Date().toISOString()});
-      localStorage.setItem('eluvie_waitlist', JSON.stringify(waitlist));
+      if (error) {
+        // Handle unique constraint error (user already registered)
+        if (error.code === '23505') {
+          toast({
+            variant: "destructive",
+            title: language === 'en' ? 'Already registered' : 'Já cadastrado',
+            description: language === 'en' ? 'This email is already registered.' : 'Este email já está registrado.'
+          });
+          setIsSubmitting(false);
+          return;
+        }
+        
+        throw error;
+      }
       
       toast({
         title: language === 'en' ? 'Successfully joined waitlist!' : 'Adicionado à lista de espera com sucesso!',
@@ -52,6 +64,7 @@ const ComingSoon = () => {
       
       setIsSubmitted(true);
     } catch (error) {
+      console.error('Error submitting waitlist form:', error);
       toast({
         variant: "destructive",
         title: language === 'en' ? 'Something went wrong' : 'Algo deu errado',

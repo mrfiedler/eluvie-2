@@ -12,13 +12,15 @@ import {
   TableHead, 
   TableCell 
 } from '@/components/ui/table';
+import { supabase } from '@/integrations/supabase/client';
 
 // Type for waitlist entries
 type WaitlistEntry = {
+  id: string;
   name: string;
   email: string;
   whatsapp: string;
-  timestamp: string;
+  created_at: string;
 };
 
 // Admin credentials - in a real app, these would be stored securely on the server
@@ -73,14 +75,22 @@ const Admin = () => {
     navigate('/admin');
   };
   
-  const loadWaitlistData = () => {
+  const loadWaitlistData = async () => {
     setIsLoading(true);
-    // In a real app, this would be an API call
-    // For now, we're loading from localStorage
     try {
-      const data = JSON.parse(localStorage.getItem('eluvie_waitlist') || '[]');
-      setWaitlistData(data);
+      // Fetch waitlist data from Supabase
+      const { data, error } = await supabase
+        .from('waitlist')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (error) {
+        throw error;
+      }
+      
+      setWaitlistData(data || []);
     } catch (error) {
+      console.error('Error loading waitlist data:', error);
       toast({
         variant: 'destructive',
         title: 'Error loading data',
@@ -206,12 +216,12 @@ const Admin = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {waitlistData.map((entry, index) => (
-                    <TableRow key={index}>
+                  {waitlistData.map((entry) => (
+                    <TableRow key={entry.id}>
                       <TableCell className="font-medium">{entry.name}</TableCell>
                       <TableCell>{entry.email}</TableCell>
                       <TableCell>{entry.whatsapp}</TableCell>
-                      <TableCell>{formatDate(entry.timestamp)}</TableCell>
+                      <TableCell>{formatDate(entry.created_at)}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
