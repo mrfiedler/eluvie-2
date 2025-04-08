@@ -5,7 +5,7 @@ import WaitlistForm from './WaitlistForm';
 import SuccessMessage from './SuccessMessage';
 
 const WaitlistSection = () => {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   return (
@@ -17,12 +17,10 @@ const WaitlistSection = () => {
           <div className="w-full md:w-1/2">
             <div className="max-w-lg mx-auto md:mr-0">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-                {language === 'en' ? 'Join Our Waitlist' : 'Entre na Nossa Lista de Espera'}
+                {t('join-waitlist')}
               </h2>
               <p className="text-lg text-gray-300 mb-6">
-                {language === 'en' 
-                  ? 'Be the first to know when Eluvie launches. Get early access and exclusive offers!' 
-                  : 'Seja o primeiro a saber quando o Eluvie for lançado. Obtenha acesso antecipado e ofertas exclusivas!'}
+                {t('be-first')}
               </p>
               
               {isSubmitted ? (
