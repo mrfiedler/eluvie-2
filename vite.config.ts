@@ -21,4 +21,16 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    sourcemap: true,
+    chunkSizeWarningLimit: 1000, // Increase warning limit for larger chunks
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-toast', '@radix-ui/react-tooltip', 'class-variance-authority', 'clsx']
+        }
+      }
+    }
+  }
 }));

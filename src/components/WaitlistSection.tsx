@@ -38,6 +38,7 @@ const WaitlistSection = () => {
                   src="./lovable-uploads/fee0e698-51e9-462e-99b1-b5156482c06b.png" 
                   alt="Eluvie Dashboard Preview" 
                   className="w-full h-auto"
+                  loading="lazy"
                 />
               </div>
               
