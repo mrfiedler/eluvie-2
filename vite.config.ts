@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "./", // This ensures assets are loaded with relative paths
+  base: "/eluvie/", // This ensures assets are loaded correctly on GitHub Pages
   server: {
     host: "::",
     port: 8080,
