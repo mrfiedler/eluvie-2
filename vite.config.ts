@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     sourcemap: true,
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 1000, // Increase warning limit for larger chunks
     rollupOptions: {
       output: {
         manualChunks: {
