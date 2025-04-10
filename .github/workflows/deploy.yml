@@ -40,13 +40,18 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-      # Ensure CNAME file exists with correct content
+      # Ensure CNAME file exists with correct content (no www)
       - name: Create CNAME file 📄
-        run: echo "www.eluvie.com" > dist/CNAME
+        run: echo "eluvie.com" > dist/CNAME
 
       # Create a .nojekyll file to prevent GitHub Pages from ignoring files that begin with an underscore
       - name: Add .nojekyll file
         run: touch dist/.nojekyll
+
+      # Add a special redirect script for SPA routing on GitHub Pages
+      - name: Create 404.html for SPA routing
+        run: |
+          cp dist/index.html dist/404.html
 
       - name: Configure Git
         run: |
