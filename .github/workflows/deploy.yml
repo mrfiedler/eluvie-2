@@ -40,9 +40,9 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-      # Copy CNAME file to the build output directory
-      - name: Copy CNAME file 📄
-        run: cp CNAME dist/ || echo "CNAME file not found"
+      # Ensure CNAME file exists with correct content
+      - name: Create CNAME file 📄
+        run: echo "www.eluvie.com" > dist/CNAME
 
       # Create a .nojekyll file to prevent GitHub Pages from ignoring files that begin with an underscore
       - name: Add .nojekyll file
