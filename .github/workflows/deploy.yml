@@ -53,18 +53,13 @@ jobs:
         run: |
           cp dist/index.html dist/404.html
 
-      # Configure Git for deployment
-      - name: Configure Git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-
-      # Deploy to GitHub Pages
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      # Direct deployment to the main branch - this is the key change
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          folder: dist
-          branch: gh-pages
-          clean: true
-          single-commit: true
-          force: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: main  # Deploy build files directly to main branch
+          force_orphan: true    # Replace all main branch content with the build output
+          cname: eluvie.com     # Set the CNAME file
+
