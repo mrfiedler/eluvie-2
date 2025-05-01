@@ -2,9 +2,11 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
 const CTASection = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   
   return (
     <section className="section bg-[#202020] relative overflow-hidden">
@@ -23,7 +25,7 @@ const CTASection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
               className="w-full sm:w-auto text-base py-6 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-              onClick={() => window.location.href = "/coming-soon"}
+              onClick={() => navigate("/coming-soon")}
             >
               {t('try-eluvie-free')}
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -31,6 +33,7 @@ const CTASection = () => {
             <Button 
               variant="outline" 
               className="w-full sm:w-auto text-base py-6 px-8 border-gray-700 bg-transparent text-gray-300 hover:bg-[#2a2a2a]"
+              onClick={() => navigate("/coming-soon")}
             >
               {t('schedule-demo')}
             </Button>

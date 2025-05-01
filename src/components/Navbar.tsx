@@ -32,6 +32,14 @@ const Navbar = () => {
     navigate(path);
   };
 
+  const scrollToSection = (id: string) => {
+    setMobileMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -42,7 +50,7 @@ const Navbar = () => {
         <div className="flex items-center">
           <Link to="/" className="flex items-center gap-2">
             <img 
-              src="./lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png"
+              src="/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png"
               alt="Eluvie Logo" 
               className="h-8" 
             />
@@ -52,9 +60,38 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           <div className="flex items-center space-x-6">
-            <a href="#how-it-works" className="text-sm text-gray-300 hover:text-white transition-colors">{t('how-it-works')}</a>
-            <a href="#features" className="text-sm text-gray-300 hover:text-white transition-colors">{t('features')}</a>
-            <a href="#pricing" className="text-sm text-gray-300 hover:text-white transition-colors">{t('pricing')}</a>
+            <a 
+              href="#how-it-works" 
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('how-it-works');
+              }}
+            >{t('how-it-works')}</a>
+            <a 
+              href="#features" 
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('features');
+              }}
+            >{t('features')}</a>
+            <a 
+              href="#pricing" 
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('pricing');
+              }}
+            >{t('pricing')}</a>
+            <a 
+              href="#waitlist" 
+              className="text-sm text-gray-300 hover:text-white transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('waitlist');
+              }}
+            >{language === 'en' ? 'Waitlist' : 'Lista de Espera'}</a>
           </div>
           
           <div className="flex items-center space-x-4">
@@ -106,23 +143,46 @@ const Navbar = () => {
             <a 
               href="#how-it-works" 
               className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-[#2a2a2a]"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('how-it-works');
+                setMobileMenuOpen(false);
+              }}
             >
               {t('how-it-works')}
             </a>
             <a 
               href="#features" 
               className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-[#2a2a2a]"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('features');
+                setMobileMenuOpen(false);
+              }}
             >
               {t('features')}
             </a>
             <a 
               href="#pricing" 
               className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-[#2a2a2a]"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('pricing');
+                setMobileMenuOpen(false);
+              }}
             >
               {t('pricing')}
+            </a>
+            <a 
+              href="#waitlist" 
+              className="text-base text-gray-300 hover:text-white p-2 rounded-md hover:bg-[#2a2a2a]"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('waitlist');
+                setMobileMenuOpen(false);
+              }}
+            >
+              {language === 'en' ? 'Waitlist' : 'Lista de Espera'}
             </a>
             
             <div className="border-t border-gray-700 my-2"></div>

@@ -6,7 +6,6 @@ import AudienceSection from '@/components/AudienceSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import PricingSection from '@/components/PricingSection';
 import ComparisonSection from '@/components/ComparisonSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
 import WaitlistSection from '@/components/WaitlistSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
@@ -21,7 +20,6 @@ const Index = () => {
       <FeaturesSection />
       <PricingSection />
       <ComparisonSection />
-      <TestimonialsSection />
       <WaitlistSection />
       <CTASection />
       <Footer />

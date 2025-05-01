@@ -1,76 +1,17 @@
 
-import { Check, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const PricingSection = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   
-  const plans = [
-    {
-      name: t('solo-plan'),
-      price: t('solo-price'),
-      description: t('solo-for'),
-      features: [
-        t('unlimited-clients'),
-        t('basic-invoicing'),
-        t('simple-expense'),
-        t('manual-tracking'),
-        t('limited-reports')
-      ],
-      notIncluded: [
-        t('budget-invoice'),
-        t('gamification-features'),
-        t('multi-user'),
-        t('priority-support')
-      ],
-      buttonText: t('get-started'),
-      buttonVariant: "outline"
-    },
-    {
-      name: t('studio-plan'),
-      price: t('studio-price'),
-      description: t('studio-for'),
-      features: [
-        t('unlimited-clients'),
-        t('advanced-invoicing'),
-        t('automated-expense'),
-        t('automated-tracking'),
-        t('budget-invoice'),
-        t('basic-gamification'),
-        t('export-reports')
-      ],
-      notIncluded: [
-        t('multi-user'),
-        t('priority-support')
-      ],
-      buttonText: t('start-trial'),
-      buttonVariant: "default",
-      popular: true
-    },
-    {
-      name: t('agency-plan'),
-      price: t('agency-price'),
-      description: t('agency-for'),
-      features: [
-        t('everything-studio'),
-        t('multi-user-access'),
-        t('team-performance'),
-        t('client-portal'),
-        t('full-gamification'),
-        t('custom-branding'),
-        t('priority-support'),
-        t('api-access')
-      ],
-      notIncluded: [],
-      buttonText: t('start-trial'),
-      buttonVariant: "outline"
-    }
-  ];
-
   return (
-    <section id="pricing" className="section bg-[#202020] relative overflow-hidden">
-      <div className="absolute top-20 right-0 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl" />
+    <section id="pricing" className="section pt-24 pb-16 relative overflow-hidden">
+      <div className="absolute -top-40 -left-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
+      <div className="absolute -right-40 -bottom-40 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -80,67 +21,147 @@ const PricingSection = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
-          {plans.map((plan, index) => (
-            <div 
-              key={index}
-              className={`bg-[#1a1a1a] rounded-xl p-8 border border-gray-700 relative ${
-                plan.popular ? 'ring-2 ring-blue-500 shadow-lg shadow-blue-500/10' : ''
-              }`}
-            >
-              {plan.popular && (
-                <div className="absolute top-0 right-8 -translate-y-1/2 bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
-                  {t('popular')}
-                </div>
-              )}
-              
-              <div className="mb-5">
-                <h3 className="text-xl font-semibold text-white">{plan.name}</h3>
-                <div className="mt-4 flex items-baseline">
-                  <span className="text-4xl font-extrabold text-white">{plan.price}</span>
-                  {plan.price !== t('solo-price') && <span className="ml-1 text-gray-400">/month</span>}
-                </div>
-                <p className="mt-2 text-sm text-gray-400">{plan.description}</p>
-              </div>
-              
-              <div className="border-t border-gray-700 my-6"></div>
-              
-              <ul className="space-y-3 mb-6">
-                {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start">
-                    <Check className="h-5 w-5 text-green-400 mr-2 shrink-0 mt-0.5" />
-                    <span className="text-sm text-gray-300">{feature}</span>
-                  </li>
-                ))}
-                
-                {plan.notIncluded.map((feature, i) => (
-                  <li key={i} className="flex items-start opacity-50">
-                    <X className="h-5 w-5 text-gray-500 mr-2 shrink-0 mt-0.5" />
-                    <span className="text-sm text-gray-400">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Solo Plan */}
+          <div className="bg-[#1a1a1a] rounded-2xl border border-gray-700 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1">
+            <div className="p-8">
+              <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('solo-plan')}</h3>
+              <div className="text-3xl font-bold mb-1">{t('solo-price')}</div>
+              <p className="text-sm text-gray-400 mb-6">{t('solo-for')}</p>
               
               <Button 
-                variant={plan.buttonVariant === "default" ? "default" : "outline"} 
-                className={`w-full ${
-                  plan.buttonVariant === "default" 
-                    ? "bg-blue-600 hover:bg-blue-700" 
-                    : "border-gray-700 text-white bg-transparent hover:bg-gray-800"
-                }`}
-                onClick={() => window.location.href = "/coming-soon"}
+                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                onClick={() => navigate("/coming-soon")}
               >
-                {plan.buttonText}
+                {t('get-started')}
               </Button>
+              
+              <ul className="mt-8 space-y-4">
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('limited-reports')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('basic-invoicing')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('simple-expense')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('manual-tracking')}</span>
+                </li>
+              </ul>
             </div>
-          ))}
+          </div>
+          
+          {/* Studio Plan */}
+          <div className="bg-[#1a1a1a] rounded-2xl border border-blue-500 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1 relative lg:scale-105 z-10">
+            <div className="absolute top-0 right-0">
+              <div className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-bl-lg">
+                {t('popular')}
+              </div>
+            </div>
+            
+            <div className="p-8">
+              <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('studio-plan')}</h3>
+              <div className="text-3xl font-bold mb-1">{t('studio-price')}</div>
+              <p className="text-sm text-gray-400 mb-6">{t('studio-for')}</p>
+              
+              <Button 
+                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                onClick={() => navigate("/coming-soon")}
+              >
+                {t('start-trial')}
+              </Button>
+              
+              <ul className="mt-8 space-y-4">
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('unlimited-clients')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('advanced-invoicing')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('automated-expense')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('automated-tracking')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('budget-invoice')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('basic-gamification')}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          {/* Agency Plan */}
+          <div className="bg-[#1a1a1a] rounded-2xl border border-gray-700 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1">
+            <div className="p-8">
+              <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('agency-plan')}</h3>
+              <div className="text-3xl font-bold mb-1">{t('agency-price')}</div>
+              <p className="text-sm text-gray-400 mb-6">{t('agency-for')}</p>
+              
+              <Button 
+                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                onClick={() => navigate("/coming-soon")}
+              >
+                {t('start-trial')}
+              </Button>
+              
+              <ul className="mt-8 space-y-4">
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('everything-studio')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('multi-user-access')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('team-performance')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('client-portal')}</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
+                  <span className="text-gray-300">{t('full-gamification')}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-
-        <div className="mt-16 text-center">
-          <p className="text-sm text-gray-400">
-            {t('all-plans-include')}<br />
-            {t('need-custom')} <a href="#" className="text-blue-400 hover:underline">{t('contact-sales')}</a> {t('for-enterprise')}
-          </p>
+        
+        <div className="mt-12 text-center">
+          <p className="text-gray-400 mb-6">{t('all-plans-include')}</p>
+          <div className="inline-flex items-center">
+            <p className="text-gray-300 mr-2">{t('need-custom')}</p>
+            <a 
+              className="text-blue-400 hover:underline font-medium"
+              href="/coming-soon"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/coming-soon');
+              }}
+            >
+              {t('contact-sales')}
+            </a>
+            <p className="text-gray-300 ml-1">{t('for-enterprise')}</p>
+          </div>
         </div>
       </div>
     </section>

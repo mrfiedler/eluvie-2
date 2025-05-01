@@ -2,9 +2,11 @@
 import { LineChart, CreditCard, BadgeCheck, Calendar } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const HowItWorksSection = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   
   const features = [
     {
@@ -78,7 +80,10 @@ const HowItWorksSection = () => {
                   <p className="text-gray-300 mb-8">
                     {t('ready-to-start-desc')}
                   </p>
-                  <Button className="flex items-center justify-center gap-2 text-base py-6 px-10 w-full md:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none" onClick={() => window.location.href = "/coming-soon"}>
+                  <Button 
+                    className="flex items-center justify-center gap-2 text-base py-6 px-10 w-full md:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none" 
+                    onClick={() => navigate('/coming-soon')}
+                  >
                     {t('start-free-trial')}
                   </Button>
                 </div>

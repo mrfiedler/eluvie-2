@@ -20,6 +20,18 @@ const navbarTranslations = {
   'english': {
     en: 'English',
     'pt-BR': 'Inglês'
+  },
+  'how-it-works': {
+    en: 'How It Works',
+    'pt-BR': 'Como Funciona'
+  },
+  'features': {
+    en: 'Features',
+    'pt-BR': 'Funcionalidades'
+  },
+  'pricing': {
+    en: 'Pricing',
+    'pt-BR': 'Preços'
   }
 };
 

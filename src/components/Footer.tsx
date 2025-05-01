@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Globe, Heart } from 'lucide-react';
+import { Globe, Instagram, Heart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
@@ -8,6 +8,13 @@ const Footer = () => {
   
   const handleLanguageChange = () => {
     setLanguage(language === 'en' ? 'pt-BR' : 'en');
+  };
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
   
   return (
@@ -23,18 +30,19 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  {t('blog')}
-                </a>
-              </li>
-              <li>
                 <Link to="/careers" className="text-gray-400 hover:text-white transition-colors text-sm">
                   {t('careers')}
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a 
+                  href="https://www.instagram.com/eluvie.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-400 hover:text-white transition-colors text-sm flex items-center gap-1"
+                >
                   {t('contact')}
+                  <Instagram className="h-3 w-3" />
                 </a>
               </li>
             </ul>
@@ -44,22 +52,50 @@ const Footer = () => {
             <h3 className="font-medium text-white mb-4">{t('product')}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a 
+                  href="#how-it-works" 
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('how-it-works');
+                  }}
+                >
                   {t('how-it-works')}
                 </a>
               </li>
               <li>
-                <a href="#features" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a 
+                  href="#features" 
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('features');
+                  }}
+                >
                   {t('features')}
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a 
+                  href="#pricing" 
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('pricing');
+                  }}
+                >
                   {t('pricing')}
                 </a>
               </li>
               <li>
-                <a href="#waitlist" className="text-gray-400 hover:text-white transition-colors text-sm">
+                <a 
+                  href="#waitlist" 
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('waitlist');
+                  }}
+                >
                   {language === 'en' ? 'Waitlist' : 'Lista de Espera'}
                 </a>
               </li>
