@@ -53,30 +53,13 @@ jobs:
         run: |
           cp dist/index.html dist/404.html
 
-      # Add custom index.html to force a fresh cache
-      - name: Update cache-control headers
-        run: |
-          echo '<!-- Version: $(date +%s) -->' >> dist/index.html
-
+      # Configure Git for deployment
       - name: Configure Git
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-      - name: Clean gh-pages branch first
-        run: |
-          git fetch origin gh-pages || true
-          git branch -D gh-pages || true
-          git checkout --orphan gh-pages
-          git rm -rf .
-          git clean -fd
-          git checkout main -- dist
-          mv dist/* .
-          rm -rf dist
-          git add .
-          git commit -m "Deploy to GitHub Pages $(date +%Y-%m-%d-%H:%M:%S)"
-          git push -f origin gh-pages
-
+      # Deploy to GitHub Pages
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -85,4 +68,3 @@ jobs:
           clean: true
           single-commit: true
           force: true
-          token: ${{ secrets.GITHUB_TOKEN }}
