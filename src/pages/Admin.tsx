@@ -1,579 +1,289 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
-import { 
-  Table, 
-  TableHeader, 
-  TableBody, 
-  TableRow, 
-  TableHead, 
-  TableCell 
-} from '@/components/ui/table';
-import { supabase } from '@/integrations/supabase/client';
-import { Edit, Home } from 'lucide-react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Textarea } from '@/components/ui/textarea';
 
-// Type for waitlist entries
-type WaitlistEntry = {
-  id: string;
-  name: string;
-  email: string;
-  whatsapp: string;
-  created_at: string;
+import { useState, useEffect } from 'react';
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { useLanguage } from '@/contexts/LanguageContext';
+import { ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+type AboutContent = {
+  title: {
+    en: string;
+    'pt-BR': string;
+  };
+  subtitle: {
+    en: string;
+    'pt-BR': string;
+  };
+  description: {
+    en: string;
+    'pt-BR': string;
+  };
+  mission: {
+    en: string;
+    'pt-BR': string;
+  };
+  story: {
+    en: string;
+    'pt-BR': string;
+  };
 };
 
-// Admin credentials - in a real app, these would be stored securely on the server
-const ADMIN_USERNAME = 'admintesto';
-const ADMIN_PASSWORD = 'tryout2025';
+const defaultContent: AboutContent = {
+  title: {
+    en: 'About Eluvie',
+    'pt-BR': 'Sobre a Eluvie',
+  },
+  subtitle: {
+    en: 'Our story and mission',
+    'pt-BR': 'Nossa história e missão',
+  },
+  description: {
+    en: 'Eluvie is a financial platform designed specifically for creative professionals. We understand the unique challenges that designers, photographers, writers, and other creatives face when managing their finances.',
+    'pt-BR': 'Eluvie é uma plataforma financeira projetada especificamente para profissionais criativos. Entendemos os desafios únicos que designers, fotógrafos, escritores e outros criativos enfrentam ao gerenciar suas finanças.'
+  },
+  mission: {
+    en: 'Our mission is to empower creative professionals with financial tools that are as intuitive and beautiful as the work they produce. We believe that managing money should be simple, visual, and even enjoyable.',
+    'pt-BR': 'Nossa missão é capacitar profissionais criativos com ferramentas financeiras tão intuitivas e bonitas quanto o trabalho que produzem. Acreditamos que gerenciar dinheiro deve ser simples, visual e até agradável.'
+  },
+  story: {
+    en: 'Founded in 2023 by a team of designers and developers who were frustrated with existing financial tools, Eluvie was born from the belief that creative professionals deserve better. We've combined our expertise in design and finance to create a platform that speaks your language.',
+    'pt-BR': 'Fundada em 2023 por uma equipe de designers e desenvolvedores frustrados com as ferramentas financeiras existentes, a Eluvie nasceu da crença de que profissionais criativos merecem algo melhor. Combinamos nossa experiência em design e finanças para criar uma plataforma que fala a sua língua.'
+  }
+};
 
 const Admin = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [waitlistData, setWaitlistData] = useState<WaitlistEntry[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [videoLink, setVideoLink] = useState('https://www.youtube.com/embed/M0Sp7ZP96Xo');
-  const [aboutText, setAboutText] = useState({
-    en: 'Eluvie is a financial platform designed specifically for creative professionals and agencies. Manage finances, invoices, projects, and subscriptions, all in one place.',
-    'pt-BR': 'Eluvie é uma plataforma financeira projetada especificamente para profissionais e agências criativas. Gerencie finanças, faturas, projetos e assinaturas, tudo em um só lugar.'
-  });
-  const [aboutPageContent, setAboutPageContent] = useState({
-    title: {
-      en: 'About Eluvie',
-      'pt-BR': 'Sobre a Eluvie'
-    },
-    subtitle: {
-      en: 'A financial platform created by creatives, for creatives',
-      'pt-BR': 'Uma plataforma financeira criada por criativos, para criativos'
-    },
-    description: {
-      en: 'Eluvie was born from a simple observation: creative professionals need financial tools that match their workflow. Traditional financial software is often built for accountants and large corporations, not for the unique needs of creative businesses. We set out to change that.',
-      'pt-BR': 'O Eluvie nasceu de uma simples observação: profissionais criativos precisam de ferramentas financeiras que combinem com seu fluxo de trabalho. Softwares financeiros tradicionais são frequentemente desenvolvidos para contadores e grandes corporações, não para as necessidades únicas de negócios criativos. Decidimos mudar isso.'
-    },
-    mission: {
-      en: 'To create the most intuitive financial management platform for creative professionals, removing the technical barriers and making financial organization a seamless part of the creative workflow.',
-      'pt-BR': 'Criar a plataforma de gerenciamento financeiro mais intuitiva para profissionais criativos, removendo as barreiras técnicas e tornando a organização financeira uma parte integrada do fluxo de trabalho criativo.'
-    },
-    story: {
-      en: 'Founded in 2023 by a team of designers, developers, and creative entrepreneurs who were frustrated with existing financial tools. We combined our expertise in user experience, software development, and financial management to build the tool we wished we had.',
-      'pt-BR': 'Fundado em 2023 por uma equipe de designers, desenvolvedores e empreendedores criativos frustrados com as ferramentas financeiras existentes. Combinamos nossa experiência em experiência do usuário, desenvolvimento de software e gestão financeira para construir a ferramenta que gostaríamos de ter.'
-    },
-    values: [
-      {
-        title: {
-          en: 'Simplicity',
-          'pt-BR': 'Simplicidade'
-        },
-        description: {
-          en: 'We believe financial tools should be as simple and intuitive as the creative tools you already love.',
-          'pt-BR': 'Acreditamos que as ferramentas financeiras devem ser tão simples e intuitivas quanto as ferramentas criativas que você já ama.'
-        }
-      },
-      {
-        title: {
-          en: 'Transparency',
-          'pt-BR': 'Transparência'
-        },
-        description: {
-          en: 'No hidden fees, no confusing terms—just clear, visual representations of your financial state.',
-          'pt-BR': 'Sem taxas ocultas, sem termos confusos—apenas representações claras e visuais do seu estado financeiro.'
-        }
-      },
-      {
-        title: {
-          en: 'Empowerment',
-          'pt-BR': 'Capacitação'
-        },
-        description: {
-          en: 'We want to give creative professionals the confidence to make informed business decisions.',
-          'pt-BR': 'Queremos dar aos profissionais criativos a confiança para tomar decisões de negócios informadas.'
-        }
-      }
-    ]
-  });
   const { toast } = useToast();
-  const navigate = useNavigate();
-  
-  // Check if user is already logged in via session storage
+  const { language, setLanguage } = useLanguage();
+  const [aboutContent, setAboutContent] = useState<AboutContent>(defaultContent);
+  const [activeTab, setActiveTab] = useState(language);
+
+  // Load saved content from localStorage on component mount
   useEffect(() => {
-    const adminLoggedIn = sessionStorage.getItem('eluvie_admin_logged_in');
-    if (adminLoggedIn === 'true') {
-      setIsLoggedIn(true);
-      loadWaitlistData();
-    } else {
-      setIsLoading(false);
-    }
-    
-    // Load saved about page content from localStorage if available
-    const savedAboutContent = localStorage.getItem('eluvie_about_content');
-    if (savedAboutContent) {
-      try {
-        setAboutPageContent(JSON.parse(savedAboutContent));
-      } catch (e) {
-        console.error('Error parsing saved about content:', e);
+    try {
+      const savedContent = localStorage.getItem('eluvie_about_content');
+      if (savedContent) {
+        setAboutContent(JSON.parse(savedContent));
       }
+    } catch (e) {
+      console.error('Error loading saved content:', e);
     }
   }, []);
-  
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-      setIsLoggedIn(true);
-      sessionStorage.setItem('eluvie_admin_logged_in', 'true');
-      loadWaitlistData();
+
+  const handleSave = () => {
+    try {
+      localStorage.setItem('eluvie_about_content', JSON.stringify(aboutContent));
       toast({
-        title: 'Login successful',
-        description: 'Welcome to the admin panel',
+        title: "Success",
+        description: "About page content has been updated.",
       });
-    } else {
+    } catch (e) {
+      console.error('Error saving content:', e);
       toast({
-        variant: 'destructive',
-        title: 'Login failed',
-        description: 'Invalid username or password',
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to save content.",
       });
     }
   };
-  
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    sessionStorage.removeItem('eluvie_admin_logged_in');
-    setUsername('');
-    setPassword('');
-    navigate('/admin');
-  };
-  
-  const loadWaitlistData = async () => {
-    setIsLoading(true);
-    try {
-      // Fetch waitlist data from Supabase
-      const { data, error } = await supabase
-        .from('waitlist')
-        .select('*')
-        .order('created_at', { ascending: false });
-      
-      if (error) {
-        throw error;
+
+  const updateContent = (section: keyof AboutContent, language: 'en' | 'pt-BR', value: string) => {
+    setAboutContent(prev => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        [language]: value
       }
-      
-      setWaitlistData(data || []);
-    } catch (error) {
-      console.error('Error loading waitlist data:', error);
-      toast({
-        variant: 'destructive',
-        title: 'Error loading data',
-        description: 'Could not load waitlist data',
-      });
-      setWaitlistData([]);
-    } finally {
-      setIsLoading(false);
-    }
+    }));
   };
 
-  const saveVideoLink = () => {
-    // In a real application, this would save to a database
-    localStorage.setItem('eluvie_video_link', videoLink);
-    toast({
-      title: 'Success',
-      description: 'Video link updated successfully',
-    });
-  };
+  return (
+    <div className="min-h-screen bg-[#1a1a1a] text-white">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex items-center mb-8">
+          <Link to="/" className="mr-4 hover:text-blue-400">
+            <ArrowLeft className="h-6 w-6" />
+          </Link>
+          <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+        </div>
+        
+        <Alert className="mb-6 bg-blue-900/20 border-blue-800">
+          <AlertTitle>Admin Area</AlertTitle>
+          <AlertDescription>
+            This area allows you to manage website content and settings.
+          </AlertDescription>
+        </Alert>
+        
+        <div className="grid md:grid-cols-[200px_1fr] gap-6">
+          <div className="space-y-4">
+            <Card className="bg-[#202020] border-gray-700">
+              <CardHeader>
+                <CardTitle>Navigation</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  <Button variant="ghost" className="w-full justify-start bg-blue-900/20 text-blue-400">About Page</Button>
+                  <Button variant="ghost" className="w-full justify-start">Team</Button>
+                  <Button variant="ghost" className="w-full justify-start">Settings</Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="space-y-6">
+            <Card className="bg-[#202020] border-gray-700">
+              <CardHeader>
+                <CardTitle>About Page Content</CardTitle>
+                <CardDescription>
+                  Edit the content that appears on the About page.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'en' | 'pt-BR')}>
+                  <TabsList className="mb-4">
+                    <TabsTrigger value="en">English</TabsTrigger>
+                    <TabsTrigger value="pt-BR">Portuguese</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="en" className="space-y-4">
+                    <div>
+                      <Label htmlFor="title-en">Title</Label>
+                      <Input 
+                        id="title-en" 
+                        value={aboutContent.title.en} 
+                        onChange={(e) => updateContent('title', 'en', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="subtitle-en">Subtitle</Label>
+                      <Input 
+                        id="subtitle-en" 
+                        value={aboutContent.subtitle.en} 
+                        onChange={(e) => updateContent('subtitle', 'en', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="description-en">Main Description</Label>
+                      <Textarea 
+                        id="description-en" 
+                        value={aboutContent.description.en} 
+                        onChange={(e) => updateContent('description', 'en', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                        rows={4}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="mission-en">Our Mission</Label>
+                      <Textarea 
+                        id="mission-en" 
+                        value={aboutContent.mission.en} 
+                        onChange={(e) => updateContent('mission', 'en', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                        rows={4}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="story-en">Our Story</Label>
+                      <Textarea 
+                        id="story-en" 
+                        value={aboutContent.story.en} 
+                        onChange={(e) => updateContent('story', 'en', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                        rows={4}
+                      />
+                    </div>
+                  </TabsContent>
+                  
+                  <TabsContent value="pt-BR" className="space-y-4">
+                    <div>
+                      <Label htmlFor="title-pt">Título</Label>
+                      <Input 
+                        id="title-pt" 
+                        value={aboutContent.title['pt-BR']} 
+                        onChange={(e) => updateContent('title', 'pt-BR', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="subtitle-pt">Subtítulo</Label>
+                      <Input 
+                        id="subtitle-pt" 
+                        value={aboutContent.subtitle['pt-BR']} 
+                        onChange={(e) => updateContent('subtitle', 'pt-BR', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="description-pt">Descrição Principal</Label>
+                      <Textarea 
+                        id="description-pt" 
+                        value={aboutContent.description['pt-BR']} 
+                        onChange={(e) => updateContent('description', 'pt-BR', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                        rows={4}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="mission-pt">Nossa Missão</Label>
+                      <Textarea 
+                        id="mission-pt" 
+                        value={aboutContent.mission['pt-BR']} 
+                        onChange={(e) => updateContent('mission', 'pt-BR', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                        rows={4}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="story-pt">Nossa História</Label>
+                      <Textarea 
+                        id="story-pt" 
+                        value={aboutContent.story['pt-BR']} 
+                        onChange={(e) => updateContent('story', 'pt-BR', e.target.value)}
+                        className="bg-[#1a1a1a] border-gray-700"
+                        rows={4}
+                      />
+                    </div>
+                  </TabsContent>
+                </Tabs>
+              </CardContent>
+              <CardFooter>
+                <Button onClick={handleSave} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  Save Changes
+                </Button>
+              </CardFooter>
+            </Card>
 
-  const saveAboutText = () => {
-    // In a real application, this would save to a database
-    localStorage.setItem('eluvie_about_text', JSON.stringify(aboutText));
-    toast({
-      title: 'Success',
-      description: 'About text updated successfully',
-    });
-  };
-  
-  const saveAboutPageContent = () => {
-    localStorage.setItem('eluvie_about_content', JSON.stringify(aboutPageContent));
-    
-    // Also update the translations file if we had access to file system
-    // In a real app, this would save to a database or API
-    toast({
-      title: 'Success',
-      description: 'About page content updated successfully',
-    });
-    
-    // Update translations in memory so changes apply immediately
-    try {
-      const translationsModule = require('@/translations/about').default;
-      Object.entries(aboutPageContent).forEach(([key, value]) => {
-        if (typeof value === 'object' && !Array.isArray(value)) {
-          translationsModule[`about-${key}`] = value;
-        }
-      });
-    } catch (e) {
-      console.error('Could not update translations in memory:', e);
-    }
-  };
-  
-  const formatDate = (dateString: string) => {
-    try {
-      const date = new Date(dateString);
-      return new Intl.DateTimeFormat('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      }).format(date);
-    } catch (e) {
-      return 'Invalid date';
-    }
-  };
-  
-  if (!isLoggedIn) {
-    return (
-      <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col">
-        <div className="flex-1 flex flex-col justify-center items-center p-6">
-          <div className="w-full max-w-md space-y-6 bg-gray-800/50 p-8 rounded-xl border border-gray-700">
-            <div className="text-center">
-              <h1 className="text-2xl font-bold">Admin Login</h1>
-              <p className="text-gray-400 mt-2">Enter your credentials to access the admin panel</p>
-            </div>
-            
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div className="space-y-2">
-                <label htmlFor="username" className="text-sm font-medium">Username</label>
-                <Input 
-                  id="username"
-                  type="text" 
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="bg-gray-800 border-gray-700"
-                  placeholder="Enter username"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="password" className="text-sm font-medium">Password</label>
-                <Input 
-                  id="password"
-                  type="password" 
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="bg-gray-800 border-gray-700"
-                  placeholder="Enter password"
-                  required
-                />
-              </div>
-              
-              <Button 
-                type="submit"
-                className="w-full py-6"
-              >
-                Login
-              </Button>
-            </form>
-            
-            <div className="text-center text-sm text-gray-400 mt-4">
-              <a href="/" className="underline hover:text-blue-500">
-                Return to home page
-              </a>
-            </div>
+            <Card className="bg-[#202020] border-gray-700">
+              <CardHeader>
+                <CardTitle>Preview</CardTitle>
+                <CardDescription>
+                  This is how the about page will appear in {activeTab === 'en' ? 'English' : 'Portuguese'}.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="bg-[#1a1a1a] rounded-md p-6 border border-gray-700">
+                <h2 className="text-2xl font-bold mb-2">{aboutContent.title[activeTab as 'en' | 'pt-BR']}</h2>
+                <p className="text-gray-400 mb-4">{aboutContent.subtitle[activeTab as 'en' | 'pt-BR']}</p>
+                <p className="mb-6">{aboutContent.description[activeTab as 'en' | 'pt-BR']}</p>
+                <h3 className="text-xl font-semibold mb-2">
+                  {activeTab === 'en' ? 'Our Mission' : 'Nossa Missão'}
+                </h3>
+                <p className="mb-6">{aboutContent.mission[activeTab as 'en' | 'pt-BR']}</p>
+                <h3 className="text-xl font-semibold mb-2">
+                  {activeTab === 'en' ? 'Our Story' : 'Nossa História'}
+                </h3>
+                <p>{aboutContent.story[activeTab as 'en' | 'pt-BR']}</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
-      </div>
-    );
-  }
-  
-  return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 flex flex-col">
-      <div className="p-6 border-b border-gray-800 flex justify-between items-center">
-        <div className="flex items-center gap-3">
-          <h1 className="text-xl font-bold">Eluvie Admin Panel</h1>
-          <a href="/" className="text-blue-500 hover:text-blue-400 flex items-center gap-1 text-sm">
-            <Home size={16} />
-            Visit Site
-          </a>
-        </div>
-        <Button 
-          onClick={handleLogout} 
-          variant="outline" 
-          size="sm"
-        >
-          Logout
-        </Button>
-      </div>
-      
-      <div className="p-6">
-        <Tabs defaultValue="waitlist">
-          <TabsList className="mb-6">
-            <TabsTrigger value="waitlist">Waitlist Registrations</TabsTrigger>
-            <TabsTrigger value="content">Content Editor</TabsTrigger>
-            <TabsTrigger value="about">About Page</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="waitlist">
-            <div className="mb-6">
-              <h2 className="text-2xl font-semibold mb-2">Waitlist Registrations</h2>
-              <p className="text-gray-400">
-                Here you can see all users who have registered for the waitlist.
-              </p>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={loadWaitlistData} 
-                className="mt-2"
-              >
-                Refresh Data
-              </Button>
-            </div>
-            
-            {isLoading ? (
-              <div className="text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-                <p className="mt-4 text-gray-400">Loading waitlist data...</p>
-              </div>
-            ) : waitlistData.length === 0 ? (
-              <div className="text-center py-12 bg-gray-800/30 rounded-xl border border-gray-700">
-                <p className="text-xl text-gray-400">No waitlist registrations yet</p>
-              </div>
-            ) : (
-              <div className="bg-gray-800/30 rounded-xl border border-gray-700 overflow-hidden">
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Name</TableHead>
-                        <TableHead>Email</TableHead>
-                        <TableHead>WhatsApp</TableHead>
-                        <TableHead>Date & Time</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {waitlistData.map((entry) => (
-                        <TableRow key={entry.id}>
-                          <TableCell className="font-medium">{entry.name}</TableCell>
-                          <TableCell>{entry.email}</TableCell>
-                          <TableCell>{entry.whatsapp}</TableCell>
-                          <TableCell>{formatDate(entry.created_at)}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-                <div className="p-4 border-t border-gray-700">
-                  <p className="text-sm text-gray-400">
-                    Total registrations: {waitlistData.length}
-                  </p>
-                </div>
-              </div>
-            )}
-          </TabsContent>
-          
-          <TabsContent value="content">
-            <div className="space-y-8">
-              <div className="bg-gray-800/30 rounded-xl border border-gray-700 p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Edit size={18} className="text-blue-500" />
-                  <h3 className="text-xl font-medium">Video Link Editor</h3>
-                </div>
-                <p className="text-gray-400 mb-4">Edit the demonstration video link that appears on the website.</p>
-                
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="video-link" className="text-sm font-medium block mb-2">YouTube Embed URL</label>
-                    <Input 
-                      id="video-link" 
-                      value={videoLink} 
-                      onChange={(e) => setVideoLink(e.target.value)}
-                      className="bg-gray-800 border-gray-700"
-                    />
-                  </div>
-                  
-                  <Button onClick={saveVideoLink}>Save Video Link</Button>
-                </div>
-              </div>
-              
-              <div className="bg-gray-800/30 rounded-xl border border-gray-700 p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Edit size={18} className="text-blue-500" />
-                  <h3 className="text-xl font-medium">About Text Editor</h3>
-                </div>
-                <p className="text-gray-400 mb-4">Edit the About text that appears in the website footer.</p>
-                
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="about-en" className="text-sm font-medium block mb-2">English Text</label>
-                    <Textarea 
-                      id="about-en" 
-                      value={aboutText.en} 
-                      onChange={(e) => setAboutText({...aboutText, en: e.target.value})}
-                      className="bg-gray-800 border-gray-700 h-24"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="about-pt" className="text-sm font-medium block mb-2">Portuguese Text</label>
-                    <Textarea 
-                      id="about-pt" 
-                      value={aboutText["pt-BR"]} 
-                      onChange={(e) => setAboutText({...aboutText, "pt-BR": e.target.value})}
-                      className="bg-gray-800 border-gray-700 h-24"
-                    />
-                  </div>
-                  
-                  <Button onClick={saveAboutText}>Save About Text</Button>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="about">
-            <div className="space-y-8">
-              <div className="bg-gray-800/30 rounded-xl border border-gray-700 p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Edit size={18} className="text-blue-500" />
-                  <h3 className="text-xl font-medium">About Page Content</h3>
-                </div>
-                <p className="text-gray-400 mb-4">Edit the content that appears on the About page.</p>
-                
-                <div className="space-y-6">
-                  {/* Title */}
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Title (English)</label>
-                      <Input 
-                        value={aboutPageContent.title.en} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          title: { ...aboutPageContent.title, en: e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Title (Portuguese)</label>
-                      <Input 
-                        value={aboutPageContent.title["pt-BR"]} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          title: { ...aboutPageContent.title, "pt-BR": e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Subtitle */}
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Subtitle (English)</label>
-                      <Input 
-                        value={aboutPageContent.subtitle.en} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          subtitle: { ...aboutPageContent.subtitle, en: e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Subtitle (Portuguese)</label>
-                      <Input 
-                        value={aboutPageContent.subtitle["pt-BR"]} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          subtitle: { ...aboutPageContent.subtitle, "pt-BR": e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Description */}
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Description (English)</label>
-                      <Textarea 
-                        value={aboutPageContent.description.en} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          description: { ...aboutPageContent.description, en: e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700 h-32"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Description (Portuguese)</label>
-                      <Textarea 
-                        value={aboutPageContent.description["pt-BR"]} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          description: { ...aboutPageContent.description, "pt-BR": e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700 h-32"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Mission */}
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Mission (English)</label>
-                      <Textarea 
-                        value={aboutPageContent.mission.en} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          mission: { ...aboutPageContent.mission, en: e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700 h-24"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Mission (Portuguese)</label>
-                      <Textarea 
-                        value={aboutPageContent.mission["pt-BR"]} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          mission: { ...aboutPageContent.mission, "pt-BR": e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700 h-24"
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Story */}
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Story (English)</label>
-                      <Textarea 
-                        value={aboutPageContent.story.en} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          story: { ...aboutPageContent.story, en: e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700 h-24"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium block mb-2">Story (Portuguese)</label>
-                      <Textarea 
-                        value={aboutPageContent.story["pt-BR"]} 
-                        onChange={(e) => setAboutPageContent({
-                          ...aboutPageContent, 
-                          story: { ...aboutPageContent.story, "pt-BR": e.target.value }
-                        })}
-                        className="bg-gray-800 border-gray-700 h-24"
-                      />
-                    </div>
-                  </div>
-                  
-                  <Button onClick={saveAboutPageContent} className="mt-4">Save About Page Content</Button>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
       </div>
     </div>
   );
