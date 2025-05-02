@@ -40,25 +40,27 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-      # Ensure CNAME file exists with correct content in dist folder
+      # Create a CNAME file
       - name: Create CNAME file 📄
         run: echo "eluvie.com" > dist/CNAME
 
-      # Create a .nojekyll file to prevent GitHub Pages from ignoring files that begin with an underscore
+      # Create a .nojekyll file
       - name: Add .nojekyll file
         run: touch dist/.nojekyll
 
-      # Add a special redirect script for SPA routing on GitHub Pages
+      # Add a special redirect script for SPA routing
       - name: Create 404.html for SPA routing
         run: |
           cp dist/index.html dist/404.html
 
-      # Direct deployment to the main branch - this forces all files to be updated
+      # Clean the branch completely before deploying
       - name: Deploy to GitHub Pages 🚀
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: main  # Deploy build files directly to main branch
-          force_orphan: true    # CRITICAL: Replace all main branch content with the build output
-          cname: eluvie.com     # Set the CNAME file
+          folder: dist
+          branch: gh-pages
+          clean: true
+          clean-exclude: |
+            .git/**
+            .github/**
+          force: true
