@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -41,6 +40,60 @@ const Admin = () => {
     en: 'Eluvie is a financial platform designed specifically for creative professionals and agencies. Manage finances, invoices, projects, and subscriptions, all in one place.',
     'pt-BR': 'Eluvie é uma plataforma financeira projetada especificamente para profissionais e agências criativas. Gerencie finanças, faturas, projetos e assinaturas, tudo em um só lugar.'
   });
+  const [aboutPageContent, setAboutPageContent] = useState({
+    title: {
+      en: 'About Eluvie',
+      'pt-BR': 'Sobre a Eluvie'
+    },
+    subtitle: {
+      en: 'A financial platform created by creatives, for creatives',
+      'pt-BR': 'Uma plataforma financeira criada por criativos, para criativos'
+    },
+    description: {
+      en: 'Eluvie was born from a simple observation: creative professionals need financial tools that match their workflow. Traditional financial software is often built for accountants and large corporations, not for the unique needs of creative businesses. We set out to change that.',
+      'pt-BR': 'O Eluvie nasceu de uma simples observação: profissionais criativos precisam de ferramentas financeiras que combinem com seu fluxo de trabalho. Softwares financeiros tradicionais são frequentemente desenvolvidos para contadores e grandes corporações, não para as necessidades únicas de negócios criativos. Decidimos mudar isso.'
+    },
+    mission: {
+      en: 'To create the most intuitive financial management platform for creative professionals, removing the technical barriers and making financial organization a seamless part of the creative workflow.',
+      'pt-BR': 'Criar a plataforma de gerenciamento financeiro mais intuitiva para profissionais criativos, removendo as barreiras técnicas e tornando a organização financeira uma parte integrada do fluxo de trabalho criativo.'
+    },
+    story: {
+      en: 'Founded in 2023 by a team of designers, developers, and creative entrepreneurs who were frustrated with existing financial tools. We combined our expertise in user experience, software development, and financial management to build the tool we wished we had.',
+      'pt-BR': 'Fundado em 2023 por uma equipe de designers, desenvolvedores e empreendedores criativos frustrados com as ferramentas financeiras existentes. Combinamos nossa experiência em experiência do usuário, desenvolvimento de software e gestão financeira para construir a ferramenta que gostaríamos de ter.'
+    },
+    values: [
+      {
+        title: {
+          en: 'Simplicity',
+          'pt-BR': 'Simplicidade'
+        },
+        description: {
+          en: 'We believe financial tools should be as simple and intuitive as the creative tools you already love.',
+          'pt-BR': 'Acreditamos que as ferramentas financeiras devem ser tão simples e intuitivas quanto as ferramentas criativas que você já ama.'
+        }
+      },
+      {
+        title: {
+          en: 'Transparency',
+          'pt-BR': 'Transparência'
+        },
+        description: {
+          en: 'No hidden fees, no confusing terms—just clear, visual representations of your financial state.',
+          'pt-BR': 'Sem taxas ocultas, sem termos confusos—apenas representações claras e visuais do seu estado financeiro.'
+        }
+      },
+      {
+        title: {
+          en: 'Empowerment',
+          'pt-BR': 'Capacitação'
+        },
+        description: {
+          en: 'We want to give creative professionals the confidence to make informed business decisions.',
+          'pt-BR': 'Queremos dar aos profissionais criativos a confiança para tomar decisões de negócios informadas.'
+        }
+      }
+    ]
+  });
   const { toast } = useToast();
   const navigate = useNavigate();
   
@@ -52,6 +105,16 @@ const Admin = () => {
       loadWaitlistData();
     } else {
       setIsLoading(false);
+    }
+    
+    // Load saved about page content from localStorage if available
+    const savedAboutContent = localStorage.getItem('eluvie_about_content');
+    if (savedAboutContent) {
+      try {
+        setAboutPageContent(JSON.parse(savedAboutContent));
+      } catch (e) {
+        console.error('Error parsing saved about content:', e);
+      }
     }
   }, []);
   
@@ -126,6 +189,29 @@ const Admin = () => {
       title: 'Success',
       description: 'About text updated successfully',
     });
+  };
+  
+  const saveAboutPageContent = () => {
+    localStorage.setItem('eluvie_about_content', JSON.stringify(aboutPageContent));
+    
+    // Also update the translations file if we had access to file system
+    // In a real app, this would save to a database or API
+    toast({
+      title: 'Success',
+      description: 'About page content updated successfully',
+    });
+    
+    // Update translations in memory so changes apply immediately
+    try {
+      const translationsModule = require('@/translations/about').default;
+      Object.entries(aboutPageContent).forEach(([key, value]) => {
+        if (typeof value === 'object' && !Array.isArray(value)) {
+          translationsModule[`about-${key}`] = value;
+        }
+      });
+    } catch (e) {
+      console.error('Could not update translations in memory:', e);
+    }
   };
   
   const formatDate = (dateString: string) => {
@@ -223,6 +309,7 @@ const Admin = () => {
           <TabsList className="mb-6">
             <TabsTrigger value="waitlist">Waitlist Registrations</TabsTrigger>
             <TabsTrigger value="content">Content Editor</TabsTrigger>
+            <TabsTrigger value="about">About Page</TabsTrigger>
           </TabsList>
           
           <TabsContent value="waitlist">
@@ -336,6 +423,152 @@ const Admin = () => {
                   </div>
                   
                   <Button onClick={saveAboutText}>Save About Text</Button>
+                </div>
+              </div>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="about">
+            <div className="space-y-8">
+              <div className="bg-gray-800/30 rounded-xl border border-gray-700 p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Edit size={18} className="text-blue-500" />
+                  <h3 className="text-xl font-medium">About Page Content</h3>
+                </div>
+                <p className="text-gray-400 mb-4">Edit the content that appears on the About page.</p>
+                
+                <div className="space-y-6">
+                  {/* Title */}
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Title (English)</label>
+                      <Input 
+                        value={aboutPageContent.title.en} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          title: { ...aboutPageContent.title, en: e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Title (Portuguese)</label>
+                      <Input 
+                        value={aboutPageContent.title["pt-BR"]} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          title: { ...aboutPageContent.title, "pt-BR": e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Subtitle */}
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Subtitle (English)</label>
+                      <Input 
+                        value={aboutPageContent.subtitle.en} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          subtitle: { ...aboutPageContent.subtitle, en: e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Subtitle (Portuguese)</label>
+                      <Input 
+                        value={aboutPageContent.subtitle["pt-BR"]} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          subtitle: { ...aboutPageContent.subtitle, "pt-BR": e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Description */}
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Description (English)</label>
+                      <Textarea 
+                        value={aboutPageContent.description.en} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          description: { ...aboutPageContent.description, en: e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700 h-32"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Description (Portuguese)</label>
+                      <Textarea 
+                        value={aboutPageContent.description["pt-BR"]} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          description: { ...aboutPageContent.description, "pt-BR": e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700 h-32"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Mission */}
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Mission (English)</label>
+                      <Textarea 
+                        value={aboutPageContent.mission.en} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          mission: { ...aboutPageContent.mission, en: e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700 h-24"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Mission (Portuguese)</label>
+                      <Textarea 
+                        value={aboutPageContent.mission["pt-BR"]} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          mission: { ...aboutPageContent.mission, "pt-BR": e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700 h-24"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Story */}
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Story (English)</label>
+                      <Textarea 
+                        value={aboutPageContent.story.en} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          story: { ...aboutPageContent.story, en: e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700 h-24"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium block mb-2">Story (Portuguese)</label>
+                      <Textarea 
+                        value={aboutPageContent.story["pt-BR"]} 
+                        onChange={(e) => setAboutPageContent({
+                          ...aboutPageContent, 
+                          story: { ...aboutPageContent.story, "pt-BR": e.target.value }
+                        })}
+                        className="bg-gray-800 border-gray-700 h-24"
+                      />
+                    </div>
+                  </div>
+                  
+                  <Button onClick={saveAboutPageContent} className="mt-4">Save About Page Content</Button>
                 </div>
               </div>
             </div>

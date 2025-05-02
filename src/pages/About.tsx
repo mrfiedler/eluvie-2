@@ -2,9 +2,34 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
+import translations from '@/translations/about';
 
 const About = () => {
   const { language } = useLanguage();
+
+  // Check if there's saved about page content in localStorage
+  const getSavedContent = (key: string) => {
+    try {
+      const savedContent = localStorage.getItem('eluvie_about_content');
+      if (savedContent) {
+        const parsedContent = JSON.parse(savedContent);
+        if (parsedContent && parsedContent[key] && parsedContent[key][language]) {
+          return parsedContent[key][language];
+        }
+      }
+    } catch (e) {
+      console.error('Error getting saved content:', e);
+    }
+    
+    // Fallback to the translations
+    const translationKey = key === 'title' ? 'about-title' : 
+                           key === 'subtitle' ? 'about-subtitle' :
+                           key === 'description' ? 'about-desc' :
+                           key === 'mission' ? 'our-mission-desc' :
+                           key === 'story' ? 'our-story-desc' : '';
+                           
+    return translations[translationKey as keyof typeof translations][language];
+  };
 
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-gray-100">
@@ -14,14 +39,12 @@ const About = () => {
         <section className="container mx-auto px-4 md:px-6 py-12">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              {language === 'en' ? 'About Eluvie' : 'Sobre a Eluvie'}
+              {getSavedContent('title')}
             </h1>
             
             <div className="prose prose-lg prose-invert">
               <p className="text-lg text-gray-300 mb-8">
-                {language === 'en' 
-                  ? 'Eluvie was born from a simple observation: creative professionals need financial tools that match their workflow, not the other way around.' 
-                  : 'A Eluvie nasceu de uma observação simples: profissionais criativos precisam de ferramentas financeiras que se adaptem ao seu fluxo de trabalho, não o contrário.'}
+                {getSavedContent('description')}
               </p>
               
               <div className="aspect-video bg-[#202020] rounded-2xl overflow-hidden mb-8 border border-gray-700 shadow-lg">
@@ -33,21 +56,17 @@ const About = () => {
               </div>
               
               <h2 className="text-2xl font-bold text-white mt-12 mb-4">
-                {language === 'en' ? 'Our Mission' : 'Nossa Missão'}
+                {translations['our-mission'][language]}
               </h2>
               <p className="text-gray-300 mb-6">
-                {language === 'en'
-                  ? 'At Eluvie, our mission is to empower creative professionals by providing intuitive and visual financial tools that make managing money a seamless part of their creative process.'
-                  : 'Na Eluvie, nossa missão é capacitar profissionais criativos fornecendo ferramentas financeiras intuitivas e visuais que tornam o gerenciamento de dinheiro uma parte integrada do seu processo criativo.'}
+                {getSavedContent('mission')}
               </p>
               
               <h2 className="text-2xl font-bold text-white mt-12 mb-4">
-                {language === 'en' ? 'Our Story' : 'Nossa História'}
+                {translations['our-story'][language]}
               </h2>
               <p className="text-gray-300 mb-6">
-                {language === 'en'
-                  ? 'Founded in 2023 by a team of designers and developers who were frustrated with existing financial software, Eluvie is built by creatives, for creatives. We understand the unique challenges that design studios, freelancers, and digital agencies face when it comes to managing finances.'
-                  : 'Fundada em 2023 por uma equipe de designers e desenvolvedores que estavam frustrados com os softwares financeiros existentes, a Eluvie é construída por criativos, para criativos. Entendemos os desafios únicos que estúdios de design, freelancers e agências digitais enfrentam quando se trata de gerenciar finanças.'}
+                {getSavedContent('story')}
               </p>
               
               <h2 className="text-2xl font-bold text-white mt-12 mb-4">
