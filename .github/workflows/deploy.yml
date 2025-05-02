@@ -40,6 +40,12 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
+      # Copy images to the correct location
+      - name: Copy images to dist 🖼️
+        run: |
+          mkdir -p dist/lovable-uploads
+          cp -r public/lovable-uploads/* dist/lovable-uploads/ || echo "No images to copy"
+
       # Create a CNAME file
       - name: Create CNAME file 📄
         run: echo "eluvie.com" > dist/CNAME

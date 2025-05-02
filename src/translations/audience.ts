@@ -24,7 +24,6 @@ const audienceTranslations = {
     en: 'Freelancers & Developers',
     'pt-BR': 'Freelancers & Desenvolvedores'
   },
-  // Add translations for the cards descriptions
   'designers-title': {
     en: 'Design Studios',
     'pt-BR': 'Estúdios de Design'
@@ -56,6 +55,10 @@ const audienceTranslations = {
   'freelancers-desc': {
     en: 'Solo professionals balancing multiple income streams and client relationships.',
     'pt-BR': 'Profissionais autônomos equilibrando múltiplos fluxos de renda e relacionamentos com clientes.'
+  },
+  'features': {
+    en: 'Features',
+    'pt-BR': 'Funcionalidades'
   }
 };
 

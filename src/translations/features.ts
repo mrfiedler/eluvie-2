@@ -1,5 +1,9 @@
 
 const featuresTranslations = {
+  'features': {
+    en: 'Features',
+    'pt-BR': 'Funcionalidades'
+  },
   'features-title': {
     en: 'Features',
     'pt-BR': 'Funcionalidades'
