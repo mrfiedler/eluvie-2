@@ -11,7 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { supabase } from '@/integrations/supabase/client';
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
+  full_name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
   email: z.string().email({ message: 'Please enter a valid email address' }),
   whatsapp: z.string().min(10, { message: 'Please enter a valid WhatsApp number' }),
 });
@@ -31,7 +31,7 @@ const WaitlistForm = ({ onSuccess, buttonClassName }: WaitlistFormProps) => {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
+      full_name: '',
       email: '',
       whatsapp: ''
     }
@@ -43,11 +43,7 @@ const WaitlistForm = ({ onSuccess, buttonClassName }: WaitlistFormProps) => {
       // Insert data into Supabase with explicitly defined required fields
       const { error } = await supabase
         .from('waitlist')
-        .insert({
-          name: data.name,
-          email: data.email,
-          whatsapp: data.whatsapp
-        });
+        .insert(data);
       
       if (error) {
         // Handle unique constraint error (user already registered)
@@ -89,7 +85,7 @@ const WaitlistForm = ({ onSuccess, buttonClassName }: WaitlistFormProps) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
-          name="name"
+          name="full_name"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{language === 'en' ? 'Name' : 'Nome'}</FormLabel>

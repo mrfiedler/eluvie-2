@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -70,7 +69,7 @@ const Admin = () => {
   const [aboutContent, setAboutContent] = useState<AboutContent>(defaultContent);
   const [activeTab, setActiveTab] = useState(language);
   const [currentSection, setCurrentSection] = useState('about');
-  const { users, loading: loadingUsers, error: userError } = useWaitlistUsers();
+  const { users, loading: loadingUsers, error: userError, refetch: refetchUsers } = useWaitlistUsers();
   const { videoUrls, updateVideoUrl } = useVideoUrls();
   
   // Video URLs state
@@ -428,11 +427,21 @@ const Admin = () => {
             {/* User List Section */}
             {currentSection === 'users' && (
               <Card className="bg-[#202020] border-gray-700">
-                <CardHeader>
-                  <CardTitle>Waitlist Users</CardTitle>
-                  <CardDescription>
-                    Users who have registered for the waitlist.
-                  </CardDescription>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <div>
+                    <CardTitle>Waitlist Users</CardTitle>
+                    <CardDescription>
+                      Users who have registered for the waitlist.
+                    </CardDescription>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    onClick={refetchUsers}
+                    disabled={loadingUsers}
+                    className="border-gray-700 hover:bg-gray-800"
+                  >
+                    Refresh List
+                  </Button>
                 </CardHeader>
                 <CardContent>
                   {loadingUsers ? (
