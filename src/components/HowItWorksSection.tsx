@@ -1,94 +1,89 @@
 
-import { LineChart, CreditCard, BadgeCheck, Calendar } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useEffect, useState } from 'react';
 
 const HowItWorksSection = () => {
   const { t } = useLanguage();
-  const navigate = useNavigate();
+  const [videoUrl, setVideoUrl] = useState('https://www.youtube.com/embed/M0Sp7ZP96Xo?autoplay=1&mute=1&loop=1&playlist=M0Sp7ZP96Xo');
   
-  const features = [
-    {
-      icon: <LineChart className="h-10 w-10 text-blue-400" />,
-      title: t('track-income'),
-      description: t('track-income-desc')
-    },
-    {
-      icon: <CreditCard className="h-10 w-10 text-purple-400" />,
-      title: t('create-budgets'),
-      description: t('create-budgets-desc')
-    },
-    {
-      icon: <Calendar className="h-10 w-10 text-cyan-400" />,
-      title: t('monitor-subscriptions'),
-      description: t('monitor-subscriptions-desc')
-    },
-    {
-      icon: <BadgeCheck className="h-10 w-10 text-indigo-400" />,
-      title: t('get-rewarded'),
-      description: t('get-rewarded-desc')
+  useEffect(() => {
+    // Get stored video URL if available
+    try {
+      const savedUrls = localStorage.getItem('eluvie_video_urls');
+      if (savedUrls) {
+        const urls = JSON.parse(savedUrls);
+        if (urls.homepage) {
+          setVideoUrl(urls.homepage);
+        }
+      }
+    } catch (error) {
+      console.error("Error loading video URL:", error);
     }
-  ];
-  
+  }, []);
+
   return (
-    <section id="how-it-works" className="section relative overflow-hidden py-24 bg-[#1a1a1a]">
-      <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl bg-[#202020]" />
+    <section id="how-it-works" className="section bg-[#1a1a1a] py-20">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('how-eluvie-works')}</h2>
-          <p className="text-lg text-gray-400">
-            {t('how-it-works-subtitle')}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('how-it-works')}</h2>
+          <p className="text-lg text-gray-400 max-w-xl mx-auto">
+            {t('simplifying-finances')}
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <div key={index} className="feature-card flex flex-col items-center text-center">
-              <div className="mb-5 rounded-full bg-[#202020] p-3 shadow-sm border border-gray-700">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
-            </div>
-          ))}
+        <div className="relative max-w-5xl mx-auto" id="eluvie-video-section">
+          <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
+            <iframe 
+              className="w-full h-full"
+              src={videoUrl}
+              title="Eluvie demonstration video" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+          
+          <div className="absolute -bottom-5 left-0 right-0 flex justify-center">
+            <Button 
+              className="bg-blue-600 hover:bg-blue-700 text-white rounded-full h-12 px-6"
+              onClick={() => window.open(videoUrl.replace('autoplay=1&mute=1&loop=1&playlist=', ''))}
+            >
+              <Play className="h-5 w-5 mr-2" />
+              {t('watch-full')}
+            </Button>
+          </div>
         </div>
         
-        <div id="eluvie-video-section" className="mt-20 mb-8 max-w-6xl mx-auto bg-gradient-to-br from-[#202020] to-[#1a1a1a] rounded-2xl shadow-xl p-10 border border-gray-700 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full from-blue-500/5 to-purple-500/5 bg-[#1a1a1a]"></div>
-          <div className="absolute top-0 right-0 w-60 h-60 rounded-full blur-3xl bg-gray-950"></div>
-          <div className="absolute bottom-0 left-0 w-60 h-60 rounded-full blur-3xl bg-zinc-950"></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+          <div className="text-center p-6 rounded-xl bg-[#202020] border border-gray-700">
+            <div className="h-14 w-14 bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="h-7 w-7 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold mb-3">{t('step1-title')}</h3>
+            <p className="text-gray-400">{t('step1-description')}</p>
+          </div>
           
-          <div className="relative z-10">
-            <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold mb-4 text-white">{t('trial-title')}</h3>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                {t('trial-description')}
-              </p>
+          <div className="text-center p-6 rounded-xl bg-[#202020] border border-gray-700">
+            <div className="h-14 w-14 bg-purple-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="h-7 w-7 text-purple-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
             </div>
-            
-            <div className="flex flex-col lg:flex-row items-center gap-12">
-              <div className="w-full lg:w-3/5">
-                <div className="aspect-video rounded-xl overflow-hidden shadow-2xl border border-gray-600 bg-[#1a1a1a]">
-                  <iframe className="w-full h-full" src="https://www.youtube.com/embed/M0Sp7ZP96Xo?autoplay=1&mute=1&loop=1&playlist=M0Sp7ZP96Xo" title="Eluvie demonstration video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                </div>
-              </div>
-              
-              <div className="w-full lg:w-2/5 text-center lg:text-left">
-                <div className="bg-[#202020]/50 p-8 rounded-xl border border-gray-700">
-                  <h4 className="text-xl font-semibold mb-4 text-white">{t('ready-to-start')}</h4>
-                  <p className="text-gray-300 mb-8">
-                    {t('ready-to-start-desc')}
-                  </p>
-                  <Button 
-                    className="flex items-center justify-center gap-2 text-base py-6 px-10 w-full md:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none" 
-                    onClick={() => navigate('/coming-soon')}
-                  >
-                    {t('start-free-trial')}
-                  </Button>
-                </div>
-              </div>
+            <h3 className="text-xl font-bold mb-3">{t('step2-title')}</h3>
+            <p className="text-gray-400">{t('step2-description')}</p>
+          </div>
+          
+          <div className="text-center p-6 rounded-xl bg-[#202020] border border-gray-700">
+            <div className="h-14 w-14 bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="h-7 w-7 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
             </div>
+            <h3 className="text-xl font-bold mb-3">{t('step3-title')}</h3>
+            <p className="text-gray-400">{t('step3-description')}</p>
           </div>
         </div>
       </div>

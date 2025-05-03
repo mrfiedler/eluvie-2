@@ -40,26 +40,26 @@ jobs:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-      # Copy images to the correct location
-      - name: Copy images to dist 🖼️
+      # Create a proper directory structure for images to ensure they're accessible
+      - name: Set up image directory 🖼️
         run: |
           mkdir -p dist/lovable-uploads
           cp -r public/lovable-uploads/* dist/lovable-uploads/ || echo "No images to copy"
 
-      # Create a CNAME file directly in the dist folder
+      # Create a CNAME file directly in the dist folder with the proper domain
       - name: Create CNAME file 📄
-        run: echo "eluvie.com" > dist/CNAME
+        run: echo "www.eluvie.com" > dist/CNAME
 
       # Create a .nojekyll file to prevent GitHub from ignoring files that begin with an underscore
       - name: Add .nojekyll file
         run: touch dist/.nojekyll
 
-      # Add a special redirect script for SPA routing
+      # Create a special 404.html for SPA routing
       - name: Create 404.html for SPA routing
         run: |
           cp dist/index.html dist/404.html
 
-      # Clean the branch completely before deploying
+      # Deploy with clean and force options to ensure all old files are removed
       - name: Deploy to GitHub Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
@@ -70,4 +70,3 @@ jobs:
             .git/**
             .github/**
           force: true
-

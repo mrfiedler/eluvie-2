@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import WaitlistForm from '@/components/WaitlistForm';
@@ -8,6 +8,22 @@ import SuccessMessage from '@/components/SuccessMessage';
 const ComingSoon = () => {
   const { t, language } = useLanguage();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [videoUrl, setVideoUrl] = useState('https://www.youtube.com/embed/M0Sp7ZP96Xo?autoplay=1&mute=1&loop=1&playlist=M0Sp7ZP96Xo');
+  
+  useEffect(() => {
+    // Get stored video URL if available
+    try {
+      const savedUrls = localStorage.getItem('eluvie_video_urls');
+      if (savedUrls) {
+        const urls = JSON.parse(savedUrls);
+        if (urls.comingSoon) {
+          setVideoUrl(urls.comingSoon);
+        }
+      }
+    } catch (error) {
+      console.error("Error loading video URL:", error);
+    }
+  }, []);
   
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-gray-100 flex flex-col">
@@ -58,7 +74,7 @@ const ComingSoon = () => {
             <div className="aspect-video rounded-xl overflow-hidden shadow-2xl border border-gray-700">
               <iframe 
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/M0Sp7ZP96Xo?autoplay=1&mute=1&loop=1&playlist=M0Sp7ZP96Xo" 
+                src={videoUrl} 
                 title="Eluvie demonstration video" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen
