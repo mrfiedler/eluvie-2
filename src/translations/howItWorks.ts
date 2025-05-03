@@ -107,6 +107,38 @@ const howItWorksTranslations = {
   'join-waitlist-desc': {
     en: 'We\'re working hard to bring you the ultimate financial platform for creatives. Join our waitlist to be the first to know when we launch.',
     'pt-BR': 'Estamos trabalhando arduamente para trazer a você a melhor plataforma financeira para criativos. Junte-se à nossa lista de espera para ser o primeiro a saber quando lançarmos.'
+  },
+  'watch-demo': {
+    en: 'Watch Demo',
+    'pt-BR': 'Assistir Demo'
+  },
+  'step1-title': {
+    en: 'Track Finances',
+    'pt-BR': 'Acompanhe Finanças'
+  },
+  'step1-description': {
+    en: 'Easily monitor your income and expenses in one place',
+    'pt-BR': 'Monitore facilmente suas receitas e despesas em um só lugar'
+  },
+  'step2-title': {
+    en: 'Create Invoices',
+    'pt-BR': 'Crie Faturas'
+  },
+  'step2-description': {
+    en: 'Generate professional invoices from your budgets',
+    'pt-BR': 'Gere faturas profissionais a partir dos seus orçamentos'
+  },
+  'step3-title': {
+    en: 'Get Insights',
+    'pt-BR': 'Obtenha Insights'
+  },
+  'step3-description': {
+    en: 'Make better financial decisions with visual reports',
+    'pt-BR': 'Tome melhores decisões financeiras com relatórios visuais'
+  },
+  'simplifying-finances': {
+    en: 'Simplifying finances for creative professionals',
+    'pt-BR': 'Simplificando finanças para profissionais criativos'
   }
 };
 
