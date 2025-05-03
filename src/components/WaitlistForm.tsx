@@ -40,10 +40,17 @@ const WaitlistForm = ({ onSuccess, buttonClassName }: WaitlistFormProps) => {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     try {
-      // Insert data into Supabase with explicitly defined required fields
+      // Make sure all required fields are non-optional to match Supabase schema requirements
+      const waitlistData = {
+        full_name: data.full_name,
+        email: data.email,
+        whatsapp: data.whatsapp,
+      };
+      
+      // Insert data into Supabase
       const { error } = await supabase
         .from('waitlist')
-        .insert(data);
+        .insert(waitlistData);
       
       if (error) {
         // Handle unique constraint error (user already registered)
