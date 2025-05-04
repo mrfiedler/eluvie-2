@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const PricingSection = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   
   return (
     <section id="pricing" className="section pt-24 pb-16 relative overflow-hidden">
@@ -48,10 +50,6 @@ const PricingSection = () => {
                 <li className="flex items-start">
                   <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
                   <span className="text-gray-300">{t('simple-expense')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5" />
-                  <span className="text-gray-300">{t('manual-tracking')}</span>
                 </li>
               </ul>
             </div>
@@ -147,21 +145,7 @@ const PricingSection = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <p className="text-gray-400 mb-6">{t('all-plans-include')}</p>
-          <div className="inline-flex items-center">
-            <p className="text-gray-300 mr-2">{t('need-custom')}</p>
-            <a 
-              className="text-blue-400 hover:underline font-medium"
-              href="/coming-soon"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate('/coming-soon');
-              }}
-            >
-              {t('contact-sales')}
-            </a>
-            <p className="text-gray-300 ml-1">{t('for-enterprise')}</p>
-          </div>
+          <p className="text-gray-400">{t('all-plans-include')}</p>
         </div>
       </div>
     </section>
