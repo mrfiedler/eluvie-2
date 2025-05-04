@@ -1,14 +1,10 @@
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useNavigate } from 'react-router-dom';
 
 const Careers = () => {
   const { language } = useLanguage();
-  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-gray-100">
@@ -32,19 +28,11 @@ const Careers = () => {
               <h2 className="text-2xl font-bold text-white mb-4">
                 {language === 'en' ? 'No Open Positions' : 'Sem Vagas Abertas'}
               </h2>
-              <p className="text-gray-300 mb-6">
+              <p className="text-gray-300">
                 {language === 'en'
-                  ? 'We currently don\'t have any open positions, but we\'re always looking for talented people to join our team. If you\'re passionate about revolutionizing financial tools for creative professionals, send us your CV.'
-                  : 'Atualmente não temos nenhuma vaga aberta, mas estamos sempre em busca de pessoas talentosas para se juntar à nossa equipe. Se você é apaixonado por revolucionar ferramentas financeiras para profissionais criativos, envie-nos o seu currículo.'}
+                  ? 'We currently don\'t have any open positions, but we\'re always looking for talented people to join our team. If you\'re passionate about revolutionizing financial tools for creative professionals, keep an eye on this page for future opportunities.'
+                  : 'Atualmente não temos nenhuma vaga aberta, mas estamos sempre em busca de pessoas talentosas para se juntar à nossa equipe. Se você é apaixonado por revolucionar ferramentas financeiras para profissionais criativos, fique de olho nesta página para futuras oportunidades.'}
               </p>
-              <Button 
-                variant="outline"
-                className="inline-flex items-center gap-2 border-gray-700 hover:bg-gray-800"
-                onClick={() => navigate("/coming-soon")}
-              >
-                {language === 'en' ? 'Send us your CV' : 'Envie-nos seu currículo'}
-                <ExternalLink className="h-4 w-4" />
-              </Button>
             </div>
             
             <div className="mt-16 p-8 rounded-xl bg-[#202020] border border-gray-700 shadow-md">
