@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,7 +13,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useWaitlistUsers } from '@/hooks/useWaitlistUsers';
 import { useVideoUrls } from '@/hooks/useVideoUrls';
-import { ArrowLeft, LogOut } from 'lucide-react';
+import { ArrowLeft, LogOut, Plus, Trash } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 type AboutContent = {
@@ -36,6 +37,18 @@ type AboutContent = {
     en: string;
     'pt-BR': string;
   };
+  values_title: {
+    en: string;
+    'pt-BR': string;
+  };
+  values_content: {
+    en: string[];
+    'pt-BR': string[];
+  };
+  values_headers: {
+    en: string[];
+    'pt-BR': string[];
+  };
 };
 
 const defaultContent: AboutContent = {
@@ -58,6 +71,26 @@ const defaultContent: AboutContent = {
   story: {
     en: "Founded in 2023 by a team of designers and developers who were frustrated with existing financial tools, Eluvie was born from the belief that creative professionals deserve better. We've combined our expertise in design and finance to create a platform that speaks your language.",
     'pt-BR': 'Fundada em 2023 por uma equipe de designers e desenvolvedores frustrados com as ferramentas financeiras existentes, a Eluvie nasceu da crença de que profissionais criativos merecem algo melhor. Combinamos nossa experiência em design e finanças para criar uma plataforma que fala a sua língua.'
+  },
+  values_title: {
+    en: 'Our Values',
+    'pt-BR': 'Nossos Valores'
+  },
+  values_headers: {
+    en: ['Simplicity:', 'Transparency:', 'Empowerment:'],
+    'pt-BR': ['Simplicidade:', 'Transparência:', 'Capacitação:']
+  },
+  values_content: {
+    en: [
+      'We believe financial tools should be as simple and intuitive as the creative tools you already love.',
+      'No hidden fees, no confusing terms—just clear, visual representations of your financial state.',
+      'We want to give creative professionals the confidence to make informed business decisions.'
+    ],
+    'pt-BR': [
+      'Acreditamos que as ferramentas financeiras devem ser tão simples e intuitivas quanto as ferramentas criativas que você já ama.',
+      'Sem taxas ocultas, sem termos confusos—apenas representações claras e visuais do seu estado financeiro.',
+      'Queremos dar aos profissionais criativos a confiança para tomar decisões de negócios informadas.'
+    ]
   }
 };
 
@@ -81,7 +114,8 @@ const Admin = () => {
     try {
       const savedContent = localStorage.getItem('eluvie_about_content');
       if (savedContent) {
-        setAboutContent(JSON.parse(savedContent));
+        const parsedContent = JSON.parse(savedContent);
+        setAboutContent({...defaultContent, ...parsedContent});
       }
     } catch (e) {
       console.error('Error loading saved content:', e);
@@ -120,7 +154,7 @@ const Admin = () => {
     navigate('/admin-login');
   };
 
-  const updateContent = (section: keyof AboutContent, language: 'en' | 'pt-BR', value: string) => {
+  const updateContent = (section: keyof AboutContent, language: 'en' | 'pt-BR', value: string | string[]) => {
     setAboutContent(prev => ({
       ...prev,
       [section]: {
@@ -128,6 +162,77 @@ const Admin = () => {
         [language]: value
       }
     }));
+  };
+
+  const addValue = (language: 'en' | 'pt-BR') => {
+    setAboutContent(prev => {
+      const newHeaders = [...prev.values_headers[language], ''];
+      const newContent = [...prev.values_content[language], ''];
+      
+      return {
+        ...prev,
+        values_headers: {
+          ...prev.values_headers,
+          [language]: newHeaders
+        },
+        values_content: {
+          ...prev.values_content,
+          [language]: newContent
+        }
+      };
+    });
+  };
+
+  const removeValue = (language: 'en' | 'pt-BR', index: number) => {
+    setAboutContent(prev => {
+      const newHeaders = [...prev.values_headers[language]];
+      const newContent = [...prev.values_content[language]];
+      
+      newHeaders.splice(index, 1);
+      newContent.splice(index, 1);
+      
+      return {
+        ...prev,
+        values_headers: {
+          ...prev.values_headers,
+          [language]: newHeaders
+        },
+        values_content: {
+          ...prev.values_content,
+          [language]: newContent
+        }
+      };
+    });
+  };
+
+  const updateValueHeader = (language: 'en' | 'pt-BR', index: number, value: string) => {
+    setAboutContent(prev => {
+      const newHeaders = [...prev.values_headers[language]];
+      newHeaders[index] = value;
+      
+      return {
+        ...prev,
+        values_headers: {
+          ...prev.values_headers,
+          [language]: newHeaders
+        }
+      };
+    });
+  };
+
+  const updateValueContent = (language: 'en' | 'pt-BR', index: number, value: string) => {
+    setAboutContent(prev => {
+      const newContent = [...prev.values_content[language]];
+      newContent[index] = value;
+      
+      return {
+        ...prev,
+        values_content: {
+          ...prev.values_content,
+          [language]: newContent
+        }
+      };
+    });
   };
 
   return (
@@ -266,6 +371,65 @@ const Admin = () => {
                             rows={4}
                           />
                         </div>
+                        
+                        {/* Values Section */}
+                        <div className="pt-4 border-t border-gray-700">
+                          <div className="flex justify-between items-center mb-3">
+                            <Label htmlFor="values-title-en">Values Section Title</Label>
+                          </div>
+                          <Input 
+                            id="values-title-en" 
+                            value={aboutContent.values_title.en} 
+                            onChange={(e) => updateContent('values_title', 'en', e.target.value)}
+                            className="bg-[#1a1a1a] border-gray-700 mb-4"
+                          />
+                          
+                          <div className="space-y-6">
+                            {aboutContent.values_headers.en.map((header, index) => (
+                              <div key={index} className="p-4 bg-[#1a1a1a] border border-gray-700 rounded-md relative">
+                                <Button 
+                                  size="icon" 
+                                  variant="ghost" 
+                                  className="absolute right-2 top-2 text-gray-400 hover:text-red-400"
+                                  onClick={() => removeValue('en', index)}
+                                >
+                                  <Trash className="h-4 w-4" />
+                                </Button>
+                                
+                                <div className="space-y-3">
+                                  <div>
+                                    <Label htmlFor={`value-header-en-${index}`}>Value Header</Label>
+                                    <Input 
+                                      id={`value-header-en-${index}`} 
+                                      value={header} 
+                                      onChange={(e) => updateValueHeader('en', index, e.target.value)}
+                                      className="bg-[#2a2a2a] border-gray-700"
+                                    />
+                                  </div>
+                                  <div>
+                                    <Label htmlFor={`value-content-en-${index}`}>Value Description</Label>
+                                    <Textarea 
+                                      id={`value-content-en-${index}`} 
+                                      value={aboutContent.values_content.en[index]} 
+                                      onChange={(e) => updateValueContent('en', index, e.target.value)}
+                                      className="bg-[#2a2a2a] border-gray-700"
+                                      rows={3}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                            
+                            <Button 
+                              variant="outline" 
+                              className="w-full border-dashed bg-transparent border-gray-700 hover:bg-[#2a2a2a]"
+                              onClick={() => addValue('en')}
+                            >
+                              <Plus className="h-4 w-4 mr-2" />
+                              Add New Value
+                            </Button>
+                          </div>
+                        </div>
                       </TabsContent>
                       
                       <TabsContent value="pt-BR" className="space-y-4">
@@ -317,6 +481,65 @@ const Admin = () => {
                             rows={4}
                           />
                         </div>
+                        
+                        {/* Values Section - Portuguese */}
+                        <div className="pt-4 border-t border-gray-700">
+                          <div className="flex justify-between items-center mb-3">
+                            <Label htmlFor="values-title-pt">Título da Seção de Valores</Label>
+                          </div>
+                          <Input 
+                            id="values-title-pt" 
+                            value={aboutContent.values_title['pt-BR']} 
+                            onChange={(e) => updateContent('values_title', 'pt-BR', e.target.value)}
+                            className="bg-[#1a1a1a] border-gray-700 mb-4"
+                          />
+                          
+                          <div className="space-y-6">
+                            {aboutContent.values_headers['pt-BR'].map((header, index) => (
+                              <div key={index} className="p-4 bg-[#1a1a1a] border border-gray-700 rounded-md relative">
+                                <Button 
+                                  size="icon" 
+                                  variant="ghost" 
+                                  className="absolute right-2 top-2 text-gray-400 hover:text-red-400"
+                                  onClick={() => removeValue('pt-BR', index)}
+                                >
+                                  <Trash className="h-4 w-4" />
+                                </Button>
+                                
+                                <div className="space-y-3">
+                                  <div>
+                                    <Label htmlFor={`value-header-pt-${index}`}>Cabeçalho do Valor</Label>
+                                    <Input 
+                                      id={`value-header-pt-${index}`} 
+                                      value={header} 
+                                      onChange={(e) => updateValueHeader('pt-BR', index, e.target.value)}
+                                      className="bg-[#2a2a2a] border-gray-700"
+                                    />
+                                  </div>
+                                  <div>
+                                    <Label htmlFor={`value-content-pt-${index}`}>Descrição do Valor</Label>
+                                    <Textarea 
+                                      id={`value-content-pt-${index}`} 
+                                      value={aboutContent.values_content['pt-BR'][index]} 
+                                      onChange={(e) => updateValueContent('pt-BR', index, e.target.value)}
+                                      className="bg-[#2a2a2a] border-gray-700"
+                                      rows={3}
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                            
+                            <Button 
+                              variant="outline" 
+                              className="w-full border-dashed bg-transparent border-gray-700 hover:bg-[#2a2a2a]"
+                              onClick={() => addValue('pt-BR')}
+                            >
+                              <Plus className="h-4 w-4 mr-2" />
+                              Adicionar Novo Valor
+                            </Button>
+                          </div>
+                        </div>
                       </TabsContent>
                     </Tabs>
                   </CardContent>
@@ -345,7 +568,19 @@ const Admin = () => {
                     <h3 className="text-xl font-semibold mb-2">
                       {activeTab === 'en' ? 'Our Story' : 'Nossa História'}
                     </h3>
-                    <p>{aboutContent.story[activeTab as 'en' | 'pt-BR']}</p>
+                    <p className="mb-6">{aboutContent.story[activeTab as 'en' | 'pt-BR']}</p>
+                    
+                    <h3 className="text-xl font-semibold mb-2">
+                      {aboutContent.values_title[activeTab as 'en' | 'pt-BR']}
+                    </h3>
+                    <ul className="list-disc ml-6 space-y-2">
+                      {aboutContent.values_headers[activeTab as 'en' | 'pt-BR'].map((header, index) => (
+                        <li key={index}>
+                          <strong>{header}</strong>{' '}
+                          {aboutContent.values_content[activeTab as 'en' | 'pt-BR'][index]}
+                        </li>
+                      ))}
+                    </ul>
                   </CardContent>
                 </Card>
               </>
