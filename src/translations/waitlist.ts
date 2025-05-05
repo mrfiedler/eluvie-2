@@ -1,4 +1,3 @@
-
 import { Translation } from './types';
 
 const waitlistTranslations = {
@@ -8,7 +7,7 @@ const waitlistTranslations = {
   },
   'be-first': {
     en: 'Be the first to know when Eluvie launches. Get early access and exclusive offers!',
-    'pt-BR': 'Seja o primeiro a saber quando o Eluvie for lançado. Obtenha acesso antecipado e ofertas exclusivas!'
+    'pt-BR': 'Seja o primeiro a saber quando a Eluvie for lançada. Obtenha acesso antecipado e ofertas exclusivas!'
   },
   'thank-you': {
     en: 'Thank you for joining!',
@@ -16,7 +15,7 @@ const waitlistTranslations = {
   },
   'notify-launch': {
     en: "We'll notify you as soon as Eluvie launches.",
-    'pt-BR': 'Notificaremos você assim que o Eluvie for lançado.'
+    'pt-BR': 'Notificaremos você assim que a Eluvie for lançada.'
   },
   'submitting': {
     en: 'Submitting...',

@@ -50,7 +50,7 @@ const featuresTranslations = {
   },
   'creative-freedom-desc': {
     en: 'Eluvie combines powerful financial tools with an interface that feels familiar to creative professionals. No more switching between clunky banking apps and spreadsheets.',
-    'pt-BR': 'O Eluvie combina ferramentas financeiras poderosas com uma interface que é familiar aos profissionais criativos. Chega de alternar entre aplicativos bancários desajeitados e planilhas.'
+    'pt-BR': 'A Eluvie combina ferramentas financeiras poderosas com uma interface que é familiar aos profissionais criativos. Chega de alternar entre aplicativos bancários desajeitados e planilhas.'
   },
   'budget-invoice': {
     en: 'Budget & Invoice Templates',

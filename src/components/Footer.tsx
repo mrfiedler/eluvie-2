@@ -122,7 +122,7 @@ const Footer = () => {
             <p className="text-gray-400 text-sm">
               {language === 'en' 
                 ? 'Eluvie is a financial platform designed specifically for creative professionals and agencies. Manage finances, invoices, projects, and subscriptions, all in one place.' 
-                : 'Eluvie é uma plataforma financeira projetada especificamente para profissionais e agências criativas. Gerencie finanças, faturas, projetos e assinaturas, tudo em um só lugar.'}
+                : 'A Eluvie é uma plataforma financeira projetada especificamente para profissionais e agências criativas. Gerencie finanças, faturas, projetos e assinaturas, tudo em um só lugar.'}
             </p>
           </div>
         </div>

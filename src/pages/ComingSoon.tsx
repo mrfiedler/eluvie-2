@@ -89,7 +89,7 @@ const ComingSoon = () => {
               <p className="text-gray-300">
                 {language === 'en' 
                   ? 'Watch our demo video to see what Eluvie has to offer.' 
-                  : 'Assista ao nosso vídeo de demonstração para ver o que o Eluvie tem a oferecer.'}
+                  : 'Assista ao nosso vídeo de demonstração para ver o que a Eluvie tem a oferecer.'}
               </p>
             </div>
           </div>

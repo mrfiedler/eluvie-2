@@ -2,7 +2,7 @@
 const aboutTranslations = {
   'about-title': {
     en: 'About Eluvie',
-    'pt-BR': 'Sobre o Eluvie'
+    'pt-BR': 'Sobre a Eluvie'
   },
   'about-subtitle': {
     en: 'A financial platform created by creatives, for creatives',
@@ -10,7 +10,7 @@ const aboutTranslations = {
   },
   'about-desc': {
     en: 'Eluvie was born from a simple observation: creative professionals need financial tools that match their workflow. Traditional financial software is often built for accountants and large corporations, not for the unique needs of creative businesses. We set out to change that.',
-    'pt-BR': 'O Eluvie nasceu de uma simples observação: profissionais criativos precisam de ferramentas financeiras que combinem com seu fluxo de trabalho. Softwares financeiros tradicionais são frequentemente desenvolvidos para contadores e grandes corporações, não para as necessidades únicas de negócios criativos. Decidimos mudar isso.'
+    'pt-BR': 'A Eluvie nasceu de uma simples observação: profissionais criativos precisam de ferramentas financeiras que combinem com seu fluxo de trabalho. Softwares financeiros tradicionais são frequentemente desenvolvidos para contadores e grandes corporações, não para as necessidades únicas de negócios criativos. Decidimos mudar isso.'
   },
   'our-mission': {
     en: 'Our Mission',
