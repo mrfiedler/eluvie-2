@@ -1,4 +1,5 @@
 
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -84,10 +85,10 @@ const defaultContent: AboutContent = {
 
 const About = () => {
   const { language } = useLanguage();
-  const [aboutContent, setAboutContent] = React.useState<AboutContent>(defaultContent);
+  const [aboutContent, setAboutContent] = useState<AboutContent>(defaultContent);
 
   // Load saved content from localStorage on component mount
-  React.useEffect(() => {
+  useEffect(() => {
     try {
       const savedContent = localStorage.getItem('eluvie_about_content');
       if (savedContent) {
