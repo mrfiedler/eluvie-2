@@ -6,7 +6,7 @@ const ctaTranslations = {
   },
   'try-eluvie': {
     en: 'Try Eluvie for Free',
-    'pt-BR': 'Experimente o Eluvie Gratuitamente'
+    'pt-BR': 'Experimente a Eluvie Gratuitamente'
   },
   'ready-to-simplify': {
     en: 'Ready to simplify your financial chaos?',
@@ -18,7 +18,7 @@ const ctaTranslations = {
   },
   'try-eluvie-free': {
     en: 'Try Eluvie for Free',
-    'pt-BR': 'Experimente o Eluvie Gratuitamente'
+    'pt-BR': 'Experimente a Eluvie Gratuitamente'
   },
   'schedule-demo': {
     en: 'Schedule a Demo',

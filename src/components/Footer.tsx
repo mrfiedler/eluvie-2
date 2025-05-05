@@ -60,7 +60,7 @@ const Footer = () => {
                     scrollToSection('how-it-works');
                   }}
                 >
-                  {t('how-it-works')}
+                  {language === 'en' ? 'How Eluvie Works' : 'Como a Eluvie Funciona'}
                 </a>
               </li>
               <li>

@@ -6,7 +6,7 @@ const comparisonTranslations = {
   },
   'competitor-subtitle': {
     en: 'See how Eluvie compares to traditional financial tools',
-    'pt-BR': 'Veja como o Eluvie se compara às ferramentas financeiras tradicionais'
+    'pt-BR': 'Veja como a Eluvie se compara às ferramentas financeiras tradicionais'
   },
   'built-for-creatives': {
     en: 'Built for creatives',

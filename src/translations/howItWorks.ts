@@ -2,7 +2,7 @@
 const howItWorksTranslations = {
   'how-it-works': {
     en: 'How Eluvie Works',
-    'pt-BR': 'Como o Eluvie Funciona'
+    'pt-BR': 'Como a Eluvie Funciona'
   },
   'how-it-works-desc': {
     en: 'Simplicity and power in four easy steps',
@@ -10,7 +10,7 @@ const howItWorksTranslations = {
   },
   'how-eluvie-works': {
     en: 'How Eluvie Works',
-    'pt-BR': 'Como o Eluvie Funciona'
+    'pt-BR': 'Como a Eluvie Funciona'
   },
   'how-it-works-subtitle': {
     en: 'Simplicity and power in four easy steps',
@@ -78,19 +78,19 @@ const howItWorksTranslations = {
   },
   'trial-title': {
     en: 'See Eluvie in Action',
-    'pt-BR': 'Veja o Eluvie em Ação'
+    'pt-BR': 'Veja a Eluvie em Ação'
   },
   'trial-description': {
     en: 'Watch our demo video to see how Eluvie can transform your financial management experience.',
-    'pt-BR': 'Assista ao nosso vídeo de demonstração para ver como o Eluvie pode transformar sua experiência de gestão financeira.'
+    'pt-BR': 'Assista ao nosso vídeo de demonstração para ver como a Eluvie pode transformar sua experiência de gestão financeira.'
   },
   'ready-to-start': {
     en: 'Ready to Experience Eluvie?',
-    'pt-BR': 'Pronto para Experimentar o Eluvie?'
+    'pt-BR': 'Pronto para Experimentar a Eluvie?'
   },
   'ready-to-start-desc': {
     en: 'Start your free trial today and discover how Eluvie can revolutionize your financial management.',
-    'pt-BR': 'Comece seu teste gratuito hoje e descubra como o Eluvie pode revolucionar sua gestão financeira.'
+    'pt-BR': 'Comece seu teste gratuito hoje e descubra como a Eluvie pode revolucionar sua gestão financeira.'
   },
   'start-free-trial': {
     en: 'Start Your Free Trial',
