@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import WaitlistForm from '@/components/WaitlistForm';
 import SuccessMessage from '@/components/SuccessMessage';
+import { convertToEmbedUrl } from '@/hooks/useVideoUrls';
 
 const ComingSoon = () => {
   const { t, language } = useLanguage();
@@ -74,7 +75,7 @@ const ComingSoon = () => {
             <div className="aspect-video rounded-xl overflow-hidden shadow-2xl border border-gray-700">
               <iframe 
                 className="w-full h-full"
-                src={videoUrl} 
+                src={convertToEmbedUrl(videoUrl)} 
                 title="Eluvie demonstration video" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen

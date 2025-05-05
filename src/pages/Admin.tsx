@@ -70,9 +70,9 @@ const Admin = () => {
   const [activeTab, setActiveTab] = useState(language);
   const [currentSection, setCurrentSection] = useState('about');
   const { users, loading: loadingUsers, error: userError, refetch: refetchUsers } = useWaitlistUsers();
-  const { videoUrls, updateVideoUrl } = useVideoUrls();
+  const { videoUrls, updateVideoUrl, convertToEmbedUrl } = useVideoUrls();
   
-  // Video URLs state
+  // Video URLs state - keep raw URLs for display in input fields
   const [homepageVideo, setHomepageVideo] = useState(videoUrls.homepage);
   const [comingSoonVideo, setComingSoonVideo] = useState(videoUrls.comingSoon);
 
@@ -369,10 +369,10 @@ const Admin = () => {
                         value={homepageVideo}
                         onChange={(e) => setHomepageVideo(e.target.value)}
                         className="bg-[#1a1a1a] border-gray-700"
-                        placeholder="https://www.youtube.com/embed/VIDEO_ID"
+                        placeholder="https://www.youtube.com/watch?v=VIDEO_ID"
                       />
                       <p className="text-xs text-gray-400 mt-1">
-                        For YouTube videos, use the embed URL format: https://www.youtube.com/embed/VIDEO_ID
+                        You can paste any YouTube URL format (watch, short, or embed)
                       </p>
                     </div>
                     
@@ -381,7 +381,7 @@ const Admin = () => {
                       <div className="aspect-video rounded-md overflow-hidden">
                         <iframe 
                           className="w-full h-full"
-                          src={homepageVideo} 
+                          src={convertToEmbedUrl(homepageVideo)} 
                           title="Homepage Video"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                           allowFullScreen
@@ -398,8 +398,11 @@ const Admin = () => {
                         value={comingSoonVideo}
                         onChange={(e) => setComingSoonVideo(e.target.value)}
                         className="bg-[#1a1a1a] border-gray-700"
-                        placeholder="https://www.youtube.com/embed/VIDEO_ID"
+                        placeholder="https://www.youtube.com/watch?v=VIDEO_ID"
                       />
+                      <p className="text-xs text-gray-400 mt-1">
+                        You can paste any YouTube URL format (watch, short, or embed)
+                      </p>
                     </div>
                     
                     <div className="bg-[#1a1a1a] p-4 rounded-md border border-gray-700">
@@ -407,7 +410,7 @@ const Admin = () => {
                       <div className="aspect-video rounded-md overflow-hidden">
                         <iframe 
                           className="w-full h-full"
-                          src={comingSoonVideo} 
+                          src={convertToEmbedUrl(comingSoonVideo)} 
                           title="Coming Soon Video"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                           allowFullScreen
