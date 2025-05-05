@@ -1,10 +1,9 @@
-
 import { Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useEffect, useState } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { convertToEmbedUrl } from '@/hooks/useVideoUrls';
+import { useVideoUrls, convertToEmbedUrl } from '@/hooks/useVideoUrls';
 
 const HowItWorksSection = () => {
   const { t } = useLanguage();

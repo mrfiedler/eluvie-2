@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import WaitlistForm from '@/components/WaitlistForm';
 import SuccessMessage from '@/components/SuccessMessage';
-import { convertToEmbedUrl } from '@/hooks/useVideoUrls';
+import { useVideoUrls, convertToEmbedUrl } from '@/hooks/useVideoUrls';
 
 const ComingSoon = () => {
   const { t, language } = useLanguage();

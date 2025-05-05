@@ -64,5 +64,5 @@ export const useVideoUrls = () => {
     }
   }, []);
   
-  return { videoUrls, updateVideoUrl };
+  return { videoUrls, updateVideoUrl, convertToEmbedUrl };
 };
