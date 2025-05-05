@@ -38,6 +38,7 @@ type AboutContent = {
     en: string[];
     'pt-BR': string[];
   };
+  image_url: string;
 };
 
 const defaultContent: AboutContent = {
@@ -80,7 +81,8 @@ const defaultContent: AboutContent = {
       'Sem taxas ocultas, sem termos confusos—apenas representações claras e visuais do seu estado financeiro.',
       'Queremos dar aos profissionais criativos a confiança para tomar decisões de negócios informadas.'
     ]
-  }
+  },
+  image_url: '/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png'
 };
 
 const About = () => {
@@ -118,7 +120,7 @@ const About = () => {
               
               <div className="aspect-video bg-[#202020] rounded-2xl overflow-hidden mb-8 border border-gray-700 shadow-lg">
                 <img
-                  src="/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png"
+                  src={aboutContent.image_url}
                   alt="Eluvie Team"
                   className="w-full h-full object-cover"
                 />

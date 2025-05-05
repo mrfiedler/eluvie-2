@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,7 +12,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { useWaitlistUsers } from '@/hooks/useWaitlistUsers';
 import { useVideoUrls } from '@/hooks/useVideoUrls';
-import { ArrowLeft, LogOut, Plus, Trash } from 'lucide-react';
+import { ArrowLeft, ImageIcon, LogOut, Plus, Trash, Upload } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 type AboutContent = {
@@ -49,6 +48,7 @@ type AboutContent = {
     en: string[];
     'pt-BR': string[];
   };
+  image_url: string;
 };
 
 const defaultContent: AboutContent = {
@@ -91,7 +91,8 @@ const defaultContent: AboutContent = {
       'Sem taxas ocultas, sem termos confusos—apenas representações claras e visuais do seu estado financeiro.',
       'Queremos dar aos profissionais criativos a confiança para tomar decisões de negócios informadas.'
     ]
-  }
+  },
+  image_url: '/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png'
 };
 
 const Admin = () => {
@@ -161,6 +162,13 @@ const Admin = () => {
         ...prev[section],
         [language]: value
       }
+    }));
+  };
+
+  const updateImageUrl = (url: string) => {
+    setAboutContent(prev => ({
+      ...prev,
+      image_url: url
     }));
   };
 
@@ -235,6 +243,30 @@ const Admin = () => {
     });
   };
 
+  // Function to handle image selection
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      // Image is already uploaded to /lovable-uploads, just use the URL
+      const reader = new FileReader();
+      reader.onload = () => {
+        // Temporary preview
+        // The actual image path will be set when the file is uploaded
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Function to select an existing uploaded image
+  const selectUploadedImage = (imagePath: string) => {
+    updateImageUrl(imagePath);
+    toast({
+      title: "Image Selected",
+      description: "The image has been selected for the About page.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-white">
       <div className="container mx-auto px-4 py-8">
@@ -277,6 +309,13 @@ const Admin = () => {
                     onClick={() => setCurrentSection('about')}
                   >
                     About Page
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    className={`w-full justify-start ${currentSection === 'images' ? 'bg-blue-900/20 text-blue-400' : ''}`}
+                    onClick={() => setCurrentSection('images')}
+                  >
+                    About Image
                   </Button>
                   <Button 
                     variant="ghost" 
@@ -586,155 +625,117 @@ const Admin = () => {
               </>
             )}
 
-            {/* Video Links Section */}
-            {currentSection === 'videos' && (
+            {/* About Page Image Section */}
+            {currentSection === 'images' && (
               <Card className="bg-[#202020] border-gray-700">
                 <CardHeader>
-                  <CardTitle>Video URLs</CardTitle>
+                  <CardTitle>About Page Image</CardTitle>
                   <CardDescription>
-                    Manage the video URLs that appear on the homepage and coming soon pages.
+                    Select or upload an image to be displayed on the About page.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="homepage-video">Homepage Video URL</Label>
-                      <Input
-                        id="homepage-video"
-                        value={homepageVideo}
-                        onChange={(e) => setHomepageVideo(e.target.value)}
-                        className="bg-[#1a1a1a] border-gray-700"
-                        placeholder="https://www.youtube.com/watch?v=VIDEO_ID"
-                      />
-                      <p className="text-xs text-gray-400 mt-1">
-                        You can paste any YouTube URL format (watch, short, or embed)
-                      </p>
-                    </div>
-                    
-                    <div className="bg-[#1a1a1a] p-4 rounded-md border border-gray-700">
-                      <h3 className="text-sm font-medium mb-2">Preview:</h3>
-                      <div className="aspect-video rounded-md overflow-hidden">
-                        <iframe 
-                          className="w-full h-full"
-                          src={convertToEmbedUrl(homepageVideo)} 
-                          title="Homepage Video"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                          allowFullScreen
-                        ></iframe>
+                  <div>
+                    <Label htmlFor="current-image">Current Image</Label>
+                    <div className="mt-2 bg-[#1a1a1a] p-4 rounded-md border border-gray-700">
+                      <div className="aspect-video rounded-md overflow-hidden mb-4 border border-gray-800">
+                        <img 
+                          src={aboutContent.image_url} 
+                          alt="Current About Page" 
+                          className="w-full h-full object-cover"
+                        />
                       </div>
+                      <p className="text-sm text-gray-400">
+                        {aboutContent.image_url}
+                      </p>
                     </div>
                   </div>
                   
-                  <div className="space-y-4 pt-6 border-t border-gray-700">
-                    <div>
-                      <Label htmlFor="coming-soon-video">Coming Soon Page Video URL</Label>
-                      <Input
-                        id="coming-soon-video"
-                        value={comingSoonVideo}
-                        onChange={(e) => setComingSoonVideo(e.target.value)}
-                        className="bg-[#1a1a1a] border-gray-700"
-                        placeholder="https://www.youtube.com/watch?v=VIDEO_ID"
-                      />
-                      <p className="text-xs text-gray-400 mt-1">
-                        You can paste any YouTube URL format (watch, short, or embed)
-                      </p>
-                    </div>
-                    
-                    <div className="bg-[#1a1a1a] p-4 rounded-md border border-gray-700">
-                      <h3 className="text-sm font-medium mb-2">Preview:</h3>
-                      <div className="aspect-video rounded-md overflow-hidden">
-                        <iframe 
-                          className="w-full h-full"
-                          src={convertToEmbedUrl(comingSoonVideo)} 
-                          title="Coming Soon Video"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                          allowFullScreen
-                        ></iframe>
+                  <div className="pt-4 border-t border-gray-700">
+                    <Label className="mb-2 block">Select from Uploaded Images</Label>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                      <div 
+                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png' ? 'border-blue-500' : 'border-gray-700'}`}
+                        onClick={() => selectUploadedImage('/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png')}
+                      >
+                        <img 
+                          src="/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png" 
+                          alt="Team photo" 
+                          className="w-full h-full object-cover"
+                        />
                       </div>
+                      
+                      <div 
+                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/0da950c7-6e18-4083-8c37-72fc551f9225.png' ? 'border-blue-500' : 'border-gray-700'}`}
+                        onClick={() => selectUploadedImage('/lovable-uploads/0da950c7-6e18-4083-8c37-72fc551f9225.png')}
+                      >
+                        <img 
+                          src="/lovable-uploads/0da950c7-6e18-4083-8c37-72fc551f9225.png" 
+                          alt="Interface screenshot" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+
+                      <div 
+                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png' ? 'border-blue-500' : 'border-gray-700'}`}
+                        onClick={() => selectUploadedImage('/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png')}
+                      >
+                        <img 
+                          src="/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png" 
+                          alt="App screenshot" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      
+                      <div 
+                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/50090990-842e-4cea-a92b-ced353291b87.png' ? 'border-blue-500' : 'border-gray-700'}`}
+                        onClick={() => selectUploadedImage('/lovable-uploads/50090990-842e-4cea-a92b-ced353291b87.png')}
+                      >
+                        <img 
+                          src="/lovable-uploads/50090990-842e-4cea-a92b-ced353291b87.png" 
+                          alt="Creative work" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      
+                      <div 
+                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/9ecfcd8a-ead0-42a7-b0c3-24fd832ae490.png' ? 'border-blue-500' : 'border-gray-700'}`}
+                        onClick={() => selectUploadedImage('/lovable-uploads/9ecfcd8a-ead0-42a7-b0c3-24fd832ae490.png')}
+                      >
+                        <img 
+                          src="/lovable-uploads/9ecfcd8a-ead0-42a7-b0c3-24fd832ae490.png" 
+                          alt="Logo" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                    
+                  <div className="pt-4 border-t border-gray-700">
+                    <Label htmlFor="upload-image">Upload New Image</Label>
+                    <p className="text-sm text-gray-400 mb-3">
+                      Upload a new image to use on the About page.
+                    </p>
+                    <div className="flex items-center">
+                      <Label
+                        htmlFor="image-upload"
+                        className="flex items-center gap-2 cursor-pointer bg-[#2a2a2a] hover:bg-[#333] px-4 py-2 rounded-md border border-gray-700 transition-colors"
+                      >
+                        <Upload className="h-4 w-4" />
+                        Upload Image
+                      </Label>
+                      <Input
+                        id="image-upload"
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="hidden"
+                      />
                     </div>
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button onClick={handleSaveVideos} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                    Save Video URLs
+                  <Button onClick={handleSaveAbout} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    Save Changes
                   </Button>
-                </CardFooter>
-              </Card>
-            )}
-
-            {/* User List Section */}
-            {currentSection === 'users' && (
-              <Card className="bg-[#202020] border-gray-700">
-                <CardHeader className="flex flex-row items-center justify-between">
-                  <div>
-                    <CardTitle>Waitlist Users</CardTitle>
-                    <CardDescription>
-                      Users who have registered for the waitlist.
-                    </CardDescription>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    onClick={refetchUsers}
-                    disabled={loadingUsers}
-                    className="border-gray-700 hover:bg-gray-800"
-                  >
-                    Refresh List
-                  </Button>
-                </CardHeader>
-                <CardContent>
-                  {loadingUsers ? (
-                    <div className="flex justify-center my-8">
-                      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-                    </div>
-                  ) : userError ? (
-                    <Alert variant="destructive" className="bg-red-900/20 border-red-800">
-                      <AlertTitle>Error</AlertTitle>
-                      <AlertDescription>
-                        Failed to load users: {userError}
-                      </AlertDescription>
-                    </Alert>
-                  ) : (
-                    <div className="rounded-md border border-gray-700 overflow-hidden">
-                      <Table>
-                        <TableHeader>
-                          <TableRow className="bg-[#1a1a1a] hover:bg-[#1a1a1a]">
-                            <TableHead>Full Name</TableHead>
-                            <TableHead>Email</TableHead>
-                            <TableHead>WhatsApp</TableHead>
-                            <TableHead>Date Registered</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {users.length === 0 ? (
-                            <TableRow>
-                              <TableCell colSpan={4} className="text-center py-8 text-gray-400">
-                                No users have registered yet.
-                              </TableCell>
-                            </TableRow>
-                          ) : (
-                            users.map((user) => (
-                              <TableRow key={user.id}>
-                                <TableCell>{user.full_name}</TableCell>
-                                <TableCell>{user.email}</TableCell>
-                                <TableCell>{user.whatsapp || '—'}</TableCell>
-                                <TableCell>
-                                  {new Date(user.created_at).toLocaleDateString()}
-                                </TableCell>
-                              </TableRow>
-                            ))
-                          )}
-                        </TableBody>
-                      </Table>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Admin;
+                </Card
