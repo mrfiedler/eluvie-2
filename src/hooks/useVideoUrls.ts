@@ -45,10 +45,31 @@ export const convertToEmbedUrl = (url: string): string => {
 export const useVideoUrls = () => {
   const [videoUrls, setVideoUrls] = useState<VideoUrls>(DEFAULT_URLS);
   
+  // Initialize videoUrls with saved values from localStorage or use defaults
+  useEffect(() => {
+    try {
+      const savedUrls = localStorage.getItem('eluvie_video_urls');
+      if (savedUrls) {
+        const parsedUrls = JSON.parse(savedUrls);
+        setVideoUrls(prevUrls => ({
+          ...prevUrls,
+          ...parsedUrls
+        }));
+      } else {
+        // If no saved URLs, store the default ones
+        localStorage.setItem('eluvie_video_urls', JSON.stringify(DEFAULT_URLS));
+      }
+    } catch (error) {
+      console.error("Error loading video URLs:", error);
+    }
+  }, []);
+  
   const updateVideoUrl = (key: keyof VideoUrls, url: string) => {
     const embedUrl = convertToEmbedUrl(url);
     setVideoUrls(prev => {
       const newUrls = { ...prev, [key]: embedUrl };
+      // Save to localStorage
+      localStorage.setItem('eluvie_video_urls', JSON.stringify(newUrls));
       return newUrls;
     });
   };

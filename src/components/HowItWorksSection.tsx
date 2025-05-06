@@ -7,22 +7,15 @@ import { useVideoUrls, convertToEmbedUrl } from '@/hooks/useVideoUrls';
 
 const HowItWorksSection = () => {
   const { t } = useLanguage();
-  const [videoUrl, setVideoUrl] = useState('https://www.youtube.com/embed/M0Sp7ZP96Xo?autoplay=1&mute=1&loop=1&playlist=M0Sp7ZP96Xo');
+  const [videoUrl, setVideoUrl] = useState('https://www.youtube.com/embed/c3m8qhBUaDE?autoplay=1&mute=1&loop=1&playlist=c3m8qhBUaDE');
+  const { videoUrls } = useVideoUrls();
   
   useEffect(() => {
-    // Get stored video URL if available
-    try {
-      const savedUrls = localStorage.getItem('eluvie_video_urls');
-      if (savedUrls) {
-        const urls = JSON.parse(savedUrls);
-        if (urls.homepage) {
-          setVideoUrl(urls.homepage);
-        }
-      }
-    } catch (error) {
-      console.error("Error loading video URL:", error);
+    // Get stored video URL from videoUrls hook
+    if (videoUrls.homepage) {
+      setVideoUrl(videoUrls.homepage);
     }
-  }, []);
+  }, [videoUrls]);
   
   // Extract video ID for the Watch button to open without autoplay parameters
   const getCleanVideoUrl = (url: string) => {

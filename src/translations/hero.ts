@@ -17,7 +17,7 @@ const heroTranslations = {
     'pt-BR': 'Veja Como Funciona'
   },
   'trusted-by': {
-    en: 'Trusted by thousands of creatives',
+    en: 'Uniting creatives around the world through finance',
     'pt-BR': 'Unindo criativos ao redor do mundo através de finanças'
   },
   'payment-received': {
