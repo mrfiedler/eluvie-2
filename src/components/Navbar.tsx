@@ -1,14 +1,16 @@
+
 import { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +35,14 @@ const Navbar = () => {
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
+    
+    // If we're not on the homepage, navigate there first with the hash
+    if (location.pathname !== '/') {
+      navigate(`/#${id}`);
+      return;
+    }
+    
+    // If we're already on the homepage, scroll to the section
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

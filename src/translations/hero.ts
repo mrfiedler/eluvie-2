@@ -6,7 +6,7 @@ const heroTranslations = {
   },
   'hero-subtitle': {
     en: 'Manage clients, finances, contracts and subscriptions – in minutes, not hours.',
-    'pt-BR': 'Gerencie clientes, finanças, contratos e assinaturas – em minutos, não horas.'
+    'pt-BR': 'Gerencie clientes, finanças, contratos e assinaturas em minutos, não horas.'
   },
   'start-free': {
     en: 'Start for Free',
@@ -18,7 +18,7 @@ const heroTranslations = {
   },
   'trusted-by': {
     en: 'Trusted by thousands of creatives',
-    'pt-BR': 'Confiado por milhares de criativos'
+    'pt-BR': 'Unindo criativos ao redor do mundo através de finanças'
   },
   'payment-received': {
     en: 'Payment Received',

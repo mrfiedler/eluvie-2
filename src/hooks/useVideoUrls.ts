@@ -7,8 +7,8 @@ export interface VideoUrls {
 }
 
 const DEFAULT_URLS: VideoUrls = {
-  homepage: 'https://www.youtube.com/embed/M0Sp7ZP96Xo?autoplay=1&mute=1&loop=1&playlist=M0Sp7ZP96Xo',
-  comingSoon: 'https://www.youtube.com/embed/M0Sp7ZP96Xo?autoplay=1&mute=1&loop=1&playlist=M0Sp7ZP96Xo',
+  homepage: 'https://www.youtube.com/embed/c3m8qhBUaDE?autoplay=1&mute=1&loop=1&playlist=c3m8qhBUaDE',
+  comingSoon: 'https://www.youtube.com/embed/c3m8qhBUaDE?autoplay=1&mute=1&loop=1&playlist=c3m8qhBUaDE',
 };
 
 // Function to convert regular YouTube URL to embed URL
@@ -43,26 +43,15 @@ export const convertToEmbedUrl = (url: string): string => {
 };
 
 export const useVideoUrls = () => {
-  const [videoUrls, setVideoUrls] = useState<VideoUrls>(() => {
-    const savedUrls = localStorage.getItem('eluvie_video_urls');
-    return savedUrls ? JSON.parse(savedUrls) : DEFAULT_URLS;
-  });
+  const [videoUrls, setVideoUrls] = useState<VideoUrls>(DEFAULT_URLS);
   
   const updateVideoUrl = (key: keyof VideoUrls, url: string) => {
     const embedUrl = convertToEmbedUrl(url);
     setVideoUrls(prev => {
       const newUrls = { ...prev, [key]: embedUrl };
-      localStorage.setItem('eluvie_video_urls', JSON.stringify(newUrls));
       return newUrls;
     });
   };
-  
-  useEffect(() => {
-    // Initialize if not already in localStorage
-    if (!localStorage.getItem('eluvie_video_urls')) {
-      localStorage.setItem('eluvie_video_urls', JSON.stringify(DEFAULT_URLS));
-    }
-  }, []);
   
   return { videoUrls, updateVideoUrl, convertToEmbedUrl };
 };

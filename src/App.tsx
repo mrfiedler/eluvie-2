@@ -14,6 +14,7 @@ import ComingSoon from "./pages/ComingSoon";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
+import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <AppRoutes />
+            <CookieConsent />
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>
