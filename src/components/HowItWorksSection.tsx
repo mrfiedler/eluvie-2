@@ -1,3 +1,4 @@
+
 import { Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -17,9 +18,8 @@ const HowItWorksSection = () => {
     }
   }, [videoUrls]);
   
-  // Extract video ID for the Watch button to open without autoplay parameters
+  // Return the direct YouTube link for the Watch button
   const getCleanVideoUrl = () => {
-    // Return the direct YouTube link regardless of the current embed URL
     return 'https://www.youtube.com/watch?v=c3m8qhBUaDE';
   };
 
@@ -38,7 +38,7 @@ const HowItWorksSection = () => {
             <AspectRatio ratio={16/9}>
               <iframe 
                 className="w-full h-full"
-                src={convertToEmbedUrl(videoUrl)}
+                src="https://www.youtube.com/embed/c3m8qhBUaDE?autoplay=1&mute=1&loop=1&playlist=c3m8qhBUaDE"
                 title="Eluvie demonstration video" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowFullScreen

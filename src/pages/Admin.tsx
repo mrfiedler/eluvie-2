@@ -16,6 +16,7 @@ import { useVideoUrls } from '@/hooks/useVideoUrls';
 import { ArrowLeft, LogOut, Plus, Trash, Upload } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
+// Define the AboutContent type properly
 type AboutContent = {
   title: {
     en: string;
@@ -116,7 +117,7 @@ const Admin = () => {
     try {
       const savedContent = localStorage.getItem('eluvie_about_content');
       if (savedContent) {
-        const parsedContent = JSON.parse(savedContent) as Partial<AboutContent>;
+        const parsedContent = JSON.parse(savedContent);
         // Fix: Use a proper merge strategy for the content instead of spreading
         setAboutContent({
           title: {
