@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
@@ -738,4 +738,159 @@ const Admin = () => {
                   <Button onClick={handleSaveAbout} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                     Save Changes
                   </Button>
-                </Card
+                </CardFooter>
+              </Card>
+            )}
+
+            {/* Video Links Section */}
+            {currentSection === 'videos' && (
+              <Card className="bg-[#202020] border-gray-700">
+                <CardHeader>
+                  <CardTitle>Video URLs</CardTitle>
+                  <CardDescription>
+                    Manage video URLs for homepage and coming soon page.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div>
+                    <Label htmlFor="homepage-video">Homepage Video URL</Label>
+                    <p className="text-sm text-gray-400 mb-2">
+                      Enter a YouTube URL for the background video on the homepage.
+                    </p>
+                    <Input 
+                      id="homepage-video" 
+                      value={homepageVideo} 
+                      onChange={(e) => setHomepageVideo(e.target.value)}
+                      className="bg-[#1a1a1a] border-gray-700"
+                      placeholder="https://www.youtube.com/watch?v=VIDEO_ID"
+                    />
+                  </div>
+                  
+                  <div className="pt-4 border-t border-gray-700">
+                    <Label htmlFor="coming-soon-video">Coming Soon Page Video URL</Label>
+                    <p className="text-sm text-gray-400 mb-2">
+                      Enter a YouTube URL for the background video on the coming soon page.
+                    </p>
+                    <Input 
+                      id="coming-soon-video" 
+                      value={comingSoonVideo} 
+                      onChange={(e) => setComingSoonVideo(e.target.value)}
+                      className="bg-[#1a1a1a] border-gray-700"
+                      placeholder="https://www.youtube.com/watch?v=VIDEO_ID"
+                    />
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button onClick={handleSaveVideos} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    Save Video URLs
+                  </Button>
+                </CardFooter>
+              </Card>
+            )}
+
+            {/* Waitlist Users Section */}
+            {currentSection === 'users' && (
+              <Card className="bg-[#202020] border-gray-700">
+                <CardHeader>
+                  <CardTitle>Waitlist Users</CardTitle>
+                  <CardDescription>
+                    View and manage users who have signed up for the waitlist.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {loadingUsers ? (
+                    <div className="flex justify-center py-8">
+                      <p>Loading users...</p>
+                    </div>
+                  ) : userError ? (
+                    <Alert variant="destructive" className="mb-4">
+                      <AlertTitle>Error</AlertTitle>
+                      <AlertDescription>{userError}</AlertDescription>
+                    </Alert>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableCaption>List of waitlist users</TableCaption>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Name</TableHead>
+                            <TableHead>Email</TableHead>
+                            <TableHead>WhatsApp</TableHead>
+                            <TableHead>Date</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {users.map((user) => (
+                            <TableRow key={user.id}>
+                              <TableCell>{user.full_name}</TableCell>
+                              <TableCell>{user.email}</TableCell>
+                              <TableCell>{user.whatsapp || 'N/A'}</TableCell>
+                              <TableCell>{new Date(user.created_at).toLocaleDateString()}</TableCell>
+                            </TableRow>
+                          ))}
+                          {users.length === 0 && (
+                            <TableRow>
+                              <TableCell colSpan={4} className="text-center">No users found</TableCell>
+                            </TableRow>
+                          )}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  )}
+                </CardContent>
+                <CardFooter>
+                  <Button onClick={refetchUsers} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    Refresh Users List
+                  </Button>
+                </CardFooter>
+              </Card>
+            )}
+
+            {/* Settings Section */}
+            {currentSection === 'settings' && (
+              <Card className="bg-[#202020] border-gray-700">
+                <CardHeader>
+                  <CardTitle>Settings</CardTitle>
+                  <CardDescription>
+                    Manage general settings for the website.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div>
+                    <Label htmlFor="language-setting">Default Language</Label>
+                    <p className="text-sm text-gray-400 mb-2">
+                      Select the default language for the website.
+                    </p>
+                    <div className="flex gap-4">
+                      <Button 
+                        variant={language === 'en' ? 'default' : 'outline'} 
+                        className={language === 'en' ? '' : 'bg-[#1a1a1a] hover:bg-[#2a2a2a]'}
+                        onClick={() => setLanguage('en')}
+                      >
+                        English
+                      </Button>
+                      <Button 
+                        variant={language === 'pt-BR' ? 'default' : 'outline'} 
+                        className={language === 'pt-BR' ? '' : 'bg-[#1a1a1a] hover:bg-[#2a2a2a]'}
+                        onClick={() => setLanguage('pt-BR')}
+                      >
+                        Portuguese
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    Save Settings
+                  </Button>
+                </CardFooter>
+              </Card>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Admin;
