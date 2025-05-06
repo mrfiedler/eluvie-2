@@ -18,15 +18,9 @@ const HowItWorksSection = () => {
   }, [videoUrls]);
   
   // Extract video ID for the Watch button to open without autoplay parameters
-  const getCleanVideoUrl = (url: string) => {
-    // Remove autoplay and other parameters
-    if (url.includes('youtube.com/embed/')) {
-      const videoId = url.split('/').pop()?.split('?')[0];
-      if (videoId) {
-        return `https://www.youtube.com/watch?v=${videoId}`;
-      }
-    }
-    return url;
+  const getCleanVideoUrl = () => {
+    // Return the direct YouTube link regardless of the current embed URL
+    return 'https://www.youtube.com/watch?v=c3m8qhBUaDE';
   };
 
   return (
@@ -55,7 +49,7 @@ const HowItWorksSection = () => {
           <div className="absolute -bottom-5 left-0 right-0 flex justify-center">
             <Button 
               className="bg-blue-600 hover:bg-blue-700 text-white rounded-full h-12 px-6"
-              onClick={() => window.open(getCleanVideoUrl(videoUrl))}
+              onClick={() => window.open(getCleanVideoUrl())}
             >
               <Play className="h-5 w-5 mr-2" />
               {t('watch-demo')}
