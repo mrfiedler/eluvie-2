@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -118,42 +117,44 @@ const Admin = () => {
       const savedContent = localStorage.getItem('eluvie_about_content');
       if (savedContent) {
         const parsedContent = JSON.parse(savedContent);
-        // Fix: Use a proper merge strategy for the content instead of spreading
-        setAboutContent({
-          title: {
-            en: parsedContent.title?.en || defaultContent.title.en,
-            'pt-BR': parsedContent.title?.['pt-BR'] || defaultContent.title['pt-BR']
-          },
-          subtitle: {
-            en: parsedContent.subtitle?.en || defaultContent.subtitle.en,
-            'pt-BR': parsedContent.subtitle?.['pt-BR'] || defaultContent.subtitle['pt-BR']
-          },
-          description: {
-            en: parsedContent.description?.en || defaultContent.description.en,
-            'pt-BR': parsedContent.description?.['pt-BR'] || defaultContent.description['pt-BR']
-          },
-          mission: {
-            en: parsedContent.mission?.en || defaultContent.mission.en,
-            'pt-BR': parsedContent.mission?.['pt-BR'] || defaultContent.mission['pt-BR']
-          },
-          story: {
-            en: parsedContent.story?.en || defaultContent.story.en,
-            'pt-BR': parsedContent.story?.['pt-BR'] || defaultContent.story['pt-BR']
-          },
-          values_title: {
-            en: parsedContent.values_title?.en || defaultContent.values_title.en,
-            'pt-BR': parsedContent.values_title?.['pt-BR'] || defaultContent.values_title['pt-BR']
-          },
-          values_headers: {
-            en: parsedContent.values_headers?.en || defaultContent.values_headers.en,
-            'pt-BR': parsedContent.values_headers?.['pt-BR'] || defaultContent.values_headers['pt-BR']
-          },
-          values_content: {
-            en: parsedContent.values_content?.en || defaultContent.values_content.en,
-            'pt-BR': parsedContent.values_content?.['pt-BR'] || defaultContent.values_content['pt-BR']
-          },
-          image_url: parsedContent.image_url || defaultContent.image_url
-        });
+        // Ensure parsedContent is an object before merging
+        if (parsedContent && typeof parsedContent === 'object') {
+          setAboutContent({
+            title: {
+              en: parsedContent.title?.en || defaultContent.title.en,
+              'pt-BR': parsedContent.title?.['pt-BR'] || defaultContent.title['pt-BR']
+            },
+            subtitle: {
+              en: parsedContent.subtitle?.en || defaultContent.subtitle.en,
+              'pt-BR': parsedContent.subtitle?.['pt-BR'] || defaultContent.subtitle['pt-BR']
+            },
+            description: {
+              en: parsedContent.description?.en || defaultContent.description.en,
+              'pt-BR': parsedContent.description?.['pt-BR'] || defaultContent.description['pt-BR']
+            },
+            mission: {
+              en: parsedContent.mission?.en || defaultContent.mission.en,
+              'pt-BR': parsedContent.mission?.['pt-BR'] || defaultContent.mission['pt-BR']
+            },
+            story: {
+              en: parsedContent.story?.en || defaultContent.story.en,
+              'pt-BR': parsedContent.story?.['pt-BR'] || defaultContent.story['pt-BR']
+            },
+            values_title: {
+              en: parsedContent.values_title?.en || defaultContent.values_title.en,
+              'pt-BR': parsedContent.values_title?.['pt-BR'] || defaultContent.values_title['pt-BR']
+            },
+            values_headers: {
+              en: parsedContent.values_headers?.en || defaultContent.values_headers.en,
+              'pt-BR': parsedContent.values_headers?.['pt-BR'] || defaultContent.values_headers['pt-BR']
+            },
+            values_content: {
+              en: parsedContent.values_content?.en || defaultContent.values_content.en,
+              'pt-BR': parsedContent.values_content?.['pt-BR'] || defaultContent.values_content['pt-BR']
+            },
+            image_url: parsedContent.image_url || defaultContent.image_url
+          });
+        }
       }
     } catch (e) {
       console.error('Error loading saved content:', e);
