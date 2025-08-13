@@ -106,7 +106,7 @@ const Footer = () => {
             <div className="flex space-x-4 mb-4">
               <Link to="/" className="flex items-center">
                 <img 
-                  src="/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png"
+                  src="/lovable-uploads/16dc7938-88ea-46da-9ce5-56e9b9900220.png"
                   alt="Eluvie Logo" 
                   className="h-8" 
                 />

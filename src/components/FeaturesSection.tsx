@@ -7,22 +7,22 @@ const FeaturesSection = () => {
 
   const features = [
     {
-      icon: <BarChart3 className="h-10 w-10 text-blue-400" />,
+      icon: <BarChart3 className="h-10 w-10 text-primary" />,
       title: t('feature-1-title'),
       description: t('feature-1-desc')
     },
     {
-      icon: <Clock className="h-10 w-10 text-indigo-400" />,
+      icon: <Clock className="h-10 w-10 text-secondary" />,
       title: t('feature-2-title'),
       description: t('feature-2-desc')
     },
     {
-      icon: <Sparkles className="h-10 w-10 text-purple-400" />,
+      icon: <Sparkles className="h-10 w-10 text-accent" />,
       title: t('feature-3-title'),
       description: t('feature-3-desc')
     },
     {
-      icon: <Shield className="h-10 w-10 text-teal-400" />,
+      icon: <Shield className="h-10 w-10" style={{color: 'hsl(217, 74%, 74%)'}}/>,
       title: t('feature-4-title'),
       description: t('feature-4-desc')
     }
@@ -65,7 +65,7 @@ const FeaturesSection = () => {
               {features.map((feature, index) => (
                 <div key={`summary-${index}`} className="flex items-center gap-3">
                   <div className="bg-[#2a2a2a] rounded-full p-1 h-fit border border-gray-700">
-                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400" />
+                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-primary to-accent" />
                   </div>
                   <p className="text-gray-300">{feature.title}</p>
                 </div>

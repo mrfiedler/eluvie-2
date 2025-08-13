@@ -7,22 +7,22 @@ const AudienceSection = () => {
   
   const audiences = [
     {
-      icon: <Paintbrush className="h-10 w-10 text-purple-400" />,
+      icon: <Paintbrush className="h-10 w-10 text-accent" />,
       title: t('designers-title'),
       description: t('designers-desc')
     },
     {
-      icon: <Code className="h-10 w-10 text-blue-400" />,
+      icon: <Code className="h-10 w-10 text-primary" />,
       title: t('developers-title'),
       description: t('developers-desc')
     },
     {
-      icon: <Users className="h-10 w-10 text-teal-400" />,
+      icon: <Users className="h-10 w-10" style={{color: 'hsl(217, 74%, 74%)'}}/>,
       title: t('agencies-title'),
       description: t('agencies-desc')
     },
     {
-      icon: <User className="h-10 w-10 text-pink-400" />,
+      icon: <User className="h-10 w-10 text-secondary" />,
       title: t('freelancers-title'),
       description: t('freelancers-desc')
     }
