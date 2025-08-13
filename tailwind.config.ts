@@ -122,7 +122,9 @@ export default {
 				'float': 'float 6s ease-in-out infinite'
 			},
 			backgroundImage: {
-				'hero-gradient': 'linear-gradient(to bottom, #64a0ff, #8c7aec, #a26ee3, #b261d9, #c053cf)',
+				'hero-gradient': 'var(--gradient-hero)',
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-secondary': 'var(--gradient-secondary)',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'dashboard-gradient': 'linear-gradient(to bottom right, #1a1a1a, #202020)',
 			},

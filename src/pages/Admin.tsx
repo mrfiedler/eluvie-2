@@ -197,7 +197,7 @@ const Admin = () => {
     setAboutContent(prev => ({
       ...prev,
       [section]: {
-        ...prev[section],
+        ...(prev[section] as object),
         [language]: value
       }
     }));
