@@ -16,7 +16,7 @@ const ComingSoon = () => {
       <div className="flex items-center justify-between p-6 border-b border-gray-800">
         <Link to="/" className="flex items-center gap-2">
           <img 
-            src="/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png"
+            src="/lovable-uploads/16dc7938-88ea-46da-9ce5-56e9b9900220.png"
             alt="Eluvie Logo" 
             className="h-8" 
           />
