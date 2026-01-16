@@ -13,152 +13,159 @@ const pricingTranslations = {
     'pt-BR': 'Planos simples para cada profissional criativo'
   },
   'solo-plan': {
-    en: 'Solo Criativo',
-    'pt-BR': 'Solo Criativo'
+    en: 'Solo',
+    'pt-BR': 'Solo'
   },
   'solo-price': {
     en: 'Free',
     'pt-BR': 'Grátis'
   },
   'solo-for': {
-    en: 'For freelancers & starters',
-    'pt-BR': 'Para freelancers e iniciantes'
+    en: 'For beginner freelancers and curious ones',
+    'pt-BR': 'Para freelancers iniciantes e curiosos'
+  },
+  'standard-plan': {
+    en: 'Standard',
+    'pt-BR': 'Standard'
+  },
+  'standard-price': {
+    en: '$49/mo',
+    'pt-BR': 'R$49/mês'
+  },
+  'standard-for': {
+    en: 'For solo professionals who need to control clients and sales',
+    'pt-BR': 'Para profissionais solos que precisam controlar clientes e vendas'
   },
   'studio-plan': {
-    en: 'Estúdio em Movimento',
-    'pt-BR': 'Estúdio em Movimento'
+    en: 'Studio',
+    'pt-BR': 'Studio'
   },
   'studio-price': {
-    en: '$29/mo',
-    'pt-BR': 'R$29/mês'
+    en: '$129/mo',
+    'pt-BR': 'R$129/mês'
   },
   'studio-for': {
-    en: 'For small studios & solo businesses',
-    'pt-BR': 'Para pequenos estúdios e negócios individuais'
+    en: 'For studios and micro-agencies',
+    'pt-BR': 'Para estúdios e micro-agências'
   },
-  'agency-plan': {
-    en: 'Agência Flow',
-    'pt-BR': 'Agência Flow'
-  },
-  'agency-price': {
-    en: '$89/mo',
-    'pt-BR': 'R$89/mês'
-  },
-  'agency-for': {
-    en: 'For agencies & teams',
-    'pt-BR': 'Para agências e equipes'
-  },
-  'get-started': {
-    en: 'Get Started',
-    'pt-BR': 'Começar Agora'
+  'get-started-free': {
+    en: 'Start for free',
+    'pt-BR': 'Começar grátis'
   },
   'start-trial': {
-    en: 'Start 14-day Trial',
-    'pt-BR': 'Iniciar Avaliação de 14 dias'
-  },
-  'unlimited-clients': {
-    en: 'Unlimited clients',
-    'pt-BR': 'Clientes ilimitados'
-  },
-  'automated-tracking': {
-    en: 'Automated subscription tracking',
-    'pt-BR': 'Monitoramento automático de assinaturas'
-  },
-  'budget-invoice': {
-    en: 'Budget > Invoice conversion',
-    'pt-BR': 'Conversão de Orçamento > Fatura'
-  },
-  'multi-user': {
-    en: 'Multi-user access',
-    'pt-BR': 'Acesso multi-usuário'
-  },
-  'export-reports': {
-    en: 'Exportable reports',
-    'pt-BR': 'Relatórios exportáveis'
-  },
-  'priority-support': {
-    en: 'Priority support',
-    'pt-BR': 'Suporte prioritário'
+    en: 'Try for 14 days',
+    'pt-BR': 'Testar por 14 dias'
   },
   'popular': {
-    en: 'Popular',
-    'pt-BR': 'Popular'
+    en: 'Recommended',
+    'pt-BR': 'Recomendado'
   },
-  'basic-invoicing': {
-    en: 'Basic invoicing',
-    'pt-BR': 'Faturamento básico'
+  // Solo features
+  'solo-dashboard-limited': {
+    en: 'Limited financial dashboard',
+    'pt-BR': 'Dashboard financeiro limitado'
   },
-  'simple-expense': {
-    en: 'Simple expense tracking',
-    'pt-BR': 'Rastreamento simples de despesas'
+  'solo-clients': {
+    en: 'Client registration',
+    'pt-BR': 'Cadastro de clientes'
   },
-  'manual-tracking': {
-    en: 'Manual subscription tracking',
-    'pt-BR': 'Rastreamento manual de assinaturas'
+  'solo-revenue-entries': {
+    en: '10 revenue entries',
+    'pt-BR': '10 entradas de receitas'
   },
-  'limited-reports': {
-    en: 'Limited reports',
-    'pt-BR': 'Relatórios limitados'
+  'solo-expense-entries': {
+    en: '10 expense entries',
+    'pt-BR': '10 entradas de despesas'
   },
-  'advanced-invoicing': {
-    en: 'Advanced invoicing',
-    'pt-BR': 'Faturamento avançado'
+  'solo-no-contracts': {
+    en: 'No contract control',
+    'pt-BR': 'Sem controle de contratos'
   },
-  'automated-expense': {
-    en: 'Automated expense categorization',
-    'pt-BR': 'Categorização automática de despesas'
+  'solo-no-subscriptions': {
+    en: 'No subscriptions / recurring revenue control',
+    'pt-BR': 'Sem controle de assinaturas / receitas recorrentes'
   },
-  'basic-gamification': {
-    en: 'Basic gamification',
-    'pt-BR': 'Gamificação básica'
+  'solo-users': {
+    en: '1 user',
+    'pt-BR': '1 usuário'
   },
-  'everything-studio': {
-    en: 'Everything in Estúdio',
-    'pt-BR': 'Tudo do Estúdio'
+  // Standard features
+  'standard-dashboard-complete': {
+    en: 'Complete dashboard',
+    'pt-BR': 'Dashboard completo'
   },
-  'multi-user-access': {
-    en: 'Multi-user access (up to 10)',
-    'pt-BR': 'Acesso multi-usuário (até 10)'
+  'standard-clients': {
+    en: 'Client registration',
+    'pt-BR': 'Cadastro de clientes'
   },
-  'team-performance': {
-    en: 'Team performance insights',
-    'pt-BR': 'Insights de desempenho da equipe'
+  'standard-revenue-entries': {
+    en: '30 revenue entries',
+    'pt-BR': '30 entradas de receitas'
   },
-  'client-portal': {
-    en: 'Client portal access',
-    'pt-BR': 'Acesso ao portal do cliente'
+  'standard-expense-entries': {
+    en: '30 expense entries',
+    'pt-BR': '30 entradas de despesas'
   },
-  'full-gamification': {
-    en: 'Full gamification features',
-    'pt-BR': 'Recursos completos de gamificação'
+  'standard-contracts': {
+    en: 'Contract control',
+    'pt-BR': 'Controle de contratos'
   },
-  'custom-branding': {
-    en: 'Custom branding',
-    'pt-BR': 'Marca personalizada'
+  'standard-budget-invoice': {
+    en: 'Budget to billing conversion',
+    'pt-BR': 'Conversão de orçamento para faturamento'
   },
-  'api-access': {
-    en: 'API access',
-    'pt-BR': 'Acesso à API'
+  'standard-subscriptions': {
+    en: 'Subscriptions / recurring revenue control',
+    'pt-BR': 'Controle de assinaturas / receitas recorrentes'
+  },
+  'standard-indicators': {
+    en: 'Basic conversion and recurrence indicators',
+    'pt-BR': 'Indicadores básicos de conversão e recorrência'
+  },
+  'standard-users': {
+    en: '1 user',
+    'pt-BR': '1 usuário'
+  },
+  // Studio features
+  'studio-dashboard-complete': {
+    en: 'Complete dashboard',
+    'pt-BR': 'Dashboard completo'
+  },
+  'studio-unlimited-entries': {
+    en: 'Unlimited entries',
+    'pt-BR': 'Entradas ilimitadas'
+  },
+  'studio-everything-standard': {
+    en: 'Everything in Standard plan',
+    'pt-BR': 'Tudo do plano Standard'
+  },
+  'studio-full-history': {
+    en: 'Complete history',
+    'pt-BR': 'Histórico completo'
+  },
+  'studio-smart-status': {
+    en: 'Smart budget status',
+    'pt-BR': 'Status inteligente de orçamentos'
+  },
+  'studio-conversion-rate': {
+    en: 'Conversion rate',
+    'pt-BR': 'Taxa de conversão'
+  },
+  'studio-revenue-estimate': {
+    en: 'Monthly revenue estimate',
+    'pt-BR': 'Estimativa de receita mensal'
+  },
+  'studio-subscriptions': {
+    en: 'Subscriptions / recurring revenue control',
+    'pt-BR': 'Controle de assinaturas / receitas recorrentes'
+  },
+  'studio-users': {
+    en: '2 users included',
+    'pt-BR': '2 usuários incluídos'
   },
   'all-plans-include': {
     en: 'All plans include secure cloud storage, regular updates, and basic support.',
     'pt-BR': 'Todos os planos incluem armazenamento seguro em nuvem, atualizações regulares e suporte básico.'
-  },
-  'need-custom': {
-    en: 'Need something custom?',
-    'pt-BR': 'Precisa de algo personalizado?'
-  },
-  'contact-sales': {
-    en: 'Contact our sales team',
-    'pt-BR': 'Entre em contato com nossa equipe de vendas'
-  },
-  'for-enterprise': {
-    en: 'for enterprise options.',
-    'pt-BR': 'para opções empresariais.'
-  },
-  'gamification-features': {
-    en: 'Gamification features',
-    'pt-BR': 'Recursos de gamificação'
   }
 };
 
