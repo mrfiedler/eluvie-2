@@ -5,10 +5,137 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 
+interface FeatureItem {
+  key: string;
+  available: boolean;
+}
+
+interface FeatureCategory {
+  titleKey: string;
+  features: FeatureItem[];
+}
+
 const PricingSection = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+
+  const soloFeatures: FeatureCategory[] = [
+    {
+      titleKey: 'category-financial',
+      features: [
+        { key: 'solo-dashboard-limited', available: true },
+        { key: 'solo-revenues', available: true },
+        { key: 'solo-expenses', available: true },
+      ],
+    },
+    {
+      titleKey: 'category-clients',
+      features: [
+        { key: 'solo-clients', available: true },
+      ],
+    },
+    {
+      titleKey: 'category-recurrence',
+      features: [
+        { key: 'solo-recurrence-unavailable', available: false },
+      ],
+    },
+    {
+      titleKey: 'category-operation',
+      features: [
+        { key: 'solo-users', available: true },
+      ],
+    },
+  ];
+
+  const standardFeatures: FeatureCategory[] = [
+    {
+      titleKey: 'category-financial',
+      features: [
+        { key: 'standard-dashboard-complete', available: true },
+        { key: 'standard-revenues', available: true },
+        { key: 'standard-expenses', available: true },
+      ],
+    },
+    {
+      titleKey: 'category-clients',
+      features: [
+        { key: 'standard-clients', available: true },
+        { key: 'standard-contracts', available: true },
+        { key: 'standard-budget-invoice', available: true },
+      ],
+    },
+    {
+      titleKey: 'category-recurrence',
+      features: [
+        { key: 'standard-subscriptions', available: true },
+        { key: 'standard-indicators', available: true },
+      ],
+    },
+    {
+      titleKey: 'category-operation',
+      features: [
+        { key: 'standard-users', available: true },
+      ],
+    },
+  ];
+
+  const studioFeatures: FeatureCategory[] = [
+    {
+      titleKey: 'category-financial',
+      features: [
+        { key: 'studio-dashboard-complete', available: true },
+        { key: 'studio-unlimited-revenues', available: true },
+        { key: 'studio-unlimited-expenses', available: true },
+      ],
+    },
+    {
+      titleKey: 'category-clients',
+      features: [
+        { key: 'studio-clients', available: true },
+        { key: 'studio-contracts', available: true },
+        { key: 'studio-budget-revenue', available: true },
+      ],
+    },
+    {
+      titleKey: 'category-recurrence',
+      features: [
+        { key: 'studio-subscriptions', available: true },
+        { key: 'studio-indicators', available: true },
+      ],
+    },
+    {
+      titleKey: 'category-operation',
+      features: [
+        { key: 'studio-users', available: true },
+      ],
+    },
+  ];
+
+  const renderFeatures = (categories: FeatureCategory[]) => (
+    <div className="mt-8 space-y-6">
+      {categories.map((category, catIndex) => (
+        <div key={catIndex}>
+          <h4 className="text-sm font-semibold text-blue-400 mb-3">{t(category.titleKey)}</h4>
+          <ul className="space-y-2">
+            {category.features.map((feature, featIndex) => (
+              <li key={featIndex} className="flex items-start">
+                {feature.available ? (
+                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                ) : (
+                  <X className="h-5 w-5 text-gray-500 mr-3 mt-0.5 flex-shrink-0" />
+                )}
+                <span className={feature.available ? 'text-gray-300' : 'text-gray-500'}>
+                  {t(feature.key)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
   
   return (
     <section id="pricing" className="section pt-24 pb-16 relative overflow-hidden">
@@ -38,36 +165,7 @@ const PricingSection = () => {
                 {t('get-started-free')}
               </Button>
               
-              <ul className="mt-8 space-y-4">
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('solo-dashboard-limited')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('solo-clients')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('solo-revenue-entries')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('solo-expense-entries')}</span>
-                </li>
-                <li className="flex items-start">
-                  <X className="h-5 w-5 text-gray-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-500">{t('solo-no-contracts')}</span>
-                </li>
-                <li className="flex items-start">
-                  <X className="h-5 w-5 text-gray-500 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-500">{t('solo-no-subscriptions')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('solo-users')}</span>
-                </li>
-              </ul>
+              {renderFeatures(soloFeatures)}
             </div>
           </div>
           
@@ -85,48 +183,11 @@ const PricingSection = () => {
                 {t('start-trial')}
               </Button>
               
-              <ul className="mt-8 space-y-4">
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('standard-dashboard-complete')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('standard-clients')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('standard-revenue-entries')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('standard-expense-entries')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('standard-contracts')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('standard-budget-invoice')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('standard-subscriptions')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('standard-indicators')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('standard-users')}</span>
-                </li>
-              </ul>
+              {renderFeatures(standardFeatures)}
             </div>
           </div>
           
-          {/* Studio Plan - Recommended */}
+          {/* Studio Plan - Popular */}
           <div className="bg-[#1a1a1a] rounded-2xl border border-blue-500 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1 relative lg:scale-105 z-10">
             <div className="absolute top-0 right-0">
               <div className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-bl-lg">
@@ -146,44 +207,7 @@ const PricingSection = () => {
                 {t('start-trial')}
               </Button>
               
-              <ul className="mt-8 space-y-4">
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('studio-dashboard-complete')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('studio-unlimited-entries')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('studio-everything-standard')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('studio-full-history')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('studio-smart-status')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('studio-conversion-rate')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('studio-revenue-estimate')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('studio-subscriptions')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{t('studio-users')}</span>
-                </li>
-              </ul>
+              {renderFeatures(studioFeatures)}
             </div>
           </div>
         </div>
