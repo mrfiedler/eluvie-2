@@ -1,8 +1,8 @@
 
 const comparisonTranslations = {
   'competitor-table': {
-    en: 'Why Choose Us?',
-    'pt-BR': 'Por que Escolher-nos?'
+    en: 'Reasons to choose us:',
+    'pt-BR': 'Motivos para escolher a gente:'
   },
   'competitor-subtitle': {
     en: 'See how Eluvie compares to traditional financial tools',
