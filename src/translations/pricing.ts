@@ -21,8 +21,8 @@ const pricingTranslations = {
     'pt-BR': 'Grátis'
   },
   'solo-for': {
-    en: 'For beginner freelancers and curious ones',
-    'pt-BR': 'Para freelancers iniciantes e curiosos'
+    en: 'For freelancers starting to organize finances',
+    'pt-BR': 'Para freelancers que estão começando a organizar o financeiro'
   },
   'standard-plan': {
     en: 'Standard',
@@ -33,8 +33,8 @@ const pricingTranslations = {
     'pt-BR': 'R$49/mês'
   },
   'standard-for': {
-    en: 'For solo professionals who need to control clients and sales',
-    'pt-BR': 'Para profissionais solos que precisam controlar clientes e vendas'
+    en: 'For teams that need to control sales and recurrence',
+    'pt-BR': 'Para times que precisam controlar vendas e recorrência'
   },
   'studio-plan': {
     en: 'Studio',
@@ -45,8 +45,8 @@ const pricingTranslations = {
     'pt-BR': 'R$129/mês'
   },
   'studio-for': {
-    en: 'For studios and micro-agencies',
-    'pt-BR': 'Para estúdios e micro-agências'
+    en: 'For studios and agencies that need predictability',
+    'pt-BR': 'Para estúdios e agências que precisam de previsibilidade'
   },
   'get-started-free': {
     en: 'Start for free',
@@ -57,33 +57,46 @@ const pricingTranslations = {
     'pt-BR': 'Testar por 14 dias'
   },
   'popular': {
-    en: 'Recommended',
-    'pt-BR': 'Recomendado'
+    en: 'Popular',
+    'pt-BR': 'Popular'
+  },
+  // Category titles
+  'category-financial': {
+    en: 'Financial Control',
+    'pt-BR': 'Controle Financeiro'
+  },
+  'category-clients': {
+    en: 'Clients and Contracts',
+    'pt-BR': 'Clientes e Contratos'
+  },
+  'category-recurrence': {
+    en: 'Recurrence',
+    'pt-BR': 'Recorrência'
+  },
+  'category-operation': {
+    en: 'Operation',
+    'pt-BR': 'Operação'
   },
   // Solo features
   'solo-dashboard-limited': {
-    en: 'Limited financial dashboard',
-    'pt-BR': 'Dashboard financeiro limitado'
+    en: 'Limited dashboard',
+    'pt-BR': 'Dashboard limitado'
+  },
+  'solo-revenues': {
+    en: '10 revenues',
+    'pt-BR': '10 receitas'
+  },
+  'solo-expenses': {
+    en: '10 expenses',
+    'pt-BR': '10 despesas'
   },
   'solo-clients': {
     en: 'Client registration',
     'pt-BR': 'Cadastro de clientes'
   },
-  'solo-revenue-entries': {
-    en: '10 revenue entries',
-    'pt-BR': '10 entradas de receitas'
-  },
-  'solo-expense-entries': {
-    en: '10 expense entries',
-    'pt-BR': '10 entradas de despesas'
-  },
-  'solo-no-contracts': {
-    en: 'No contract control',
-    'pt-BR': 'Sem controle de contratos'
-  },
-  'solo-no-subscriptions': {
-    en: 'No subscriptions / recurring revenue control',
-    'pt-BR': 'Sem controle de assinaturas / receitas recorrentes'
+  'solo-recurrence-unavailable': {
+    en: 'Not available',
+    'pt-BR': 'Não disponível'
   },
   'solo-users': {
     en: '1 user',
@@ -94,17 +107,17 @@ const pricingTranslations = {
     en: 'Complete dashboard',
     'pt-BR': 'Dashboard completo'
   },
+  'standard-revenues': {
+    en: '30 revenues',
+    'pt-BR': '30 receitas'
+  },
+  'standard-expenses': {
+    en: '30 expenses',
+    'pt-BR': '30 despesas'
+  },
   'standard-clients': {
     en: 'Client registration',
     'pt-BR': 'Cadastro de clientes'
-  },
-  'standard-revenue-entries': {
-    en: '30 revenue entries',
-    'pt-BR': '30 entradas de receitas'
-  },
-  'standard-expense-entries': {
-    en: '30 expense entries',
-    'pt-BR': '30 entradas de despesas'
   },
   'standard-contracts': {
     en: 'Contract control',
@@ -119,8 +132,8 @@ const pricingTranslations = {
     'pt-BR': 'Controle de assinaturas / receitas recorrentes'
   },
   'standard-indicators': {
-    en: 'Basic conversion and recurrence indicators',
-    'pt-BR': 'Indicadores básicos de conversão e recorrência'
+    en: 'Conversion and recurrence indicators',
+    'pt-BR': 'Indicadores de conversão e recorrência'
   },
   'standard-users': {
     en: '1 user',
@@ -131,37 +144,37 @@ const pricingTranslations = {
     en: 'Complete dashboard',
     'pt-BR': 'Dashboard completo'
   },
-  'studio-unlimited-entries': {
-    en: 'Unlimited entries',
-    'pt-BR': 'Entradas ilimitadas'
+  'studio-unlimited-revenues': {
+    en: 'Unlimited revenues',
+    'pt-BR': 'Receitas ilimitadas'
   },
-  'studio-everything-standard': {
-    en: 'Everything in Standard plan',
-    'pt-BR': 'Tudo do plano Standard'
+  'studio-unlimited-expenses': {
+    en: 'Unlimited expenses',
+    'pt-BR': 'Despesas ilimitadas'
   },
-  'studio-full-history': {
-    en: 'Complete history',
-    'pt-BR': 'Histórico completo'
+  'studio-clients': {
+    en: 'Client registration',
+    'pt-BR': 'Cadastro de clientes'
   },
-  'studio-smart-status': {
-    en: 'Smart budget status',
-    'pt-BR': 'Status inteligente de orçamentos'
+  'studio-contracts': {
+    en: 'Contract control',
+    'pt-BR': 'Controle de contratos'
   },
-  'studio-conversion-rate': {
-    en: 'Conversion rate',
-    'pt-BR': 'Taxa de conversão'
-  },
-  'studio-revenue-estimate': {
-    en: 'Monthly revenue estimate',
-    'pt-BR': 'Estimativa de receita mensal'
+  'studio-budget-revenue': {
+    en: 'Budget to revenue conversion',
+    'pt-BR': 'Conversão de orçamento para receita'
   },
   'studio-subscriptions': {
     en: 'Subscriptions / recurring revenue control',
     'pt-BR': 'Controle de assinaturas / receitas recorrentes'
   },
+  'studio-indicators': {
+    en: 'Conversion and recurrence indicators',
+    'pt-BR': 'Indicadores de conversão e recorrência'
+  },
   'studio-users': {
-    en: '2 users included',
-    'pt-BR': '2 usuários incluídos'
+    en: '2 users included with option to add team',
+    'pt-BR': '2 usuários incluídos e possibilidade de adicionar time'
   },
   'all-plans-include': {
     en: 'All plans include secure cloud storage, regular updates, and basic support.',
