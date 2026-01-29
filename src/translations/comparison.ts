@@ -43,6 +43,10 @@ const comparisonTranslations = {
   'gamification': {
     en: 'Gamification',
     'pt-BR': 'Gamificação'
+  },
+  'budget-invoice': {
+    en: 'Budget to Revenue Conversion',
+    'pt-BR': 'Conversão de Orçamento em receita'
   }
 };
 
