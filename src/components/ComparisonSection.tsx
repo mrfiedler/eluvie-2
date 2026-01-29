@@ -86,7 +86,7 @@ const ComparisonSection = () => {
                 <tr>
                   <td className="py-4 px-4 md:px-6 text-gray-300">{t('budget-invoice')}</td>
                   <td className="py-4 px-4 md:px-6 text-center"><Check className="h-5 w-5 text-green-400 mx-auto" /></td>
-                  <td className="py-4 px-4 md:px-6 text-center"><X className="h-5 w-5 text-red-400 mx-auto" /></td>
+                  <td className="py-4 px-4 md:px-6 text-center"><AlertTriangle className="h-5 w-5 text-yellow-400 mx-auto" /></td>
                   <td className="py-4 px-4 md:px-6 text-center"><X className="h-5 w-5 text-red-400 mx-auto" /></td>
                   <td className="py-4 px-4 md:px-6 text-center"><X className="h-5 w-5 text-red-400 mx-auto" /></td>
                 </tr>
