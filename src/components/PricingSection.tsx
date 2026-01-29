@@ -174,6 +174,7 @@ const PricingSection = () => {
             <div className="p-8">
               <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('standard-plan')}</h3>
               <div className="text-3xl font-bold mb-1">{t('standard-price')}</div>
+              <p className="text-xs text-gray-500 mb-2">{t('standard-annual-disclaimer')}</p>
               <p className="text-sm text-gray-400 mb-6">{t('standard-for')}</p>
               
               <Button 
@@ -198,6 +199,7 @@ const PricingSection = () => {
             <div className="p-8">
               <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('studio-plan')}</h3>
               <div className="text-3xl font-bold mb-1">{t('studio-price')}</div>
+              <p className="text-xs text-gray-500 mb-2">{t('studio-annual-disclaimer')}</p>
               <p className="text-sm text-gray-400 mb-6">{t('studio-for')}</p>
               
               <Button 
