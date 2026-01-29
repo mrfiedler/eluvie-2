@@ -12,6 +12,7 @@ import Careers from "./pages/Careers";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/CookieConsent";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <BrowserRouter>
             <AppRoutes />
             <CookieConsent />
+            <WhatsAppButton />
           </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>
