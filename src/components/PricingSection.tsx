@@ -150,66 +150,82 @@ const PricingSection = () => {
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8 items-stretch">
           {/* Solo Plan */}
-          <div className="bg-[#1a1a1a] rounded-2xl border border-gray-700 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1">
-            <div className="p-8">
-              <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('solo-plan')}</h3>
-              <div className="text-3xl font-bold mb-1">{t('solo-price')}</div>
-              <p className="text-sm text-gray-400 mb-6">{t('solo-for')}</p>
+          <div className="bg-[#1a1a1a] rounded-2xl border border-gray-700 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+            <div className="p-8 flex flex-col flex-1">
+              {/* Header section - fixed height */}
+              <div className="min-h-[140px]">
+                <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('solo-plan')}</h3>
+                <div className="text-3xl font-bold mb-1">{t('solo-price')}</div>
+                <p className="text-xs text-gray-500 mb-2 invisible">placeholder</p>
+                <p className="text-sm text-gray-400">{t('solo-for')}</p>
+              </div>
               
               <Button 
-                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 mt-4"
                 onClick={() => navigate("/coming-soon")}
               >
                 {t('get-started-free')}
               </Button>
               
-              {renderFeatures(soloFeatures)}
+              <div className="flex-1">
+                {renderFeatures(soloFeatures)}
+              </div>
             </div>
           </div>
           
           {/* Standard Plan */}
-          <div className="bg-[#1a1a1a] rounded-2xl border border-gray-700 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1">
-            <div className="p-8">
-              <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('standard-plan')}</h3>
-              <div className="text-3xl font-bold mb-1">{t('standard-price')}</div>
-              <p className="text-xs text-gray-500 mb-2">{t('standard-annual-disclaimer')}</p>
-              <p className="text-sm text-gray-400 mb-6">{t('standard-for')}</p>
+          <div className="bg-[#1a1a1a] rounded-2xl border border-gray-700 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+            <div className="p-8 flex flex-col flex-1">
+              {/* Header section - fixed height */}
+              <div className="min-h-[140px]">
+                <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('standard-plan')}</h3>
+                <div className="text-3xl font-bold mb-1">{t('standard-price')}</div>
+                <p className="text-xs text-gray-500 mb-2">{t('standard-annual-disclaimer')}</p>
+                <p className="text-sm text-gray-400">{t('standard-for')}</p>
+              </div>
               
               <Button 
-                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 mt-4"
                 onClick={() => navigate("/coming-soon")}
               >
                 {t('start-trial')}
               </Button>
               
-              {renderFeatures(standardFeatures)}
+              <div className="flex-1">
+                {renderFeatures(standardFeatures)}
+              </div>
             </div>
           </div>
           
           {/* Studio Plan - Popular */}
-          <div className="bg-[#1a1a1a] rounded-2xl border border-blue-500 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1 relative lg:scale-105 z-10">
+          <div className="bg-[#1a1a1a] rounded-2xl border border-blue-500 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1 relative lg:scale-105 z-10 flex flex-col">
             <div className="absolute top-0 right-0">
               <div className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-bl-lg">
                 {t('popular')}
               </div>
             </div>
             
-            <div className="p-8">
-              <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('studio-plan')}</h3>
-              <div className="text-3xl font-bold mb-1">{t('studio-price')}</div>
-              <p className="text-xs text-gray-500 mb-2">{t('studio-annual-disclaimer')}</p>
-              <p className="text-sm text-gray-400 mb-6">{t('studio-for')}</p>
+            <div className="p-8 flex flex-col flex-1">
+              {/* Header section - fixed height */}
+              <div className="min-h-[140px]">
+                <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('studio-plan')}</h3>
+                <div className="text-3xl font-bold mb-1">{t('studio-price')}</div>
+                <p className="text-xs text-gray-500 mb-2">{t('studio-annual-disclaimer')}</p>
+                <p className="text-sm text-gray-400">{t('studio-for')}</p>
+              </div>
               
               <Button 
-                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 mt-4"
                 onClick={() => navigate("/coming-soon")}
               >
                 {t('start-trial')}
               </Button>
               
-              {renderFeatures(studioFeatures)}
+              <div className="flex-1">
+                {renderFeatures(studioFeatures)}
+              </div>
             </div>
           </div>
         </div>
