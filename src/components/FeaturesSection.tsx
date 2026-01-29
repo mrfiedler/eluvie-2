@@ -42,7 +42,10 @@ const FeaturesSection = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700 hover:border-gray-500 transition-colors">
+            <div 
+              key={index} 
+              className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/10"
+            >
               <div className="bg-[#2a2a2a] rounded-lg p-3 inline-block mb-4 border border-gray-700">
                 {feature.icon}
               </div>
@@ -52,14 +55,11 @@ const FeaturesSection = () => {
           ))}
         </div>
         
-        <div className="mt-16 bg-[#1a1a1a] rounded-lg p-8 border border-gray-700">
+        <div className="mt-16 bg-[#1a1a1a] rounded-lg p-8 border border-gray-700 transition-all duration-300 hover:border-blue-500/30 hover:shadow-xl hover:shadow-blue-500/5">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-white">{t('creative-freedom')}</h3>
-              <p className="text-gray-300 mb-8">{t('creative-freedom-desc')}</p>
-              <div className="inline-block bg-[#2a2a2a] rounded-lg px-6 py-3 text-white font-medium border border-gray-700">
-                {t('budget-invoice')}
-              </div>
+              <p className="text-gray-300">{t('creative-freedom-desc')}</p>
             </div>
             <div className="space-y-4">
               {features.map((feature, index) => (
