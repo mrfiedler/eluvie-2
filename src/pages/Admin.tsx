@@ -188,8 +188,8 @@ const Admin = () => {
     });
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     navigate('/admin-login');
   };
 
