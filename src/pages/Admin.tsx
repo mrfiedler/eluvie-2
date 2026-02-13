@@ -350,13 +350,6 @@ const Admin = () => {
                   </Button>
                   <Button 
                     variant="ghost" 
-                    className={`w-full justify-start ${currentSection === 'images' ? 'bg-blue-900/20 text-blue-400' : ''}`}
-                    onClick={() => setCurrentSection('images')}
-                  >
-                    About Image
-                  </Button>
-                  <Button 
-                    variant="ghost" 
                     className={`w-full justify-start ${currentSection === 'videos' ? 'bg-blue-900/20 text-blue-400' : ''}`}
                     onClick={() => setCurrentSection('videos')}
                   >
@@ -662,124 +655,6 @@ const Admin = () => {
                 </Card>
               </>
             )}
-
-            {/* About Page Image Section */}
-            {currentSection === 'images' && (
-              <Card className="bg-[#202020] border-gray-700">
-                <CardHeader>
-                  <CardTitle>About Page Image</CardTitle>
-                  <CardDescription>
-                    Select or upload an image to be displayed on the About page.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div>
-                    <Label htmlFor="current-image">Current Image</Label>
-                    <div className="mt-2 bg-[#1a1a1a] p-4 rounded-md border border-gray-700">
-                      <div className="aspect-video rounded-md overflow-hidden mb-4 border border-gray-800">
-                        <img 
-                          src={aboutContent.image_url} 
-                          alt="Current About Page" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <p className="text-sm text-gray-400">
-                        {aboutContent.image_url}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="pt-4 border-t border-gray-700">
-                    <Label className="mb-2 block">Select from Uploaded Images</Label>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      <div 
-                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png' ? 'border-blue-500' : 'border-gray-700'}`}
-                        onClick={() => selectUploadedImage('/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png')}
-                      >
-                        <img 
-                          src="/lovable-uploads/8b6cf37b-9352-4ffb-9d5f-7d50333791ee.png" 
-                          alt="Team photo" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      
-                      <div 
-                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/0da950c7-6e18-4083-8c37-72fc551f9225.png' ? 'border-blue-500' : 'border-gray-700'}`}
-                        onClick={() => selectUploadedImage('/lovable-uploads/0da950c7-6e18-4083-8c37-72fc551f9225.png')}
-                      >
-                        <img 
-                          src="/lovable-uploads/0da950c7-6e18-4083-8c37-72fc551f9225.png" 
-                          alt="Interface screenshot" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-
-                      <div 
-                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png' ? 'border-blue-500' : 'border-gray-700'}`}
-                        onClick={() => selectUploadedImage('/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png')}
-                      >
-                        <img 
-                          src="/lovable-uploads/204d15de-ebe8-4ccf-bdf6-365e6f347594.png" 
-                          alt="App screenshot" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      
-                      <div 
-                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/50090990-842e-4cea-a92b-ced353291b87.png' ? 'border-blue-500' : 'border-gray-700'}`}
-                        onClick={() => selectUploadedImage('/lovable-uploads/50090990-842e-4cea-a92b-ced353291b87.png')}
-                      >
-                        <img 
-                          src="/lovable-uploads/50090990-842e-4cea-a92b-ced353291b87.png" 
-                          alt="Creative work" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      
-                      <div 
-                        className={`aspect-video relative cursor-pointer rounded-md overflow-hidden border-2 ${aboutContent.image_url === '/lovable-uploads/9ecfcd8a-ead0-42a7-b0c3-24fd832ae490.png' ? 'border-blue-500' : 'border-gray-700'}`}
-                        onClick={() => selectUploadedImage('/lovable-uploads/9ecfcd8a-ead0-42a7-b0c3-24fd832ae490.png')}
-                      >
-                        <img 
-                          src="/lovable-uploads/9ecfcd8a-ead0-42a7-b0c3-24fd832ae490.png" 
-                          alt="Logo" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                    
-                  <div className="pt-4 border-t border-gray-700">
-                    <Label htmlFor="upload-image">Upload New Image</Label>
-                    <p className="text-sm text-gray-400 mb-3">
-                      Upload a new image to use on the About page.
-                    </p>
-                    <div className="flex items-center">
-                      <Label
-                        htmlFor="image-upload"
-                        className="flex items-center gap-2 cursor-pointer bg-[#2a2a2a] hover:bg-[#333] px-4 py-2 rounded-md border border-gray-700 transition-colors"
-                      >
-                        <Upload className="h-4 w-4" />
-                        Upload Image
-                      </Label>
-                      <Input
-                        id="image-upload"
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="hidden"
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button onClick={handleSaveAbout} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                    Save Changes
-                  </Button>
-                </CardFooter>
-              </Card>
-            )}
-
             {/* Video Links Section */}
             {currentSection === 'videos' && (
               <Card className="bg-[#202020] border-gray-700">
