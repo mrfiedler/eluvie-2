@@ -6,25 +6,38 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardContent, CardDescription, CardTitle, CardFooter } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-import { LockIcon } from 'lucide-react';
+import { LockIcon, Loader2 } from 'lucide-react';
 
 const AdminLogin = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (login(username, password)) {
-      navigate('/admin');
-    } else {
+    setSubmitting(true);
+    try {
+      const success = await login(email, password);
+      if (success) {
+        navigate('/admin');
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Access Denied",
+          description: "Invalid credentials or insufficient permissions.",
+        });
+      }
+    } catch {
       toast({
         variant: "destructive",
-        title: "Authentication Failed",
-        description: "Invalid username or password.",
+        title: "Error",
+        description: "An error occurred during login.",
       });
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -45,12 +58,12 @@ const AdminLogin = () => {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="username" className="text-sm font-medium">Username</label>
+              <label htmlFor="email" className="text-sm font-medium">Email</label>
               <Input
-                id="username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="bg-[#1a1a1a] border-gray-700"
                 required
               />
@@ -71,8 +84,10 @@ const AdminLogin = () => {
         <CardFooter>
           <Button 
             onClick={handleSubmit}
+            disabled={submitting}
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
           >
+            {submitting ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
             Sign In
           </Button>
         </CardFooter>
