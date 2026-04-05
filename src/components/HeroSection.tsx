@@ -56,9 +56,9 @@ const HeroSection = () => {
             </div>
             <div className="mt-8 flex items-center text-sm text-gray-400">
               <div className="flex -space-x-2 mr-3">
-                <img className="h-8 w-8 rounded-full border-2 border-gray-800" src="https://randomuser.me/api/portraits/women/11.jpg" alt="User" />
-                <img className="h-8 w-8 rounded-full border-2 border-gray-800" src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" />
-                <img className="h-8 w-8 rounded-full border-2 border-gray-800" src="https://randomuser.me/api/portraits/women/68.jpg" alt="User" />
+                <img className="h-8 w-8 rounded-full border-2 border-gray-800 object-cover" src={avatar1} alt="User" width={32} height={32} />
+                <img className="h-8 w-8 rounded-full border-2 border-gray-800 object-cover" src={avatar2} alt="User" width={32} height={32} />
+                <img className="h-8 w-8 rounded-full border-2 border-gray-800 object-cover" src={avatar3} alt="User" width={32} height={32} />
               </div>
               {t('trusted-by')}
             </div>
