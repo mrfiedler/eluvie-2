@@ -43,7 +43,7 @@ const HowItWorksSection = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
-              </iframe>
+              />
             </AspectRatio>
           </div>
           
