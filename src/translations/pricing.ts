@@ -181,8 +181,8 @@ const pricingTranslations = {
     'pt-BR': 'Todos os planos incluem armazenamento seguro em nuvem, atualizações regulares e suporte.'
   },
   'standard-annual-disclaimer': {
-    en: '* billed annually, totaling $588.00',
-    'pt-BR': '* pagos anualmente, totalizando R$ 588,00'
+    en: '* billed annually, totaling $882.00',
+    'pt-BR': '* pagos anualmente, totalizando R$ 882,00'
   },
   'studio-annual-disclaimer': {
     en: '* billed annually, totaling $1,548.00',
