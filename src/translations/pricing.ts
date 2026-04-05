@@ -29,8 +29,8 @@ const pricingTranslations = {
     'pt-BR': 'Standard'
   },
   'standard-price': {
-    en: '$49/mo',
-    'pt-BR': 'R$49/mês'
+    en: '$73.50/mo',
+    'pt-BR': 'R$73,50/mês'
   },
   'standard-for': {
     en: 'For teams that need to control sales and recurrence',
