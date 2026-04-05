@@ -38,7 +38,7 @@ const HowItWorksSection = () => {
             <AspectRatio ratio={16/9}>
               <iframe 
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/c3m8qhBUaDE?start=10&autoplay=0&mute=1&loop=1&playlist=c3m8qhBUaDE&rel=0"
+                src="https://www.youtube.com/embed/c3m8qhBUaDE?start=10&autoplay=1&mute=1&loop=1&playlist=c3m8qhBUaDE&rel=0"
                 title="Eluvie demonstration video" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 referrerPolicy="no-referrer-when-downgrade"
