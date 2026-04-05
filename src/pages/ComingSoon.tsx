@@ -9,7 +9,7 @@ import { convertToEmbedUrl } from '@/hooks/useVideoUrls';
 const ComingSoon = () => {
   const { t, language } = useLanguage();
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const videoUrl = 'https://www.youtube.com/embed/c3m8qhBUaDE?autoplay=1&mute=1&loop=1&playlist=c3m8qhBUaDE';
+  const videoUrl = 'https://www.youtube.com/embed/c3m8qhBUaDE?start=10&autoplay=0&mute=1&loop=1&playlist=c3m8qhBUaDE&rel=0';
   
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-gray-100 flex flex-col">
