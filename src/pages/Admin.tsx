@@ -768,6 +768,74 @@ const Admin = () => {
 
             {/* Settings Section */}
             {currentSection === 'settings' && (
+              null
+            )}
+            {currentSection === 'pricing' && (
+              <Card className="bg-[#202020] border-gray-700">
+                <CardHeader>
+                  <CardTitle>Pricing Tables (Read-only)</CardTitle>
+                  <CardDescription>
+                    Reference table with all plan prices in BRL, USD and EUR. Source: hardcoded in <code className="text-blue-400">src/translations/pricing.ts</code>.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableCaption>Monthly price and annual total per currency.</TableCaption>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Plan</TableHead>
+                          <TableHead>BRL (Brazil)</TableHead>
+                          <TableHead>BRL annual total</TableHead>
+                          <TableHead>USD (Worldwide)</TableHead>
+                          <TableHead>USD annual total</TableHead>
+                          <TableHead>EUR (Europe)</TableHead>
+                          <TableHead>EUR annual total</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        <TableRow>
+                          <TableCell className="font-medium">Solo</TableCell>
+                          <TableCell>Free</TableCell>
+                          <TableCell>—</TableCell>
+                          <TableCell>Free</TableCell>
+                          <TableCell>—</TableCell>
+                          <TableCell>Free</TableCell>
+                          <TableCell>—</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Standard</TableCell>
+                          <TableCell>R$ 73,50/mo</TableCell>
+                          <TableCell>R$ 882,00</TableCell>
+                          <TableCell>$59/mo</TableCell>
+                          <TableCell>$708</TableCell>
+                          <TableCell>€57/mo</TableCell>
+                          <TableCell>€684</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell className="font-medium">Studio</TableCell>
+                          <TableCell>R$ 129,00/mo</TableCell>
+                          <TableCell>R$ 1.548,00</TableCell>
+                          <TableCell>$99/mo</TableCell>
+                          <TableCell>$1,188</TableCell>
+                          <TableCell>€99/mo</TableCell>
+                          <TableCell>€1,188</TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </div>
+                  <Alert className="mt-6 bg-blue-900/20 border-blue-800">
+                    <AlertTitle>Conversion rules</AlertTitle>
+                    <AlertDescription className="text-sm text-gray-300">
+                      USD prices = BRL value −20% (rounded to attractive numbers).
+                      EUR prices = BRL value −22% (rounded to attractive numbers).
+                      Region detection (BR/EU/Other) is automatic via IP geolocation.
+                    </AlertDescription>
+                  </Alert>
+                </CardContent>
+              </Card>
+            )}
+            {currentSection === 'settings-original-marker' && (
               <Card className="bg-[#202020] border-gray-700">
                 <CardHeader>
                   <CardTitle>Settings</CardTitle>
