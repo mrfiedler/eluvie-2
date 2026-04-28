@@ -32,6 +32,18 @@ const pricingTranslations = {
     en: '$73.50/mo',
     'pt-BR': 'R$73,50/mês'
   },
+  'standard-price__USD': {
+    en: '$58.80/mo',
+    'pt-BR': 'US$ 58,80/mês'
+  },
+  'standard-price__EUR': {
+    en: '€57.33/mo',
+    'pt-BR': '€57,33/mês'
+  },
+  'standard-price__BRL': {
+    en: 'R$73.50/mo',
+    'pt-BR': 'R$73,50/mês'
+  },
   'standard-for': {
     en: 'For teams that need to control sales and recurrence',
     'pt-BR': 'Para times que precisam controlar vendas e recorrência'
@@ -42,6 +54,18 @@ const pricingTranslations = {
   },
   'studio-price': {
     en: '$129/mo',
+    'pt-BR': 'R$129/mês'
+  },
+  'studio-price__USD': {
+    en: '$103.20/mo',
+    'pt-BR': 'US$ 103,20/mês'
+  },
+  'studio-price__EUR': {
+    en: '€100.62/mo',
+    'pt-BR': '€100,62/mês'
+  },
+  'studio-price__BRL': {
+    en: 'R$129/mo',
     'pt-BR': 'R$129/mês'
   },
   'studio-for': {
@@ -184,8 +208,32 @@ const pricingTranslations = {
     en: '* billed annually, totaling $882.00',
     'pt-BR': '* pagos anualmente, totalizando R$ 882,00'
   },
+  'standard-annual-disclaimer__USD': {
+    en: '* billed annually, totaling $705.60',
+    'pt-BR': '* pagos anualmente, totalizando US$ 705.60'
+  },
+  'standard-annual-disclaimer__EUR': {
+    en: '* billed annually, totaling €687.96',
+    'pt-BR': '* pagos anualmente, totalizando €687,96'
+  },
+  'standard-annual-disclaimer__BRL': {
+    en: '* billed annually, totaling R$882.00',
+    'pt-BR': '* pagos anualmente, totalizando R$ 882,00'
+  },
   'studio-annual-disclaimer': {
     en: '* billed annually, totaling $1,548.00',
+    'pt-BR': '* pagos anualmente, totalizando R$ 1.548,00'
+  },
+  'studio-annual-disclaimer__USD': {
+    en: '* billed annually, totaling $1,238.40',
+    'pt-BR': '* pagos anualmente, totalizando US$ 1,238.40'
+  },
+  'studio-annual-disclaimer__EUR': {
+    en: '* billed annually, totaling €1,207.44',
+    'pt-BR': '* pagos anualmente, totalizando €1.207,44'
+  },
+  'studio-annual-disclaimer__BRL': {
+    en: '* billed annually, totaling R$1,548.00',
     'pt-BR': '* pagos anualmente, totalizando R$ 1.548,00'
   }
 };
