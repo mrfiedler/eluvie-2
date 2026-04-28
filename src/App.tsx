@@ -13,6 +13,7 @@ import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/CookieConsent";
 import WhatsAppButton from "./components/WhatsAppButton";
+import SEO from "./components/SEO";
 import { lazy, Suspense } from "react";
 
 const Admin = lazy(() => import("./pages/Admin"));
@@ -50,6 +51,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <SEO />
             <AppRoutes />
             <CookieConsent />
             <WhatsAppButton />

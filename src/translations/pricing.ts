@@ -33,12 +33,12 @@ const pricingTranslations = {
     'pt-BR': 'R$73,50/mês'
   },
   'standard-price__USD': {
-    en: '$58.80/mo',
-    'pt-BR': 'US$ 58,80/mês'
+    en: '$59/mo',
+    'pt-BR': 'US$ 59/mês'
   },
   'standard-price__EUR': {
-    en: '€57.33/mo',
-    'pt-BR': '€57,33/mês'
+    en: '€57/mo',
+    'pt-BR': '€57/mês'
   },
   'standard-price__BRL': {
     en: 'R$73.50/mo',
@@ -57,12 +57,12 @@ const pricingTranslations = {
     'pt-BR': 'R$129/mês'
   },
   'studio-price__USD': {
-    en: '$103.20/mo',
-    'pt-BR': 'US$ 103,20/mês'
+    en: '$99/mo',
+    'pt-BR': 'US$ 99/mês'
   },
   'studio-price__EUR': {
-    en: '€100.62/mo',
-    'pt-BR': '€100,62/mês'
+    en: '€99/mo',
+    'pt-BR': '€99/mês'
   },
   'studio-price__BRL': {
     en: 'R$129/mo',
@@ -209,12 +209,12 @@ const pricingTranslations = {
     'pt-BR': '* pagos anualmente, totalizando R$ 882,00'
   },
   'standard-annual-disclaimer__USD': {
-    en: '* billed annually, totaling $705.60',
-    'pt-BR': '* pagos anualmente, totalizando US$ 705.60'
+    en: '* billed annually, totaling $708',
+    'pt-BR': '* pagos anualmente, totalizando US$ 708'
   },
   'standard-annual-disclaimer__EUR': {
-    en: '* billed annually, totaling €687.96',
-    'pt-BR': '* pagos anualmente, totalizando €687,96'
+    en: '* billed annually, totaling €684',
+    'pt-BR': '* pagos anualmente, totalizando €684'
   },
   'standard-annual-disclaimer__BRL': {
     en: '* billed annually, totaling R$882.00',
@@ -225,12 +225,12 @@ const pricingTranslations = {
     'pt-BR': '* pagos anualmente, totalizando R$ 1.548,00'
   },
   'studio-annual-disclaimer__USD': {
-    en: '* billed annually, totaling $1,238.40',
-    'pt-BR': '* pagos anualmente, totalizando US$ 1,238.40'
+    en: '* billed annually, totaling $1,188',
+    'pt-BR': '* pagos anualmente, totalizando US$ 1,188'
   },
   'studio-annual-disclaimer__EUR': {
-    en: '* billed annually, totaling €1,207.44',
-    'pt-BR': '* pagos anualmente, totalizando €1.207,44'
+    en: '* billed annually, totaling €1,188',
+    'pt-BR': '* pagos anualmente, totalizando €1.188'
   },
   'studio-annual-disclaimer__BRL': {
     en: '* billed annually, totaling R$1,548.00',
