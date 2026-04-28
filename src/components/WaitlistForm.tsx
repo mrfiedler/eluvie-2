@@ -46,11 +46,18 @@ const WaitlistForm = ({ onSuccess, buttonClassName }: WaitlistFormProps) => {
         email: data.email,
         whatsapp: data.whatsapp,
       };
-      
-      // Insert data into Supabase
-      const { error } = await supabase
-        .from('waitlist')
-        .insert(waitlistData);
+
+      // Insert data into Supabase with a 15s safety timeout so the
+      // button never gets stuck on "Submitting..." if the network hangs.
+      const insertPromise = supabase.from('waitlist').insert(waitlistData);
+      const timeoutPromise = new Promise<{ error: { code?: string; message: string } }>(
+        (resolve) => setTimeout(
+          () => resolve({ error: { message: 'Request timed out. Please try again.' } }),
+          15000,
+        ),
+      );
+      const { error } = (await Promise.race([insertPromise, timeoutPromise])) as
+        { error: { code?: string; message: string } | null };
       
       if (error) {
         // Handle unique constraint error (user already registered)
