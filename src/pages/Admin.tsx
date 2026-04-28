@@ -362,6 +362,13 @@ const Admin = () => {
                   >
                     User List
                   </Button>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start ${currentSection === 'pricing' ? 'bg-blue-900/20 text-blue-400' : ''}`}
+                    onClick={() => setCurrentSection('pricing')}
+                  >
+                    Pricing Tables
+                  </Button>
                   <Button 
                     variant="ghost" 
                     className="w-full justify-start"
