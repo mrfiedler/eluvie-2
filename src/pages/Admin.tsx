@@ -768,7 +768,43 @@ const Admin = () => {
 
             {/* Settings Section */}
             {currentSection === 'settings' && (
-              null
+              <Card className="bg-[#202020] border-gray-700">
+                <CardHeader>
+                  <CardTitle>Settings</CardTitle>
+                  <CardDescription>
+                    Manage general settings for the website.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div>
+                    <Label htmlFor="language-setting">Default Language</Label>
+                    <p className="text-sm text-gray-400 mb-2">
+                      Select the default language for the website.
+                    </p>
+                    <div className="flex gap-4">
+                      <Button
+                        variant={language === 'en' ? 'default' : 'outline'}
+                        className={language === 'en' ? '' : 'bg-[#1a1a1a] hover:bg-[#2a2a2a]'}
+                        onClick={() => setLanguage('en')}
+                      >
+                        English
+                      </Button>
+                      <Button
+                        variant={language === 'pt-BR' ? 'default' : 'outline'}
+                        className={language === 'pt-BR' ? '' : 'bg-[#1a1a1a] hover:bg-[#2a2a2a]'}
+                        onClick={() => setLanguage('pt-BR')}
+                      >
+                        Portuguese
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    Save Settings
+                  </Button>
+                </CardFooter>
+              </Card>
             )}
             {currentSection === 'pricing' && (
               <Card className="bg-[#202020] border-gray-700">
@@ -833,45 +869,6 @@ const Admin = () => {
                     </AlertDescription>
                   </Alert>
                 </CardContent>
-              </Card>
-            )}
-            {currentSection === 'settings-original-marker' && (
-              <Card className="bg-[#202020] border-gray-700">
-                <CardHeader>
-                  <CardTitle>Settings</CardTitle>
-                  <CardDescription>
-                    Manage general settings for the website.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div>
-                    <Label htmlFor="language-setting">Default Language</Label>
-                    <p className="text-sm text-gray-400 mb-2">
-                      Select the default language for the website.
-                    </p>
-                    <div className="flex gap-4">
-                      <Button 
-                        variant={language === 'en' ? 'default' : 'outline'} 
-                        className={language === 'en' ? '' : 'bg-[#1a1a1a] hover:bg-[#2a2a2a]'}
-                        onClick={() => setLanguage('en')}
-                      >
-                        English
-                      </Button>
-                      <Button 
-                        variant={language === 'pt-BR' ? 'default' : 'outline'} 
-                        className={language === 'pt-BR' ? '' : 'bg-[#1a1a1a] hover:bg-[#2a2a2a]'}
-                        onClick={() => setLanguage('pt-BR')}
-                      >
-                        Portuguese
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
-                    Save Settings
-                  </Button>
-                </CardFooter>
               </Card>
             )}
           </div>
