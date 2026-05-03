@@ -50,27 +50,35 @@ const WaitlistForm = ({ onSuccess, buttonClassName }: WaitlistFormProps) => {
       // Insert data into Supabase with a 15s safety timeout so the
       // button never gets stuck on "Submitting..." if the network hangs.
       const insertPromise = supabase.from('waitlist').insert(waitlistData);
-      const timeoutPromise = new Promise<{ error: { code?: string; message: string } }>(
+      const timeoutPromise = new Promise<{ error: { code?: string; message: string; status?: number } }>(
         (resolve) => setTimeout(
-          () => resolve({ error: { message: 'Request timed out. Please try again.' } }),
+          () => resolve({ error: { message: 'Request timed out. Please try again.', code: 'TIMEOUT' } }),
           15000,
         ),
       );
       const { error } = (await Promise.race([insertPromise, timeoutPromise])) as
-        { error: { code?: string; message: string } | null };
-      
+        { error: { code?: string; message: string; status?: number; details?: string } | null };
+
       if (error) {
-        // Handle unique constraint error (user already registered)
-        if (error.code === '23505') {
+        // Handle unique constraint / duplicate email — treat as success-like message,
+        // the lead is already captured.
+        const isDuplicate =
+          error.code === '23505' ||
+          error.status === 409 ||
+          /duplicate key|already exists|unique constraint/i.test(error.message || '') ||
+          /duplicate key|already exists|unique constraint/i.test(error.details || '');
+
+        if (isDuplicate) {
           toast({
-            variant: "destructive",
-            title: language === 'en' ? 'Already registered' : 'Já cadastrado',
-            description: language === 'en' ? 'This email is already registered.' : 'Este email já está registrado.'
+            title: language === 'en' ? "You're already on the list 🎉" : 'Você já está na lista 🎉',
+            description: language === 'en'
+              ? "We already have your email. We'll notify you when Eluvie launches."
+              : 'Já temos seu email. Avisaremos você quando a Eluvie for lançada.',
           });
-          setIsSubmitting(false);
+          if (onSuccess) onSuccess();
           return;
         }
-        
+
         throw error;
       }
       
@@ -83,11 +91,21 @@ const WaitlistForm = ({ onSuccess, buttonClassName }: WaitlistFormProps) => {
         onSuccess();
       }
     } catch (error) {
-      console.error('Error submitting waitlist form:', error);
+      console.error('Error submitting waitlist form:', error, JSON.stringify(error));
+
+      // Fallback: don't lose the lead. Persist locally so it can be recovered later.
+      try {
+        const pending = JSON.parse(localStorage.getItem('waitlist_pending') || '[]');
+        pending.push({ ...data, ts: new Date().toISOString() });
+        localStorage.setItem('waitlist_pending', JSON.stringify(pending));
+      } catch {}
+
       toast({
-        variant: "destructive",
+        variant: 'destructive',
         title: language === 'en' ? 'Something went wrong' : 'Algo deu errado',
-        description: language === 'en' ? 'Please try again later.' : 'Por favor, tente novamente mais tarde.'
+        description: language === 'en'
+          ? 'We saved your info locally. Please try again or contact us at contato@eluvie.com.'
+          : 'Salvamos seus dados localmente. Tente novamente ou entre em contato em contato@eluvie.com.',
       });
     } finally {
       setIsSubmitting(false);
