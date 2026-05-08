@@ -879,6 +879,7 @@ const Admin = () => {
                 </CardContent>
               </Card>
             )}
+            {currentSection === 'blog' && <BlogAdmin />}
           </div>
         </div>
       </div>
