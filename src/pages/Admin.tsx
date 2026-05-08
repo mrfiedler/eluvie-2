@@ -14,6 +14,7 @@ import { useWaitlistUsers } from '@/hooks/useWaitlistUsers';
 import { useVideoUrls } from '@/hooks/useVideoUrls';
 import { ArrowLeft, LogOut, Plus, Trash, Upload } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import BlogAdmin from '@/components/admin/BlogAdmin';
 
 // Define the AboutContent type properly
 type AboutContent = {
@@ -368,6 +369,13 @@ const Admin = () => {
                     onClick={() => setCurrentSection('pricing')}
                   >
                     Pricing Tables
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start ${currentSection === 'blog' ? 'bg-blue-900/20 text-blue-400' : ''}`}
+                    onClick={() => setCurrentSection('blog')}
+                  >
+                    Blog
                   </Button>
                   <Button 
                     variant="ghost" 
@@ -871,6 +879,7 @@ const Admin = () => {
                 </CardContent>
               </Card>
             )}
+            {currentSection === 'blog' && <BlogAdmin />}
           </div>
         </div>
       </div>

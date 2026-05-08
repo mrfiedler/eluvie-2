@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGeolocation } from '@/hooks/useGeolocation';
 
@@ -65,8 +66,11 @@ const setJsonLd = (id: string, data: object) => {
 const SEO = () => {
   const { language, currency } = useLanguage();
   const geo = useGeolocation();
+  const location = useLocation();
 
   useEffect(() => {
+    // Blog pages manage their own SEO metadata
+    if (location.pathname.startsWith('/blog')) return;
     const meta = META[language];
     document.documentElement.lang = language === 'pt-BR' ? 'pt-BR' : 'en';
     document.title = meta.title;
@@ -144,7 +148,7 @@ const SEO = () => {
         },
       ],
     });
-  }, [language, currency, geo.countryCode]);
+  }, [language, currency, geo.countryCode, location.pathname]);
 
   return null;
 };

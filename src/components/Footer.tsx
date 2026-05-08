@@ -35,6 +35,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/blog" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  {t('blog-nav')}
+                </Link>
+              </li>
+              <li>
                 <a 
                   href="https://www.instagram.com/eluvie.app/" 
                   target="_blank" 

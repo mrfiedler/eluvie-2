@@ -10,6 +10,8 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Careers from "./pages/Careers";
 import ComingSoon from "./pages/ComingSoon";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/CookieConsent";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -35,6 +37,8 @@ const AppRoutes = () => (
       <Route path="/about" element={<About />} />
       <Route path="/careers" element={<Careers />} />
       <Route path="/coming-soon" element={<ComingSoon />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/admin-login" element={<AdminLogin />} />
       <Route path="/admin" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
