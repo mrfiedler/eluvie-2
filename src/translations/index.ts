@@ -12,6 +12,7 @@ import footerTranslations from './footer';
 import aboutTranslations from './about';
 import careersTranslations from './careers';
 import waitlistTranslations from './waitlist';
+import blogTranslations from './blog';
 
 // Combine all translations
 const translations = {
@@ -28,6 +29,7 @@ const translations = {
   ...aboutTranslations,
   ...careersTranslations,
   ...waitlistTranslations,
+  ...blogTranslations,
 };
 
 export default translations;
