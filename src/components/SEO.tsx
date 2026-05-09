@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGeolocation } from '@/hooks/useGeolocation';
 
-const SITE_URL = 'https://eluvie-financial.lovable.dev';
+const SITE_URL = 'https://www.eluvie.com';
 const OG_IMAGE = '/lovable-uploads/0da950c7-6e18-4083-8c37-72fc551f9225.png';
 
 const META = {
@@ -91,6 +91,10 @@ const SEO = () => {
     setMeta('meta[name="twitter:title"]', 'content', meta.title);
     setMeta('meta[name="twitter:description"]', 'content', meta.description);
     setMeta('meta[name="twitter:image"]', 'content', SITE_URL + OG_IMAGE);
+
+    // Indexing directives
+    setMeta('meta[name="robots"]', 'content', 'index, follow');
+    setMeta('meta[name="googlebot"]', 'content', 'index, follow');
 
     // Geo / region hints for search engines
     setMeta('meta[name="geo.region"]', 'content', geo.countryCode || meta.region);

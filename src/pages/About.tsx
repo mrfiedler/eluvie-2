@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import translations from '@/translations/about';
+import { Sparkles, Heart, Target, Compass } from 'lucide-react';
 
 const About = () => {
   const { language } = useLanguage();
@@ -51,49 +52,89 @@ const About = () => {
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-gray-100">
       <Navbar />
-      
-      <main className="pt-24 pb-16">
-        <section className="container mx-auto px-4 md:px-6 py-12">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              {aboutContent.title[language]}
-            </h1>
-            
-            <div className="prose prose-lg prose-invert">
-              <p className="text-lg text-gray-300 mb-8">
+
+      <main className="pt-24 pb-20">
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute -top-32 -left-32 w-[420px] h-[420px] rounded-full bg-[#ac2ee8]/20 blur-3xl" />
+            <div className="absolute top-20 right-0 w-[360px] h-[360px] rounded-full bg-[#5f8eea]/20 blur-3xl" />
+          </div>
+          <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
+            <div className="max-w-3xl mx-auto text-center">
+              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#d64ec2] bg-[#d64ec2]/10 border border-[#d64ec2]/30 rounded-full px-4 py-1.5 mb-6">
+                <Sparkles className="h-3.5 w-3.5" />
+                {language === 'pt-BR' ? 'Nossa essência' : 'Our essence'}
+              </span>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#ac2ee8] via-[#d64ec2] to-[#5f8eea]">
+                {aboutContent.title[language]}
+              </h1>
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
                 {aboutContent.description[language]}
               </p>
-              
-              <h2 className="text-2xl font-bold text-white mt-12 mb-4">
+            </div>
+          </div>
+        </section>
+
+        {/* Mission + Story */}
+        <section className="container mx-auto px-4 md:px-6 py-8 md:py-12">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="rounded-2xl bg-[#202020] border border-gray-800 hover:border-[#8e60e5]/60 transition-colors p-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#ac2ee8] to-[#d64ec2] mb-5">
+                <Target className="h-6 w-6 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-3">
                 {translations['our-mission'][language]}
               </h2>
-              <p className="text-gray-300 mb-6">
+              <p className="text-gray-300 leading-relaxed">
                 {aboutContent.mission[language]}
               </p>
-              
-              <h2 className="text-2xl font-bold text-white mt-12 mb-4">
+            </div>
+            <div className="rounded-2xl bg-[#202020] border border-gray-800 hover:border-[#5f8eea]/60 transition-colors p-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#8e60e5] to-[#5f8eea] mb-5">
+                <Compass className="h-6 w-6 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-3">
                 {translations['our-story'][language]}
               </h2>
-              <p className="text-gray-300 mb-6">
+              <p className="text-gray-300 leading-relaxed">
                 {aboutContent.story[language]}
               </p>
-              
-              <h2 className="text-2xl font-bold text-white mt-12 mb-4">
+            </div>
+          </div>
+        </section>
+
+        {/* Values */}
+        <section className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-10">
+              <Heart className="h-5 w-5 text-[#d64ec2]" />
+              <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
                 {aboutContent.values_title[language]}
               </h2>
-              <ul className="list-disc text-gray-300 ml-6 mb-6 space-y-2">
-                {aboutContent.values_headers[language].map((header, index) => (
-                  <li key={index}>
-                    <strong className="text-white">{header}</strong>{' '}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {aboutContent.values_headers[language].map((header, index) => (
+                <div
+                  key={index}
+                  className="relative rounded-2xl bg-gradient-to-br from-[#202020] to-[#1a1a1a] border border-gray-800 p-6 hover:-translate-y-1 transition-transform"
+                >
+                  <div className="absolute top-4 right-4 text-5xl font-bold text-white/5">
+                    0{index + 1}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-3">
+                    {header.replace(/,$/, '')}
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed">
                     {aboutContent.values_content[language][index]}
-                  </li>
-                ))}
-              </ul>
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );

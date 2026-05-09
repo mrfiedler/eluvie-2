@@ -53,7 +53,7 @@ const Blog = () => {
       canonical.setAttribute('rel', 'canonical');
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', `${SITE_URL}/blog`);
+    canonical.setAttribute('href', `https://www.eluvie.com/blog`);
 
     let ld = document.getElementById('ld-blog') as HTMLScriptElement | null;
     if (!ld) {
@@ -68,7 +68,7 @@ const Blog = () => {
       name: pageTitle,
       description: pageDescription,
       inLanguage: language,
-      url: `${SITE_URL}/blog`,
+      url: `https://www.eluvie.com/blog`,
     });
   }, [language, pageTitle, pageDescription, SITE_URL]);
 
@@ -107,11 +107,8 @@ const Blog = () => {
       <Navbar />
       <main className="pt-24 pb-16">
         {/* Hero */}
-        <section className="container mx-auto px-4 md:px-6 py-12 md:py-16">
+        <section className="container mx-auto px-4 md:px-6 py-10 md:py-14">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#ac2ee8] via-[#d64ec2] to-[#5f8eea]">
-              {pageTitle}
-            </h1>
             <p className="text-lg text-gray-300">{pageDescription}</p>
           </div>
         </section>
