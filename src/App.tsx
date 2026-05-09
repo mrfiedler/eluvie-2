@@ -12,6 +12,7 @@ import Careers from "./pages/Careers";
 import ComingSoon from "./pages/ComingSoon";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import Diagnostico from "./pages/Diagnostico";
 import NotFound from "./pages/NotFound";
 import CookieConsent from "./components/CookieConsent";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -39,6 +40,7 @@ const AppRoutes = () => (
       <Route path="/coming-soon" element={<ComingSoon />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
+      <Route path="/diagnostico" element={<Diagnostico />} />
       <Route path="/admin-login" element={<AdminLogin />} />
       <Route path="/admin" element={<ProtectedAdminRoute><Admin /></ProtectedAdminRoute>} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
