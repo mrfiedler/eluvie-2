@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
 import { Send, Sparkles } from 'lucide-react';
-import SEO from '@/components/SEO';
 
 type Lang = 'en' | 'pt-BR';
 
@@ -402,14 +401,6 @@ const Diagnostico = () => {
 
   return (
     <div className="min-h-screen bg-[#151515] text-gray-100 flex flex-col">
-      <SEO
-        title={tx(lang, 'Diagnóstico Eluvie | Wolly', 'Eluvie Diagnosis | Wolly')}
-        description={tx(lang,
-          'Converse com o Wolly e descubra como a Eluvie pode se encaixar no seu negócio criativo.',
-          'Chat with Wolly and discover how Eluvie fits your creative business.'
-        )}
-      />
-
       {/* Header */}
       <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-800 bg-[#1a1a1a]">
         <Link to="/" className="flex items-center gap-2">
