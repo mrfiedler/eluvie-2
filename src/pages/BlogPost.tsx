@@ -62,7 +62,7 @@ const BlogPostPage = () => {
 
   useEffect(() => {
     if (!post) return;
-    const SITE_URL = typeof window !== 'undefined' ? window.location.origin : '';
+    const SITE_URL = 'https://www.eluvie.com';
     const title = post.meta_title || post.title;
     const description = post.meta_description || post.short_description || '';
     document.title = title;
@@ -122,12 +122,14 @@ const BlogPostPage = () => {
       <main className="pt-24 pb-16">
         <article className="container mx-auto px-4 md:px-6 py-8">
           <div className="max-w-3xl mx-auto">
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-white mb-8"
-            >
-              <ArrowLeft className="h-4 w-4" /> {t('blog-back')}
-            </Link>
+            <div className="mb-10">
+              <Link
+                to="/blog"
+                className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-white"
+              >
+                <ArrowLeft className="h-4 w-4" /> {t('blog-back')}
+              </Link>
+            </div>
 
             {loading ? (
               <p className="text-gray-400 py-12 text-center">{t('blog-loading')}</p>
@@ -135,10 +137,10 @@ const BlogPostPage = () => {
               <p className="text-gray-400 py-12 text-center">{t('blog-not-found')}</p>
             ) : (
               <>
-                <span className="text-xs uppercase tracking-wide text-[#d64ec2]">
+                <span className="inline-block text-xs uppercase tracking-wide text-[#d64ec2] bg-[#d64ec2]/10 border border-[#d64ec2]/30 rounded-full px-3 py-1">
                   {post.category}
                 </span>
-                <h1 className="text-3xl md:text-5xl font-bold text-white mt-3 mb-4">
+                <h1 className="text-3xl md:text-5xl font-bold text-white mt-4 mb-4">
                   {post.title}
                 </h1>
                 {post.short_description && (
