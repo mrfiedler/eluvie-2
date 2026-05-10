@@ -191,7 +191,7 @@ const Admin = () => {
 
   const handleLogout = async () => {
     await logout();
-    navigate('/admin-login');
+    navigate('/admin');
   };
 
   const updateContent = (section: keyof AboutContent, language: 'en' | 'pt-BR', value: string | string[]) => {

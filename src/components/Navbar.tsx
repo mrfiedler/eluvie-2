@@ -101,6 +101,10 @@ const Navbar = () => {
                 scrollToSection('waitlist');
               }}
             >{language === 'en' ? 'Waitlist' : 'Lista de Espera'}</a>
+            <Link
+              to="/diagnostic"
+              className="text-sm text-[#d64ec2] hover:text-white transition-colors font-medium"
+            >{t('diagnostic-nav')}</Link>
           </div>
           
           <div className="flex items-center space-x-4">
@@ -193,6 +197,13 @@ const Navbar = () => {
             >
               {language === 'en' ? 'Waitlist' : 'Lista de Espera'}
             </a>
+            <Link
+              to="/diagnostic"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base text-[#d64ec2] hover:text-white p-2 rounded-md hover:bg-[#2a2a2a] font-medium"
+            >
+              {t('diagnostic-nav')}
+            </Link>
             
             <div className="border-t border-gray-700 my-2"></div>
             
