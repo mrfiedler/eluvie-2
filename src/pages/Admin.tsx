@@ -15,6 +15,7 @@ import { useVideoUrls } from '@/hooks/useVideoUrls';
 import { ArrowLeft, LogOut, Plus, Trash, Upload } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import BlogAdmin from '@/components/admin/BlogAdmin';
+import { LockIcon, Loader2 } from 'lucide-react';
 
 // Define the AboutContent type properly
 type AboutContent = {
