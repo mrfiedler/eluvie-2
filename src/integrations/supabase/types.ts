@@ -68,6 +68,63 @@ export type Database = {
         }
         Relationships: []
       }
+      diagnostic_leads: {
+        Row: {
+          clientes_ativos: string | null
+          contratos_recorrentes: string | null
+          controle_atual: string | null
+          created_at: string
+          dores: string[] | null
+          email: string | null
+          empresa: string | null
+          faturamento: string | null
+          ferramenta_atual: string | null
+          id: string
+          idioma: string
+          nome: string
+          plano_recomendado: string | null
+          projetos_mes: string | null
+          tipo_negocio: string | null
+          whatsapp: string
+        }
+        Insert: {
+          clientes_ativos?: string | null
+          contratos_recorrentes?: string | null
+          controle_atual?: string | null
+          created_at?: string
+          dores?: string[] | null
+          email?: string | null
+          empresa?: string | null
+          faturamento?: string | null
+          ferramenta_atual?: string | null
+          id?: string
+          idioma?: string
+          nome: string
+          plano_recomendado?: string | null
+          projetos_mes?: string | null
+          tipo_negocio?: string | null
+          whatsapp: string
+        }
+        Update: {
+          clientes_ativos?: string | null
+          contratos_recorrentes?: string | null
+          controle_atual?: string | null
+          created_at?: string
+          dores?: string[] | null
+          email?: string | null
+          empresa?: string | null
+          faturamento?: string | null
+          ferramenta_atual?: string | null
+          id?: string
+          idioma?: string
+          nome?: string
+          plano_recomendado?: string | null
+          projetos_mes?: string | null
+          tipo_negocio?: string | null
+          whatsapp?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
