@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Globe, Instagram, Heart } from 'lucide-react';
+import { Globe, Instagram } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
@@ -37,6 +37,21 @@ const Footer = () => {
               <li>
                 <Link to="/blog" className="text-gray-400 hover:text-white transition-colors text-sm">
                   {t('blog-nav')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/diagnostic" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  {t('diagnostic-nav')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  {t('privacy-nav')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-gray-400 hover:text-white transition-colors text-sm">
+                  {t('terms-nav')}
                 </Link>
               </li>
               <li>
@@ -136,10 +151,6 @@ const Footer = () => {
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} Eluvie. {t('copyright')}
           </p>
-          
-          <div className="flex items-center text-gray-400 text-sm">
-            {t('made-with-love')} <Heart className="h-3 w-3 text-red-500 mx-1" /> {t('for-creative')}
-          </div>
         </div>
       </div>
     </footer>
