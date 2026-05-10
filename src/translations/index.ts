@@ -13,6 +13,9 @@ import aboutTranslations from './about';
 import careersTranslations from './careers';
 import waitlistTranslations from './waitlist';
 import blogTranslations from './blog';
+import diagnosticTranslations from './diagnostic';
+import faqTranslations from './faq';
+import legalTranslations from './legal';
 
 // Combine all translations
 const translations = {
@@ -30,6 +33,9 @@ const translations = {
   ...careersTranslations,
   ...waitlistTranslations,
   ...blogTranslations,
+  ...diagnosticTranslations,
+  ...faqTranslations,
+  ...legalTranslations,
 };
 
 export default translations;
