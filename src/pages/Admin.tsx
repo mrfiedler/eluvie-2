@@ -101,8 +101,11 @@ const defaultContent: AboutContent = {
 const Admin = () => {
   const { toast } = useToast();
   const { language, setLanguage } = useLanguage();
-  const { logout } = useAuth();
+  const { logout, isAuthenticated, isAdmin, loading: authLoading, login } = useAuth();
   const navigate = useNavigate();
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const [aboutContent, setAboutContent] = useState<AboutContent>(defaultContent);
   const [activeTab, setActiveTab] = useState(language);
   const [currentSection, setCurrentSection] = useState('about');
@@ -306,6 +309,60 @@ const Admin = () => {
       description: "The image has been selected for the About page.",
     });
   };
+
+  if (authLoading) {
+    return <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center text-white">Loading...</div>;
+  }
+
+  if (!isAuthenticated || !isAdmin) {
+    const handleLoginSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setSubmitting(true);
+      try {
+        const success = await login(loginEmail, loginPassword);
+        if (!success) {
+          toast({ variant: 'destructive', title: 'Access Denied', description: 'Invalid credentials or insufficient permissions.' });
+        }
+      } catch {
+        toast({ variant: 'destructive', title: 'Error', description: 'An error occurred during login.' });
+      } finally {
+        setSubmitting(false);
+      }
+    };
+    return (
+      <div className="min-h-screen bg-[#1a1a1a] text-white flex items-center justify-center p-4">
+        <Card className="w-full max-w-md bg-[#202020] border-gray-700">
+          <CardHeader className="space-y-1">
+            <div className="flex items-center justify-center mb-6">
+              <div className="h-16 w-16 bg-blue-900/20 rounded-full flex items-center justify-center">
+                <LockIcon className="h-8 w-8 text-blue-400" />
+              </div>
+            </div>
+            <CardTitle className="text-2xl font-bold text-center">Admin Login</CardTitle>
+            <CardDescription className="text-center text-gray-400">
+              Enter your credentials to access the admin panel
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLoginSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="login-email">Email</Label>
+                <Input id="login-email" type="email" value={loginEmail} onChange={(e) => setLoginEmail(e.target.value)} className="bg-[#1a1a1a] border-gray-700" required />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="login-password">Password</Label>
+                <Input id="login-password" type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} className="bg-[#1a1a1a] border-gray-700" required />
+              </div>
+              <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                {submitting ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                Sign In
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#1a1a1a] text-white">
