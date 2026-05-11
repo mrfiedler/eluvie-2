@@ -1,6 +1,9 @@
 import { MessageCircle } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const WhatsAppButton = () => {
+  const { pathname } = useLocation();
+  if (pathname.startsWith('/diagnostic')) return null;
   const phoneNumber = '5554991411584';
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
 
