@@ -4,7 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const SECTIONS_PT = [
   { id: 's1', title: '1. O serviço', body: 'A Eluvie é uma plataforma de gestão financeira para profissionais criativos. Oferecemos ferramentas para controle de clientes, contratos, recebimentos e assinaturas recorrentes.' },
-  { id: 's2', title: '2. Sua conta', body: 'Você é responsável por manter a segurança da sua conta e senha. Não compartilhe suas credenciais com terceiros. Em caso de acesso não autorizado, notifique-nos imediatamente em mauricio.fiedler@eluvie.com.' },
+  { id: 's2', title: '2. Sua conta', body: 'Você é responsável por manter a segurança da sua conta e senha. Não compartilhe suas credenciais com terceiros. Em caso de acesso não autorizado, notifique-nos imediatamente em suporte@eluvie.com.' },
   { id: 's3', title: '3. Assinatura e pagamento', body: 'Os planos da Eluvie são cobrados anualmente. O valor é debitado no momento da contratação e renovado automaticamente a cada 12 meses.\n\nVocê receberá um aviso antes da renovação com as instruções para cancelamento, caso não deseje renovar.\n\nNão há reembolso proporcional por período não utilizado após a cobrança do ciclo anual.' },
   { id: 's4', title: '4. Cancelamento', body: 'Você pode cancelar sua assinatura a qualquer momento diretamente pela sua conta. O cancelamento interrompe a renovação automática. O acesso à plataforma permanece ativo até o fim do período já pago.' },
   { id: 's5', title: '5. Uso aceitável', body: 'Você concorda em usar a Eluvie apenas para fins legítimos de gestão do seu negócio. É proibido usar a plataforma para atividades ilegais, fraudulentas ou que violem direitos de terceiros.' },
@@ -12,12 +12,12 @@ const SECTIONS_PT = [
   { id: 's7', title: '7. Disponibilidade', body: 'Trabalhamos para manter a Eluvie disponível o máximo possível. Em caso de manutenção programada ou indisponibilidade, nos comprometemos a comunicar com antecedência quando possível.' },
   { id: 's8', title: '8. Limitação de responsabilidade', body: 'A Eluvie é uma ferramenta de organização e controle. Não nos responsabilizamos por decisões financeiras tomadas com base nas informações exibidas na plataforma. Recomendamos sempre consultar um contador ou assessor financeiro para decisões importantes.' },
   { id: 's9', title: '9. Alterações nos termos', body: 'Quando fizermos alterações relevantes, você será notificado por e-mail com antecedência mínima de 15 dias. O uso continuado da plataforma após esse prazo implica aceite das novas condições.' },
-  { id: 's10', title: '10. Contato', body: 'Dúvidas sobre os termos: mauricio.fiedler@eluvie.com' },
+  { id: 's10', title: '10. Contato', body: 'Dúvidas sobre os termos: suporte@eluvie.com' },
 ];
 
 const SECTIONS_EN = [
   { id: 's1', title: '1. The service', body: 'Eluvie is a financial management platform for creative professionals. We offer tools to manage clients, contracts, payments and recurring subscriptions.' },
-  { id: 's2', title: '2. Your account', body: 'You are responsible for keeping your account and password secure. Do not share your credentials. In case of unauthorized access, notify us immediately at mauricio.fiedler@eluvie.com.' },
+  { id: 's2', title: '2. Your account', body: 'You are responsible for keeping your account and password secure. Do not share your credentials. In case of unauthorized access, notify us immediately at suporte@eluvie.com.' },
   { id: 's3', title: '3. Subscription and payment', body: 'Eluvie plans are billed annually. The amount is charged at signup and renews automatically every 12 months.\n\nYou will receive a notice before renewal with cancellation instructions if you do not wish to renew.\n\nThere is no prorated refund for unused time after the annual billing cycle is charged.' },
   { id: 's4', title: '4. Cancellation', body: 'You can cancel your subscription anytime directly from your account. Cancellation stops automatic renewal. Access to the platform remains active until the end of the paid period.' },
   { id: 's5', title: '5. Acceptable use', body: 'You agree to use Eluvie only for legitimate business management purposes. It is forbidden to use the platform for illegal, fraudulent, or rights-violating activities.' },
@@ -25,7 +25,7 @@ const SECTIONS_EN = [
   { id: 's7', title: '7. Availability', body: 'We strive to keep Eluvie available as much as possible. In case of scheduled maintenance or downtime, we commit to communicate in advance when possible.' },
   { id: 's8', title: '8. Limitation of liability', body: 'Eluvie is an organization and control tool. We are not responsible for financial decisions made based on the information shown on the platform. Always consult an accountant or financial advisor for important decisions.' },
   { id: 's9', title: '9. Changes to the terms', body: 'When we make material changes, you will be notified by email at least 15 days in advance. Continued use of the platform after this period implies acceptance of the new terms.' },
-  { id: 's10', title: '10. Contact', body: 'Questions about the terms: mauricio.fiedler@eluvie.com' },
+  { id: 's10', title: '10. Contact', body: 'Questions about the terms: suporte@eluvie.com' },
 ];
 
 const Terms = () => {

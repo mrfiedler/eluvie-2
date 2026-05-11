@@ -104,8 +104,8 @@ const WaitlistForm = ({ onSuccess, buttonClassName }: WaitlistFormProps) => {
         variant: 'destructive',
         title: language === 'en' ? 'Something went wrong' : 'Algo deu errado',
         description: language === 'en'
-          ? 'We saved your info locally. Please try again or contact us at contato@eluvie.com.'
-          : 'Salvamos seus dados localmente. Tente novamente ou entre em contato em contato@eluvie.com.',
+          ? 'We saved your info locally. Please try again or contact us at suporte@eluvie.com.'
+          : 'Salvamos seus dados localmente. Tente novamente ou entre em contato em suporte@eluvie.com.',
       });
     } finally {
       setIsSubmitting(false);
