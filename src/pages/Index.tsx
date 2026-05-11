@@ -10,6 +10,7 @@ import ComparisonSection from '@/components/ComparisonSection';
 import WaitlistSection from '@/components/WaitlistSection';
 import CTASection from '@/components/CTASection';
 import FAQSection from '@/components/FAQSection';
+import SavingsCalculatorSection from '@/components/SavingsCalculatorSection';
 import Footer from '@/components/Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -26,6 +27,7 @@ const Index = () => {
       <FeaturesSection />
       <PricingSection />
       <ComparisonSection />
+      <SavingsCalculatorSection />
       <WaitlistSection />
       <CTASection />
       <FAQSection />

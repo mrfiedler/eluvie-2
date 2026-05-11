@@ -16,6 +16,7 @@ import { ArrowLeft, LogOut, Plus, Trash, Upload } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import BlogAdmin from '@/components/admin/BlogAdmin';
 import { LockIcon, Loader2 } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 // Define the AboutContent type properly
 type AboutContent = {
@@ -115,6 +116,25 @@ const Admin = () => {
   // Video URLs state - keep raw URLs for display in input fields
   const [homepageVideo, setHomepageVideo] = useState(videoUrls.homepage);
   const [comingSoonVideo, setComingSoonVideo] = useState(videoUrls.comingSoon);
+
+  // Diagnostic leads state
+  const [leads, setLeads] = useState<any[]>([]);
+  const [loadingLeads, setLoadingLeads] = useState(false);
+
+  const fetchLeads = async () => {
+    setLoadingLeads(true);
+    const { data, error } = await supabase
+      .from('diagnostic_leads')
+      .select('*')
+      .order('created_at', { ascending: false });
+    if (!error && data) setLeads(data);
+    setLoadingLeads(false);
+  };
+
+  useEffect(() => {
+    if (currentSection === 'leads') fetchLeads();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentSection]);
 
   // Load saved content from localStorage on component mount
   useEffect(() => {
@@ -434,6 +454,13 @@ const Admin = () => {
                     onClick={() => setCurrentSection('blog')}
                   >
                     Blog
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className={`w-full justify-start ${currentSection === 'leads' ? 'bg-blue-900/20 text-blue-400' : ''}`}
+                    onClick={() => setCurrentSection('leads')}
+                  >
+                    Diagnostic Leads
                   </Button>
                   <Button 
                     variant="ghost" 
@@ -938,6 +965,59 @@ const Admin = () => {
               </Card>
             )}
             {currentSection === 'blog' && <BlogAdmin />}
+            {currentSection === 'leads' && (
+              <Card className="bg-[#202020] border-gray-700">
+                <CardHeader>
+                  <CardTitle>Diagnostic Leads</CardTitle>
+                  <CardDescription>Leads coletados pelo Wolly em /diagnostic.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {loadingLeads ? (
+                    <p>Loading leads...</p>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableCaption>{leads.length} lead(s) total.</TableCaption>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Date</TableHead>
+                            <TableHead>Name</TableHead>
+                            <TableHead>WhatsApp</TableHead>
+                            <TableHead>Email</TableHead>
+                            <TableHead>Business</TableHead>
+                            <TableHead>Plan</TableHead>
+                            <TableHead>Lang</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {leads.map((l) => (
+                            <TableRow key={l.id}>
+                              <TableCell className="text-xs">{new Date(l.created_at).toLocaleString()}</TableCell>
+                              <TableCell>{l.nome}</TableCell>
+                              <TableCell>{l.whatsapp}</TableCell>
+                              <TableCell>{l.email || '—'}</TableCell>
+                              <TableCell>{l.tipo_negocio || '—'}</TableCell>
+                              <TableCell>{l.plano_recomendado || '—'}</TableCell>
+                              <TableCell>{l.idioma}</TableCell>
+                            </TableRow>
+                          ))}
+                          {leads.length === 0 && (
+                            <TableRow>
+                              <TableCell colSpan={7} className="text-center">No leads yet</TableCell>
+                            </TableRow>
+                          )}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  )}
+                </CardContent>
+                <CardFooter>
+                  <Button onClick={fetchLeads} className="bg-gradient-to-r from-blue-600 to-purple-600">
+                    Refresh
+                  </Button>
+                </CardFooter>
+              </Card>
+            )}
           </div>
         </div>
       </div>
