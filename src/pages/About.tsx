@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import translations from '@/translations/about';
-import { Sparkles, Target, Compass } from 'lucide-react';
+import { Target, Compass } from 'lucide-react';
 
 const About = () => {
   const { language } = useLanguage();
@@ -62,10 +62,6 @@ const About = () => {
           </div>
           <div className="container mx-auto px-4 md:px-6 py-16 md:py-24">
             <div className="max-w-3xl mx-auto text-center">
-              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#d64ec2] bg-[#d64ec2]/10 border border-[#d64ec2]/30 rounded-full px-4 py-1.5 mb-6">
-                <Sparkles className="h-3.5 w-3.5" />
-                {language === 'pt-BR' ? 'Nossa essência' : 'Our essence'}
-              </span>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#ac2ee8] via-[#d64ec2] to-[#5f8eea]">
                 {aboutContent.title[language]}
               </h1>

@@ -4,6 +4,12 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,9 +31,29 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLanguageChange = () => {
-    setLanguage(language === 'en' ? 'pt-BR' : 'en');
-  };
+  const LangSwitcher = ({ compact = false }: { compact?: boolean }) => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          className={`flex items-center gap-1.5 ${compact ? 'px-2 py-1' : 'px-2.5 py-1.5'} rounded-md border border-gray-700 text-gray-300 hover:bg-[#2a2a2a] transition-colors`}
+          aria-label="Select language"
+        >
+          <span className={compact ? 'text-sm leading-none' : 'text-base leading-none'}>
+            {language === 'pt-BR' ? '🇧🇷' : '🇺🇸'}
+          </span>
+          <span className="text-xs font-semibold">{language === 'pt-BR' ? 'PT' : 'EN'}</span>
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-[8rem] bg-[#202020] border-gray-700">
+        <DropdownMenuItem onClick={() => setLanguage('en')} className="cursor-pointer text-gray-200 focus:bg-[#2a2a2a] focus:text-white">
+          <span className="mr-2">🇺🇸</span> EN
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setLanguage('pt-BR')} className="cursor-pointer text-gray-200 focus:bg-[#2a2a2a] focus:text-white">
+          <span className="mr-2">🇧🇷</span> PT
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
 
   const navigateTo = (path: string) => {
     navigate(path);
@@ -121,27 +147,13 @@ const Navbar = () => {
             >
               {t('sign-up')}
             </Button>
-            <button
-              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-gray-700 text-gray-300 hover:bg-[#2a2a2a] transition-colors"
-              onClick={handleLanguageChange}
-              aria-label="Toggle language"
-            >
-              <span className="text-base leading-none">{language === 'en' ? '🇧🇷' : '🇺🇸'}</span>
-              <span className="text-xs font-semibold">{language === 'en' ? 'PT' : 'EN'}</span>
-            </button>
+            <LangSwitcher />
           </div>
         </div>
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center space-x-3">
-          <button
-            className="flex items-center gap-1.5 px-2 py-1 rounded-md border border-gray-700 text-gray-300"
-            onClick={handleLanguageChange}
-            aria-label="Toggle language"
-          >
-            <span className="text-sm leading-none">{language === 'en' ? '🇧🇷' : '🇺🇸'}</span>
-            <span className="text-xs font-semibold">{language === 'en' ? 'PT' : 'EN'}</span>
-          </button>
+          <LangSwitcher compact />
           <button 
             className="text-gray-400 hover:text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

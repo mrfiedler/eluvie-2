@@ -15,7 +15,7 @@ const DiagnosticCTASection = () => {
           {/* glow */}
           <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-brand-violet/10 blur-[120px] pointer-events-none" />
 
-          <div className="relative flex flex-col md:flex-row items-center md:justify-between gap-8 md:gap-10">
+          <div className="relative flex flex-col md:flex-row items-center gap-8 md:gap-10">
             {/* W animado */}
             <div className="flex-shrink-0">
               <div className="relative inline-flex">
@@ -33,12 +33,12 @@ const DiagnosticCTASection = () => {
                   ? 'Descubra em 2 minutos se a Eluvie é para você'
                   : 'Find out in 2 minutes if Eluvie is right for you'}
               </h2>
-              <p className="text-gray-300 text-sm md:text-base max-w-xl mx-auto md:mx-0">
+              <p className="text-gray-300 text-sm md:text-base max-w-xl mx-auto md:mx-0 mb-4">
                 {isPt
                   ? 'O Wolly conversa com você e indica o plano ideal, sem formulário, sem compromisso.'
                   : 'Wolly chats with you and recommends the ideal plan, no forms, no commitment.'}
               </p>
-              <div className="flex items-center justify-center md:justify-start gap-4 text-xs text-gray-400 mt-3">
+              <div className="flex items-center justify-center md:justify-start gap-4 text-xs text-gray-400 mt-3 mb-5">
                 <span className="inline-flex items-center gap-1.5">
                   <Clock className="h-3.5 w-3.5" /> {'< 2 min'}
                 </span>
@@ -47,13 +47,9 @@ const DiagnosticCTASection = () => {
                   {isPt ? 'Sem cadastro' : 'No sign-up'}
                 </span>
               </div>
-            </div>
-
-            {/* CTA */}
-            <div className="flex-shrink-0 w-full md:w-auto">
               <Button
                 onClick={() => navigate('/diagnostic')}
-                className="w-full md:w-auto text-sm h-11 px-5 bg-[image:var(--color-brand-gradient)] hover:opacity-90 shadow-lg shadow-brand-violet/30"
+                className="text-sm h-11 px-6 bg-[image:var(--color-brand-gradient)] hover:opacity-90 shadow-lg shadow-brand-violet/30"
               >
                 {isPt ? 'Fazer diagnóstico grátis' : 'Get free diagnostic'}
                 <ArrowRight className="ml-2 h-4 w-4" />
