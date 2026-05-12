@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGeolocation, type Currency } from '@/hooks/useGeolocation';
 import { useNavigate } from 'react-router-dom';
-import { TrendingUp, ArrowRight, Sparkles } from 'lucide-react';
+import { TrendingUp, ArrowRight } from 'lucide-react';
 
 type PlanKey = 'solo' | 'standard' | 'studio';
 
