@@ -72,6 +72,13 @@ export default {
 					background: '#1a1a1a',
 					card: '#202020',
 					darkBg: '#151515'
+				},
+				brand: {
+					violet: '#AC2EE8',
+					purple: '#8E60E5',
+					magenta: '#D64EC2',
+					blue: '#5F8EEA',
+					neutral: '#F5EEEA'
 				}
 			},
 			borderRadius: {
@@ -127,6 +134,7 @@ export default {
 				'gradient-secondary': 'var(--gradient-secondary)',
 				'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				'dashboard-gradient': 'linear-gradient(to bottom right, #1a1a1a, #202020)',
+				'brand-gradient': 'linear-gradient(to right, #AC2EE8, #D64EC2)',
 			},
 			fontFamily: {
 				'sans': ['Inter', 'system-ui', 'sans-serif'],
