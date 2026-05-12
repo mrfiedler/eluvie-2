@@ -30,7 +30,7 @@ const HeroSection = () => {
           <div className="w-full lg:w-1/2 mb-10 lg:mb-0 animate-fade-in">
             <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
               <span>{t('hero-title').split(' ').slice(0, -1).join(' ')}</span>
-              <span className="text-blue-400"> {t('hero-title').split(' ').slice(-1)}</span>
+              <span className="text-brand-magenta"> {t('hero-title').split(' ').slice(-1)}</span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 max-w-lg">
               {t('hero-subtitle')}
@@ -44,12 +44,12 @@ const HeroSection = () => {
                 <ArrowRight className="h-5 w-5" />
               </Button>
               <Button 
-                variant="outline" 
+                variant="brandSecondary"
                 onClick={scrollToVideo} 
-                className="flex items-center justify-center gap-2 text-base py-4 sm:py-6 px-6 sm:px-8 border border-gray-600 text-white rounded-xl bg-eluvie-card w-full sm:w-auto"
+                className="flex items-center justify-center gap-2 text-base py-4 sm:py-6 px-6 sm:px-8 rounded-xl w-full sm:w-auto"
               >
                 <div className="flex items-center justify-center">
-                  <Play className="h-5 w-5 text-white" />
+                  <Play className="h-5 w-5" />
                 </div>
                 {t('how-works')}
               </Button>
