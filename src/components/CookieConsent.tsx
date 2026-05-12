@@ -31,7 +31,7 @@ const CookieConsent = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-start gap-3">
-            <Shield className="h-6 w-6 text-blue-400 flex-shrink-0 mt-0.5" />
+            <Shield className="h-6 w-6 text-brand-violet flex-shrink-0 mt-0.5" />
             <div>
               <h3 className="text-white font-medium mb-1">
                 {language === 'en' ? 'Cookie & Privacy Notice' : 'Aviso de Cookies e Privacidade'}
@@ -47,7 +47,7 @@ const CookieConsent = () => {
             <Button variant="outline" className="whitespace-nowrap border-gray-700 hover:bg-gray-800" onClick={() => setIsVisible(false)}>
               {language === 'en' ? 'Decline' : 'Recusar'}
             </Button>
-            <Button className="whitespace-nowrap bg-blue-600 hover:bg-blue-700" onClick={acceptCookies}>
+            <Button className="whitespace-nowrap" onClick={acceptCookies}>
               {language === 'en' ? 'Accept' : 'Aceitar'}
             </Button>
           </div>

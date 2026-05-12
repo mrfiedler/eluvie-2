@@ -189,7 +189,7 @@ const BlogAdmin = () => {
             </TabsList>
             <Button
               onClick={startNew}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="bg-brand-gradient hover:opacity-90 transition-opacity"
             >
               <Plus className="h-4 w-4 mr-2" /> New Post
             </Button>
@@ -423,7 +423,7 @@ const BlogAdmin = () => {
             <CardFooter className="flex gap-2">
               <Button
                 onClick={handleSave}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="bg-brand-gradient hover:opacity-90 transition-opacity"
               >
                 Save
               </Button>

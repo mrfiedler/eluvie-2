@@ -44,7 +44,7 @@ const ComingSoon = () => {
             ) : (
               <WaitlistForm 
                 onSuccess={() => setIsSubmitted(true)}
-                buttonClassName="w-full py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                buttonClassName="w-full py-6 bg-brand-gradient hover:opacity-90 transition-opacity"
               />
             )}
           </div>

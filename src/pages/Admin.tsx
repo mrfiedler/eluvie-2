@@ -373,7 +373,7 @@ const Admin = () => {
                 <Label htmlFor="login-password">Password</Label>
                 <Input id="login-password" type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)} className="bg-[#1a1a1a] border-gray-700" required />
               </div>
-              <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+              <Button type="submit" disabled={submitting} className="w-full bg-brand-gradient hover:opacity-90 transition-opacity">
                 {submitting ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
                 Sign In
               </Button>
@@ -714,7 +714,7 @@ const Admin = () => {
                     </Tabs>
                   </CardContent>
                   <CardFooter>
-                    <Button onClick={handleSaveAbout} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    <Button onClick={handleSaveAbout} className="bg-brand-gradient hover:opacity-90 transition-opacity">
                       Save Changes
                     </Button>
                   </CardFooter>
@@ -794,7 +794,7 @@ const Admin = () => {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button onClick={handleSaveVideos} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  <Button onClick={handleSaveVideos} className="bg-brand-gradient hover:opacity-90 transition-opacity">
                     Save Video URLs
                   </Button>
                 </CardFooter>
@@ -852,7 +852,7 @@ const Admin = () => {
                   )}
                 </CardContent>
                 <CardFooter>
-                  <Button onClick={refetchUsers} className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  <Button onClick={refetchUsers} className="bg-brand-gradient hover:opacity-90 transition-opacity">
                     Refresh Users List
                   </Button>
                 </CardFooter>
@@ -893,7 +893,7 @@ const Admin = () => {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  <Button className="bg-brand-gradient hover:opacity-90 transition-opacity">
                     Save Settings
                   </Button>
                 </CardFooter>
@@ -1012,7 +1012,7 @@ const Admin = () => {
                   )}
                 </CardContent>
                 <CardFooter>
-                  <Button onClick={fetchLeads} className="bg-gradient-to-r from-blue-600 to-purple-600">
+                  <Button onClick={fetchLeads} className="bg-brand-gradient">
                     Refresh
                   </Button>
                 </CardFooter>

@@ -62,7 +62,7 @@ const Terms = () => {
       <main className="pt-28 pb-16">
         <div className="container mx-auto px-4 md:px-6 max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-bold mb-3 text-white">
-            {isPt ? 'Termos de Uso — Eluvie' : 'Terms of Service — Eluvie'}
+            {isPt ? 'Termos de Uso: Eluvie' : 'Terms of Service: Eluvie'}
           </h1>
           <p className="text-sm text-gray-400 mb-8">
             {isPt ? `Última atualização: ${today}` : `Last updated: ${today}`}

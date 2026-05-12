@@ -5,6 +5,14 @@
 
 @layer base {
   :root {
+    /* Brand palette (hex for direct usage) */
+    --color-brand-violet: #AC2EE8;
+    --color-brand-purple: #8E60E5;
+    --color-brand-magenta: #D64EC2;
+    --color-brand-blue: #5F8EEA;
+    --color-brand-neutral: #F5EEEA;
+    --color-brand-gradient: linear-gradient(to right, #AC2EE8, #D64EC2);
+
     --background: 222 47% 11%;
     --foreground: 210 40% 98%;
 
@@ -92,6 +100,25 @@
   .dashboard-panel {
     @apply bg-[#202020] border border-gray-700 rounded-xl shadow-lg;
   }
+
+  /* Brand button utilities — single source of truth */
+  .btn-brand-primary {
+    background-image: var(--color-brand-gradient);
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .btn-brand-primary:hover { opacity: 0.92; }
+
+  .btn-brand-secondary {
+    background-color: transparent;
+    border: 1px solid #8E60E5;
+    color: #8E60E5;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  .btn-brand-secondary:hover { background-color: rgba(142, 96, 229, 0.1); }
 }
 
 @keyframes shimmer {

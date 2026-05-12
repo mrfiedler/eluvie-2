@@ -131,7 +131,7 @@ const SavingsCalculatorSection = () => {
                 <div className="text-xs uppercase tracking-wide text-gray-400 mb-1">
                   {isPt ? 'Custo anual da desorganização (em horas perdidas)' : 'Annual cost of disorganization (in lost hours)'}
                 </div>
-                <div className="text-2xl md:text-3xl font-bold text-orange-400 transition-all">
+                <div className="text-2xl md:text-3xl font-bold text-brand-magenta transition-all">
                   {formatMoney(annualLost, currency, language)}
                 </div>
               </div>
@@ -151,8 +151,8 @@ const SavingsCalculatorSection = () => {
                 </div>
                 {savings > 0 ? (
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="h-7 w-7 text-green-400" />
-                    <span className="text-3xl md:text-4xl font-extrabold text-green-400 transition-all">
+                    <TrendingUp className="h-7 w-7 text-brand-violet" />
+                    <span className="text-3xl md:text-4xl font-extrabold bg-clip-text text-transparent bg-brand-gradient transition-all">
                       {formatMoney(savings, currency, language)}
                     </span>
                   </div>
@@ -170,7 +170,7 @@ const SavingsCalculatorSection = () => {
               <Button
                 onClick={() => navigate('/coming-soon')}
                 size="lg"
-                className="w-full text-base py-6 bg-gradient-to-r from-[#ac2ee8] to-[#d64ec2] hover:opacity-90 border-none shadow-lg shadow-[#ac2ee8]/30"
+                className="w-full text-base py-6 shadow-lg shadow-brand-violet/30"
               >
                 {isPt ? 'Começar grátis agora' : 'Start for free now'}
                 <ArrowRight className="ml-2 h-5 w-5" />
