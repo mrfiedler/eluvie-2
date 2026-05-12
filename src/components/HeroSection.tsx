@@ -74,7 +74,7 @@ const HeroSection = () => {
               {/* Floating notification card - updated for better mobile display */}
               <div style={{ animationDelay: '0.3s' }} className="absolute -bottom-6 sm:-bottom-10 -left-6 sm:-left-10 rounded-xl shadow-lg p-3 sm:p-4 max-w-[12rem] sm:max-w-[15rem] border border-gray-700 animate-float bg-eluvie-background">
                 <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                  <div className="h-2 w-2 sm:h-3 sm:w-3 bg-green-500 rounded-full"></div>
+                  <div className="h-2 w-2 sm:h-3 sm:w-3 bg-brand-violet rounded-full"></div>
                   <p className="text-xs font-medium text-white">{t('payment-received')}</p>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-400">{t('payment-info')}</p>
@@ -83,7 +83,7 @@ const HeroSection = () => {
               {/* Gamification badge - updated for better mobile display */}
               <div style={{ animationDelay: '0.6s' }} className="absolute top-4 sm:top-8 -right-2 sm:-right-4 rounded-full shadow-lg p-2 sm:p-3 animate-float bg-eluvie-darkBg">
                 <div className="h-8 w-8 sm:h-12 sm:w-12 rounded-full flex items-center justify-center bg-eluvie-card">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-6 sm:w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-6 sm:w-6 text-brand-violet" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
