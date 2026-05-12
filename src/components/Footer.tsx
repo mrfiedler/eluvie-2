@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
@@ -11,8 +11,14 @@ import {
 
 const Footer = () => {
   const { t, language, setLanguage } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (id: string) => {
+    if (location.pathname !== '/') {
+      navigate(`/#${id}`);
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
