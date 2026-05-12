@@ -117,12 +117,12 @@ const PricingSection = () => {
     <div className="mt-8 space-y-6">
       {categories.map((category, catIndex) => (
         <div key={catIndex}>
-          <h4 className="text-sm font-semibold text-blue-400 mb-3">{t(category.titleKey)}</h4>
+          <h4 className="text-sm font-semibold text-brand-magenta mb-3">{t(category.titleKey)}</h4>
           <ul className="space-y-2">
             {category.features.map((feature, featIndex) => (
               <li key={featIndex} className="flex items-start">
                 {feature.available ? (
-                  <Check className="h-5 w-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <Check className="h-5 w-5 text-brand-violet mr-3 mt-0.5 flex-shrink-0" />
                 ) : (
                   <X className="h-5 w-5 text-gray-500 mr-3 mt-0.5 flex-shrink-0" />
                 )}
@@ -156,7 +156,7 @@ const PricingSection = () => {
             <div className="p-8 flex flex-col flex-1">
               {/* Header section - fixed height */}
               <div className="min-h-[140px]">
-                <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('solo-plan')}</h3>
+                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-brand-gradient inline-block">{t('solo-plan')}</h3>
                 <div className="text-3xl font-bold mb-1">{t('solo-price')}</div>
                 <p className="text-xs text-gray-500 mb-2 invisible">placeholder</p>
                 <p className="text-sm text-gray-400">{t('solo-for')}</p>
@@ -180,7 +180,7 @@ const PricingSection = () => {
             <div className="p-8 flex flex-col flex-1">
               {/* Header section - fixed height */}
               <div className="min-h-[140px]">
-                <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('standard-plan')}</h3>
+                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-brand-gradient inline-block">{t('standard-plan')}</h3>
                 <div className="text-3xl font-bold mb-1">{t('standard-price')}</div>
                 <p className="text-xs text-gray-500 mb-2">{t('standard-annual-disclaimer')}</p>
                 <p className="text-sm text-gray-400">{t('standard-for')}</p>
@@ -200,9 +200,9 @@ const PricingSection = () => {
           </div>
           
           {/* Studio Plan - Popular */}
-          <div className="bg-[#1a1a1a] rounded-2xl border border-blue-500 overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1 relative lg:scale-105 z-10 flex flex-col">
+          <div className="bg-[#1a1a1a] rounded-2xl border border-brand-violet overflow-hidden shadow-xl transition-transform duration-300 hover:-translate-y-1 relative lg:scale-105 z-10 flex flex-col">
             <div className="absolute top-0 right-0">
-              <div className="bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-bl-lg">
+              <div className="bg-brand-violet text-white text-xs font-semibold px-3 py-1 rounded-bl-lg">
                 {t('popular')}
               </div>
             </div>
@@ -210,7 +210,7 @@ const PricingSection = () => {
             <div className="p-8 flex flex-col flex-1">
               {/* Header section - fixed height */}
               <div className="min-h-[140px]">
-                <h3 className="text-2xl font-bold text-blue-400 mb-2">{t('studio-plan')}</h3>
+                <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-brand-gradient inline-block">{t('studio-plan')}</h3>
                 <div className="text-3xl font-bold mb-1">{t('studio-price')}</div>
                 <p className="text-xs text-gray-500 mb-2">{t('studio-annual-disclaimer')}</p>
                 <p className="text-sm text-gray-400">{t('studio-for')}</p>
