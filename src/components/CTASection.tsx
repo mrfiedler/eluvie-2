@@ -14,7 +14,7 @@ const CTASection = () => {
       <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-4xl mx-auto bg-[#1a1a1a] rounded-2xl p-8 md:p-12 shadow-2xl border border-gray-700">
+        <div className="max-w-4xl mx-auto bg-[#1a1a1a] rounded-2xl p-8 md:p-12 shadow-2xl relative" style={{ backgroundClip: 'padding-box', border: '1px solid transparent', backgroundImage: 'linear-gradient(#1a1a1a, #1a1a1a), var(--color-brand-gradient)', backgroundOrigin: 'border-box' }}>
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t('ready-to-simplify')}</h2>
             <p className="text-lg text-gray-300">
@@ -31,8 +31,8 @@ const CTASection = () => {
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button 
-              variant="outline" 
-              className="w-full sm:w-auto text-base py-6 px-8 border-gray-700 bg-transparent text-gray-300 hover:bg-[#2a2a2a]"
+              variant="brandSecondary"
+              className="w-full sm:w-auto text-base py-6 px-8"
               onClick={() => navigate("/coming-soon")}
             >
               {t('schedule-demo')}
