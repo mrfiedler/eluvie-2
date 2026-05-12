@@ -1,4 +1,4 @@
-import { ArrowRight, Sparkles, Clock, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Clock, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
@@ -28,12 +28,6 @@ const DiagnosticCTASection = () => {
 
             {/* Texto */}
             <div className="flex-1 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-violet/15 border border-brand-violet/30 mb-3">
-                <Sparkles className="h-3.5 w-3.5 text-brand-magenta" />
-                <span className="text-xs font-medium text-brand-magenta tracking-wide uppercase">
-                  {isPt ? 'Diagnóstico grátis com Wolly' : 'Free diagnostic with Wolly'}
-                </span>
-              </div>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 leading-tight">
                 {isPt
                   ? 'Descubra em 2 minutos se a Eluvie é para você'
@@ -59,11 +53,10 @@ const DiagnosticCTASection = () => {
             <div className="flex-shrink-0 w-full md:w-auto">
               <Button
                 onClick={() => navigate('/diagnostic')}
-                size="lg"
-                className="w-full md:w-auto text-base py-6 px-8 shadow-lg shadow-brand-violet/30"
+                className="w-full md:w-auto text-sm h-11 px-5 bg-[image:var(--color-brand-gradient)] hover:opacity-90 shadow-lg shadow-brand-violet/30"
               >
                 {isPt ? 'Fazer diagnóstico grátis' : 'Get free diagnostic'}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
           </div>
