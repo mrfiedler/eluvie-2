@@ -109,6 +109,7 @@ const Blog = () => {
         {/* Hero */}
         <section className="container mx-auto px-4 md:px-6 py-10 md:py-14">
           <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Blog</h1>
             <p className="text-lg text-gray-300">{pageDescription}</p>
           </div>
         </section>
@@ -120,8 +121,8 @@ const Blog = () => {
               onClick={() => setActiveCategory(null)}
               className={`px-4 py-2 rounded-full text-sm border transition-colors ${
                 activeCategory === null
-                  ? 'bg-gradient-to-r from-[#ac2ee8] to-[#5f8eea] text-white border-transparent'
-                  : 'bg-[#202020] text-gray-300 border-gray-700 hover:bg-[#2a2a2a]'
+                  ? 'bg-brand-gradient text-white border-transparent'
+                  : 'bg-transparent text-brand-purple border-brand-purple hover:bg-brand-purple/10'
               }`}
             >
               {t('blog-all-categories')}
@@ -132,8 +133,8 @@ const Blog = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2 rounded-full text-sm border transition-colors ${
                   activeCategory === cat
-                    ? 'bg-gradient-to-r from-[#ac2ee8] to-[#5f8eea] text-white border-transparent'
-                    : 'bg-[#202020] text-gray-300 border-gray-700 hover:bg-[#2a2a2a]'
+                    ? 'bg-brand-gradient text-white border-transparent'
+                    : 'bg-transparent text-brand-purple border-brand-purple hover:bg-brand-purple/10'
                 }`}
               >
                 {cat}
@@ -170,7 +171,7 @@ const Blog = () => {
                     </div>
                   </Link>
                   <div className="p-6 flex flex-col flex-1">
-                    <span className="text-xs uppercase tracking-wide text-[#d64ec2] mb-2">
+                    <span className="text-xs uppercase tracking-wide text-brand-violet mb-2">
                       {post.category}
                     </span>
                     <h2 className="text-xl font-semibold text-white mb-2 line-clamp-2">
