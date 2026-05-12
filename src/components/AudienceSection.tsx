@@ -7,22 +7,22 @@ const AudienceSection = () => {
   
   const audiences = [
     {
-      icon: <Paintbrush className="h-10 w-10 text-accent" />,
+      icon: <Paintbrush className="h-10 w-10 text-brand-violet" />,
       title: t('designers-title'),
       description: t('designers-desc')
     },
     {
-      icon: <Code className="h-10 w-10 text-primary" />,
+      icon: <Code className="h-10 w-10 text-brand-purple" />,
       title: t('developers-title'),
       description: t('developers-desc')
     },
     {
-      icon: <Users className="h-10 w-10" style={{color: 'hsl(217, 74%, 74%)'}}/>,
+      icon: <Users className="h-10 w-10 text-brand-violet" />,
       title: t('agencies-title'),
       description: t('agencies-desc')
     },
     {
-      icon: <User className="h-10 w-10 text-secondary" />,
+      icon: <User className="h-10 w-10 text-brand-purple" />,
       title: t('freelancers-title'),
       description: t('freelancers-desc')
     }
@@ -43,7 +43,7 @@ const AudienceSection = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {audiences.map((audience, index) => (
             <div key={index} className="feature-card flex flex-col items-center text-center">
-              <div className="mb-5 rounded-full bg-[#202020] p-3 shadow-sm border border-gray-700">
+              <div className="mb-5 rounded-full bg-brand-violet/10 p-3 shadow-sm border border-brand-purple/20">
                 {audience.icon}
               </div>
               <h3 className="text-xl font-semibold mb-3 text-white">{audience.title}</h3>
