@@ -47,7 +47,7 @@ const WaitlistSection = () => {
               {/* Floating notification card - updated for better mobile display */}
               <div className="absolute -bottom-4 sm:-bottom-6 -left-4 sm:-left-6 bg-[#1a1a1a] rounded-xl shadow-lg p-3 sm:p-4 max-w-[12rem] sm:max-w-[15rem] border border-gray-700 animate-float">
                 <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                  <div className="h-2 w-2 sm:h-3 sm:w-3 bg-green-500 rounded-full"></div>
+                  <div className="h-2 w-2 sm:h-3 sm:w-3 bg-brand-violet rounded-full"></div>
                   <p className="text-xs font-medium text-gray-200">{t('payment-received')}</p>
                 </div>
                 <p className="text-xs sm:text-sm text-gray-400">{t('payment-info')}</p>
