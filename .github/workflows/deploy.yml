@@ -34,6 +34,14 @@ jobs:
       - name: Install Dependencies 📦
         run: npm ci
 
+      - name: Generate dynamic sitemap 🗺️
+        run: |
+          echo "Fetching sitemap from Supabase Edge Function..."
+          curl -fsSL "https://ocqwdmqjtegyqjclfvfm.supabase.co/functions/v1/generate-sitemap" \
+            -o public/sitemap.xml \
+            && echo "Sitemap generated successfully ($(wc -c < public/sitemap.xml) bytes)" \
+            || echo "⚠️ Failed to fetch dynamic sitemap, keeping existing public/sitemap.xml"
+
       - name: Build 🏗️
         run: npm run build
         env:
