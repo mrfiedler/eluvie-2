@@ -2,13 +2,15 @@
 import { Link } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Footer = () => {
   const { t, language, setLanguage } = useLanguage();
-  
-  const handleLanguageChange = () => {
-    setLanguage(language === 'en' ? 'pt-BR' : 'en');
-  };
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -126,14 +128,35 @@ const Footer = () => {
                   className="h-8" 
                 />
               </Link>
-              <button
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-gray-700 text-gray-300 hover:bg-[#2a2a2a] transition-colors"
-                onClick={handleLanguageChange}
-                aria-label="Toggle language"
-              >
-                <span className="text-base leading-none">{language === 'en' ? '🇧🇷' : '🇺🇸'}</span>
-                <span className="text-xs font-semibold">{language === 'en' ? 'PT' : 'EN'}</span>
-              </button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-gray-700 text-gray-300 hover:bg-[#2a2a2a] transition-colors"
+                    aria-label="Select language"
+                  >
+                    <span className="text-base leading-none">{language === 'pt-BR' ? '🇧🇷' : '🇺🇸'}</span>
+                    <span className="text-xs font-semibold">{language === 'pt-BR' ? 'PT' : 'EN'}</span>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="start"
+                  sideOffset={4}
+                  className="w-[var(--radix-dropdown-menu-trigger-width)] min-w-0 p-1 bg-[#202020] border-gray-700"
+                >
+                  <DropdownMenuItem
+                    onClick={() => setLanguage('en')}
+                    className={`cursor-pointer text-xs font-semibold flex items-center gap-1.5 px-2 py-1 rounded-sm hover:bg-[#2a2a2a] focus:bg-[#2a2a2a] focus:text-white ${language === 'en' ? 'text-white bg-[#2a2a2a]/60' : 'text-gray-300'}`}
+                  >
+                    <span className="text-sm leading-none">🇺🇸</span> EN
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setLanguage('pt-BR')}
+                    className={`cursor-pointer text-xs font-semibold flex items-center gap-1.5 px-2 py-1 rounded-sm hover:bg-[#2a2a2a] focus:bg-[#2a2a2a] focus:text-white ${language === 'pt-BR' ? 'text-white bg-[#2a2a2a]/60' : 'text-gray-300'}`}
+                  >
+                    <span className="text-sm leading-none">🇧🇷</span> PT
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             <p className="text-gray-400 text-sm">
               {language === 'en' 
