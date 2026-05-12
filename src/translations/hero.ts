@@ -5,7 +5,7 @@ const heroTranslations = {
     'pt-BR': 'Uma plataforma financeira feita para seu fluxo criativo'
   },
   'hero-subtitle': {
-    en: 'Manage clients, finances, contracts and subscriptions – in minutes, not hours.',
+    en: 'Manage clients, finances, contracts and subscriptions, in minutes, not hours.',
     'pt-BR': 'Gerencie clientes, finanças, contratos e assinaturas em minutos, não horas.'
   },
   'start-free': {
