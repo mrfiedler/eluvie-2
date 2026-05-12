@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Globe, Instagram } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
@@ -27,11 +27,6 @@ const Footer = () => {
               <li>
                 <Link to="/about" className="text-gray-400 hover:text-white transition-colors text-sm">
                   {t('about')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/careers" className="text-gray-400 hover:text-white transition-colors text-sm">
-                  {t('careers')}
                 </Link>
               </li>
               <li>
@@ -132,11 +127,12 @@ const Footer = () => {
                 />
               </Link>
               <button
-                className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors"
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-gray-700 text-gray-300 hover:bg-[#2a2a2a] transition-colors"
                 onClick={handleLanguageChange}
+                aria-label="Toggle language"
               >
-                <Globe className="h-4 w-4" />
-                <span className="text-xs">{language === 'en' ? t('portuguese') : t('english')}</span>
+                <span className="text-base leading-none">{language === 'en' ? '🇧🇷' : '🇺🇸'}</span>
+                <span className="text-xs font-semibold">{language === 'en' ? 'PT' : 'EN'}</span>
               </button>
             </div>
             <p className="text-gray-400 text-sm">
