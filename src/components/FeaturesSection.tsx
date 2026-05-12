@@ -7,22 +7,22 @@ const FeaturesSection = () => {
 
   const features = [
     {
-      icon: <BarChart3 className="h-10 w-10 text-primary" />,
+      icon: <BarChart3 className="h-10 w-10 text-brand-violet" />,
       title: t('feature-1-title'),
       description: t('feature-1-desc')
     },
     {
-      icon: <Clock className="h-10 w-10 text-secondary" />,
+      icon: <Clock className="h-10 w-10 text-brand-purple" />,
       title: t('feature-2-title'),
       description: t('feature-2-desc')
     },
     {
-      icon: <Sparkles className="h-10 w-10 text-accent" />,
+      icon: <Sparkles className="h-10 w-10 text-brand-violet" />,
       title: t('feature-3-title'),
       description: t('feature-3-desc')
     },
     {
-      icon: <Shield className="h-10 w-10" style={{color: 'hsl(217, 74%, 74%)'}}/>,
+      icon: <Shield className="h-10 w-10 text-brand-purple" />,
       title: t('feature-4-title'),
       description: t('feature-4-desc')
     }
@@ -46,7 +46,7 @@ const FeaturesSection = () => {
               key={index} 
               className="bg-[#1a1a1a] rounded-lg p-6 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/10"
             >
-              <div className="bg-[#2a2a2a] rounded-lg p-3 inline-block mb-4 border border-gray-700">
+              <div className="bg-brand-violet/10 rounded-lg p-3 inline-block mb-4 border border-brand-purple/20">
                 {feature.icon}
               </div>
               <h4 className="text-xl font-semibold mb-2 text-white">{feature.title}</h4>
@@ -64,8 +64,8 @@ const FeaturesSection = () => {
             <div className="space-y-4">
               {features.map((feature, index) => (
                 <div key={`summary-${index}`} className="flex items-center gap-3">
-                  <div className="bg-[#2a2a2a] rounded-full p-1 h-fit border border-gray-700">
-                    <div className="h-2 w-2 rounded-full bg-gradient-to-r from-primary to-accent" />
+                  <div className="bg-brand-violet/10 rounded-full p-1 h-fit border border-brand-purple/20">
+                    <div className="h-2 w-2 rounded-full bg-brand-gradient" />
                   </div>
                   <p className="text-gray-300">{feature.title}</p>
                 </div>
