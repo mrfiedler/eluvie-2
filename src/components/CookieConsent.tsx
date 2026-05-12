@@ -18,6 +18,17 @@ const CookieConsent = () => {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      document.body.setAttribute('data-cookie-banner', 'true');
+    } else {
+      document.body.removeAttribute('data-cookie-banner');
+    }
+    return () => {
+      document.body.removeAttribute('data-cookie-banner');
+    };
+  }, [isVisible]);
   
   const acceptCookies = () => {
     localStorage.setItem('cookie_consent', 'accepted');
