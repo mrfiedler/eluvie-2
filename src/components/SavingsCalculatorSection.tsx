@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useGeolocation, type Currency } from '@/hooks/useGeolocation';
 import { useNavigate } from 'react-router-dom';
-import { TrendingUp, ArrowRight, Sparkles } from 'lucide-react';
+import { TrendingUp, ArrowRight } from 'lucide-react';
 
 type PlanKey = 'solo' | 'standard' | 'studio';
 
@@ -50,12 +50,6 @@ const SavingsCalculatorSection = () => {
     <section className="py-20 md:py-28 bg-gradient-to-b from-[#1a1a1a] via-[#181420] to-[#1a1a1a]">
       <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <div className="text-center mb-12 max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ac2ee8]/15 border border-[#ac2ee8]/30 mb-4">
-            <Sparkles className="h-3.5 w-3.5 text-[#d64ec2]" />
-            <span className="text-xs font-medium text-[#d64ec2] tracking-wide uppercase">
-              {isPt ? 'Calculadora de economia' : 'Savings calculator'}
-            </span>
-          </div>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             {isPt ? 'Quanto você está perdendo sem a Eluvie?' : 'How much is disorganization costing you?'}
           </h2>
