@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import translations from '@/translations/about';
-import { Sparkles, Target, Compass } from 'lucide-react';
+import { Target, Compass } from 'lucide-react';
 
 const About = () => {
   const { language } = useLanguage();
