@@ -44,12 +44,22 @@ const Navbar = () => {
           <span className="text-xs font-semibold">{language === 'pt-BR' ? 'PT' : 'EN'}</span>
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="min-w-[8rem] bg-[#202020] border-gray-700">
-        <DropdownMenuItem onClick={() => setLanguage('en')} className="cursor-pointer text-gray-200 focus:bg-[#2a2a2a] focus:text-white">
-          <span className="mr-2">🇺🇸</span> EN
+      <DropdownMenuContent
+        align="end"
+        sideOffset={4}
+        className="w-[var(--radix-dropdown-menu-trigger-width)] min-w-0 p-1 bg-[#202020] border-gray-700"
+      >
+        <DropdownMenuItem
+          onClick={() => setLanguage('en')}
+          className={`cursor-pointer text-xs font-semibold flex items-center gap-1.5 px-2 py-1 rounded-sm hover:bg-[#2a2a2a] focus:bg-[#2a2a2a] focus:text-white ${language === 'en' ? 'text-white bg-[#2a2a2a]/60' : 'text-gray-300'}`}
+        >
+          <span className="text-sm leading-none">🇺🇸</span> EN
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage('pt-BR')} className="cursor-pointer text-gray-200 focus:bg-[#2a2a2a] focus:text-white">
-          <span className="mr-2">🇧🇷</span> PT
+        <DropdownMenuItem
+          onClick={() => setLanguage('pt-BR')}
+          className={`cursor-pointer text-xs font-semibold flex items-center gap-1.5 px-2 py-1 rounded-sm hover:bg-[#2a2a2a] focus:bg-[#2a2a2a] focus:text-white ${language === 'pt-BR' ? 'text-white bg-[#2a2a2a]/60' : 'text-gray-300'}`}
+        >
+          <span className="text-sm leading-none">🇧🇷</span> PT
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

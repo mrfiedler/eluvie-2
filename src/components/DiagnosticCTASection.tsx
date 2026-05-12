@@ -11,11 +11,11 @@ const DiagnosticCTASection = () => {
   return (
     <section className="py-16 md:py-20 bg-[#1a1a1a]">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="relative max-w-6xl mx-auto rounded-3xl overflow-hidden bg-gradient-to-r from-[#1f1430] via-[#1a1a1a] to-[#1f1430] border border-brand-purple/30 px-6 py-10 md:px-12 md:py-12">
+        <div className="relative max-w-6xl mx-auto rounded-3xl overflow-hidden bg-gradient-to-r from-[#1f1430] via-[#1a1a1a] to-[#1f1430] border border-brand-purple/30 px-8 py-12 md:px-16 md:py-16">
           {/* glow */}
           <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-brand-violet/10 blur-[120px] pointer-events-none" />
 
-          <div className="relative flex flex-col md:flex-row items-center gap-8 md:gap-10">
+          <div className="relative flex flex-col md:flex-row items-center gap-10 md:gap-16">
             {/* W animado */}
             <div className="flex-shrink-0">
               <div className="relative inline-flex">
