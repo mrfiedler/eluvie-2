@@ -172,7 +172,7 @@ const WaitlistForm = ({ onSuccess, buttonClassName }: WaitlistFormProps) => {
         
         <Button 
           type="submit" 
-          className={buttonClassName || "w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"}
+          className={buttonClassName || "w-full py-5 bg-brand-gradient hover:opacity-90 transition-opacity"}
           disabled={isSubmitting}
         >
           {isSubmitting 

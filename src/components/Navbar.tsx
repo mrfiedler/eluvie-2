@@ -116,7 +116,7 @@ const Navbar = () => {
               {t('sign-in')}
             </Button>
             <Button 
-              className="text-sm bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
+              className="text-sm bg-brand-gradient hover:opacity-90 transition-opacity border-none"
               onClick={() => navigateTo('/coming-soon')}
             >
               {t('sign-up')}
@@ -219,7 +219,7 @@ const Navbar = () => {
                 {t('sign-in')}
               </Button>
               <Button 
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none"
+                className="w-full bg-brand-gradient hover:opacity-90 transition-opacity border-none"
                 onClick={() => {
                   navigateTo('/coming-soon');
                   setMobileMenuOpen(false);

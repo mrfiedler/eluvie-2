@@ -163,7 +163,7 @@ const PricingSection = () => {
               </div>
               
               <Button 
-                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 mt-4"
+                className="w-full py-5 bg-brand-gradient hover:opacity-90 transition-opacity mt-4"
                 onClick={() => navigate("/coming-soon")}
               >
                 {t('get-started-free')}
@@ -187,7 +187,7 @@ const PricingSection = () => {
               </div>
               
               <Button 
-                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 mt-4"
+                className="w-full py-5 bg-brand-gradient hover:opacity-90 transition-opacity mt-4"
                 onClick={() => navigate("/coming-soon")}
               >
                 {t('start-trial')}
@@ -217,7 +217,7 @@ const PricingSection = () => {
               </div>
               
               <Button 
-                className="w-full py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 mt-4"
+                className="w-full py-5 bg-brand-gradient hover:opacity-90 transition-opacity mt-4"
                 onClick={() => navigate("/coming-soon")}
               >
                 {t('start-trial')}

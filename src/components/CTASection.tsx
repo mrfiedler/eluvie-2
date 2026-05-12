@@ -24,7 +24,7 @@ const CTASection = () => {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
-              className="w-full sm:w-auto text-base py-6 px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="w-full sm:w-auto text-base py-6 px-8 bg-brand-gradient hover:opacity-90 transition-opacity"
               onClick={() => navigate("/coming-soon")}
             >
               {t('try-eluvie-free')}

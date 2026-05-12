@@ -37,7 +37,7 @@ const HeroSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
-                className="flex items-center justify-center gap-2 text-base py-4 sm:py-6 px-6 sm:px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-none w-full sm:w-auto" 
+                className="flex items-center justify-center gap-2 text-base py-4 sm:py-6 px-6 sm:px-8 bg-brand-gradient hover:opacity-90 transition-opacity border-none w-full sm:w-auto" 
                 onClick={() => navigate("/coming-soon")}
               >
                 {t('start-free')}
