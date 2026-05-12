@@ -79,7 +79,7 @@ const About = () => {
         {/* Mission + Story */}
         <section className="container mx-auto px-4 md:px-6 py-8 md:py-12">
           <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-2xl bg-[#202020] border border-gray-800 hover:border-[#8e60e5]/60 transition-colors p-8">
+            <div className="rounded-2xl bg-[#202020] border border-gray-800 hover:border-brand-purple/60 transition-colors p-8 h-full flex flex-col">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#ac2ee8] to-[#d64ec2] mb-5">
                 <Target className="h-6 w-6 text-white" />
               </div>
@@ -90,7 +90,7 @@ const About = () => {
                 {aboutContent.mission[language]}
               </p>
             </div>
-            <div className="rounded-2xl bg-[#202020] border border-gray-800 hover:border-[#5f8eea]/60 transition-colors p-8">
+            <div className="rounded-2xl bg-[#202020] border border-gray-800 hover:border-brand-blue/60 transition-colors p-8 h-full flex flex-col">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#8e60e5] to-[#5f8eea] mb-5">
                 <Compass className="h-6 w-6 text-white" />
               </div>
@@ -116,9 +116,10 @@ const About = () => {
               {aboutContent.values_headers[language].map((header, index) => (
                 <div
                   key={index}
-                  className="relative rounded-2xl bg-gradient-to-br from-[#202020] to-[#1a1a1a] border border-gray-800 p-6 hover:-translate-y-1 transition-transform"
+                  className="relative rounded-2xl bg-gradient-to-br from-[#202020] to-[#1a1a1a] border border-gray-800 p-6 pt-7 hover:-translate-y-1 transition-transform overflow-hidden"
                 >
-                  <div className="absolute top-4 right-4 text-5xl font-bold text-white/5">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-brand-gradient" />
+                  <div className="absolute top-4 right-4 text-5xl font-bold bg-clip-text text-transparent bg-brand-gradient opacity-30">
                     0{index + 1}
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-3">
