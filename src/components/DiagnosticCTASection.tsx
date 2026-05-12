@@ -38,24 +38,22 @@ const DiagnosticCTASection = () => {
                   ? 'O Wolly conversa com você e indica o plano ideal, sem formulário, sem compromisso.'
                   : 'Wolly chats with you and recommends the ideal plan, no forms, no commitment.'}
               </p>
-              <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-start gap-4 mt-3">
-                <div className="flex items-center gap-4 text-xs text-gray-400">
-                  <span className="inline-flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5" /> {'< 2 min'}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5">
-                    <ShieldCheck className="h-3.5 w-3.5" />
-                    {isPt ? 'Sem cadastro' : 'No sign-up'}
-                  </span>
-                </div>
-                <Button
-                  onClick={() => navigate('/diagnostic')}
-                  className="text-sm h-11 px-5 bg-[image:var(--color-brand-gradient)] hover:opacity-90 shadow-lg shadow-brand-violet/30"
-                >
-                  {isPt ? 'Fazer diagnóstico grátis' : 'Get free diagnostic'}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+              <div className="flex items-center justify-center md:justify-start gap-4 text-xs text-gray-400 mt-3 mb-5">
+                <span className="inline-flex items-center gap-1.5">
+                  <Clock className="h-3.5 w-3.5" /> {'< 2 min'}
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <ShieldCheck className="h-3.5 w-3.5" />
+                  {isPt ? 'Sem cadastro' : 'No sign-up'}
+                </span>
               </div>
+              <Button
+                onClick={() => navigate('/diagnostic')}
+                className="text-sm h-11 px-6 bg-[image:var(--color-brand-gradient)] hover:opacity-90 shadow-lg shadow-brand-violet/30"
+              >
+                {isPt ? 'Fazer diagnóstico grátis' : 'Get free diagnostic'}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>
