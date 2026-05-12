@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
@@ -103,30 +103,31 @@ const Navbar = () => {
             >{language === 'en' ? 'Waitlist' : 'Lista de Espera'}</a>
             <Link
               to="/diagnostic"
-              className="text-sm text-[#d64ec2] hover:text-white transition-colors font-medium"
+              className="text-sm text-brand-magenta hover:text-white transition-colors font-medium"
             >{t('diagnostic-nav')}</Link>
           </div>
           
           <div className="flex items-center space-x-4">
             <Button 
-              variant="outline" 
-              className="text-sm bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800"
+              variant="brandSecondary"
+              className="text-sm"
               onClick={() => navigateTo('/coming-soon')}
             >
               {t('sign-in')}
             </Button>
             <Button 
-              className="text-sm bg-brand-gradient hover:opacity-90 transition-opacity border-none"
+              className="text-sm"
               onClick={() => navigateTo('/coming-soon')}
             >
               {t('sign-up')}
             </Button>
             <button
-              className="flex items-center gap-1 text-gray-300 hover:text-white"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-gray-700 text-gray-300 hover:bg-[#2a2a2a] transition-colors"
               onClick={handleLanguageChange}
+              aria-label="Toggle language"
             >
-              <Globe className="h-4 w-4" />
-              <span className="text-xs">{language === 'en' ? t('portuguese') : t('english')}</span>
+              <span className="text-base leading-none">{language === 'en' ? '🇧🇷' : '🇺🇸'}</span>
+              <span className="text-xs font-semibold">{language === 'en' ? 'PT' : 'EN'}</span>
             </button>
           </div>
         </div>
@@ -134,11 +135,12 @@ const Navbar = () => {
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center space-x-3">
           <button
-            className="flex items-center gap-1 text-gray-300 hover:text-white"
+            className="flex items-center gap-1.5 px-2 py-1 rounded-md border border-gray-700 text-gray-300"
             onClick={handleLanguageChange}
+            aria-label="Toggle language"
           >
-            <Globe className="h-4 w-4" />
-            <span className="text-xs">{language === 'en' ? t('portuguese') : t('english')}</span>
+            <span className="text-sm leading-none">{language === 'en' ? '🇧🇷' : '🇺🇸'}</span>
+            <span className="text-xs font-semibold">{language === 'en' ? 'PT' : 'EN'}</span>
           </button>
           <button 
             className="text-gray-400 hover:text-white"
@@ -200,7 +202,7 @@ const Navbar = () => {
             <Link
               to="/diagnostic"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base text-[#d64ec2] hover:text-white p-2 rounded-md hover:bg-[#2a2a2a] font-medium"
+              className="text-base text-brand-magenta hover:text-white p-2 rounded-md hover:bg-[#2a2a2a] font-medium"
             >
               {t('diagnostic-nav')}
             </Link>
@@ -209,8 +211,8 @@ const Navbar = () => {
             
             <div className="flex flex-col space-y-3 pt-2">
               <Button 
-                variant="outline" 
-                className="w-full bg-transparent border-gray-700 text-gray-300 hover:bg-gray-800"
+                variant="brandSecondary"
+                className="w-full"
                 onClick={() => {
                   navigateTo('/coming-soon');
                   setMobileMenuOpen(false);
@@ -219,7 +221,7 @@ const Navbar = () => {
                 {t('sign-in')}
               </Button>
               <Button 
-                className="w-full bg-brand-gradient hover:opacity-90 transition-opacity border-none"
+                className="w-full"
                 onClick={() => {
                   navigateTo('/coming-soon');
                   setMobileMenuOpen(false);
