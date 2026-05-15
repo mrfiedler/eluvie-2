@@ -127,6 +127,23 @@
   }
 }
 
+/* Blog content: force dark text on light-background callouts/tables/cards
+   inserted via inline styles in post HTML. */
+.blog-content [style*="background:#f"],
+.blog-content [style*="background: #f"],
+.blog-content [style*="background-color:#f"],
+.blog-content [style*="background-color: #f"],
+.blog-content [style*="background:#FFF"],
+.blog-content [style*="background:#fff"] {
+  color: #1a1a1a !important;
+}
+.blog-content [style*="background:#f"] *:not(a):not(strong):not(em):not(code),
+.blog-content [style*="background: #f"] *:not(a):not(strong):not(em):not(code),
+.blog-content [style*="background-color:#f"] *:not(a):not(strong):not(em):not(code),
+.blog-content [style*="background-color: #f"] *:not(a):not(strong):not(em):not(code) {
+  color: #1a1a1a !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
