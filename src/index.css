@@ -144,6 +144,29 @@
   color: #1a1a1a !important;
 }
 
+/* Blog tables: normalize so every row is readable regardless of inline styles. */
+.blog-content table {
+  background: #ffffff !important;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+.blog-content table thead tr,
+.blog-content table thead th {
+  background: #7C3AED !important;
+  color: #ffffff !important;
+}
+.blog-content table tbody tr {
+  background: #ffffff !important;
+}
+.blog-content table tbody tr:nth-child(even) {
+  background: #f5f3ff !important;
+}
+.blog-content table tbody td {
+  color: #1a1a1a !important;
+  border-top: 1px solid #ececec;
+}
+
 html {
   scroll-behavior: smooth;
 }
