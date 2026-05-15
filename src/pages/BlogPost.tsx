@@ -171,7 +171,7 @@ const BlogPostPage = () => {
 
                 {post.content && (
                   <div
-                    className="prose prose-lg prose-invert max-w-none prose-img:rounded-xl prose-headings:text-white prose-a:text-[#d64ec2]"
+                    className="blog-content prose prose-lg prose-invert max-w-none prose-img:rounded-xl prose-headings:text-white prose-a:text-[#d64ec2]"
                     dangerouslySetInnerHTML={{ __html: post.content }}
                   />
                 )}
